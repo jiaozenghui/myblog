@@ -1,0 +1,24 @@
+<article>
+  <div class="banner">
+    <ul class="texts">
+      <p>The best life is use of willing attitude, a happy-go-lucky life. </p>
+      <p>最好的生活是用心甘情愿的态度，过随遇而安的生活。</p>
+    </ul>
+  </div>
+  <div class="bloglist">
+    <h2>
+      <p><span>推荐</span>文章</p>
+    </h2>
+    <div class="blogs" ng-repeat = "article in articles">
+      <h3><a ui-sref="detail({id: article._id})">{{article.title}}</a></h3>
+      <figure><img src="images/01.jpg" ></figure>
+      <ul>
+        <p>{{article.abstract}}</p>
+        <a  href="/detail" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+      </ul>
+      <p class="autor"><span>作者：Summer</span><span>分类：【<a href="/">{{article.category.name}}</a>】</span><span>浏览（<a href="/">459</a>）</span><span>评论（<a href="/">30</a>）</span>
+        <a ui-sref="edit({id: article._id})">编辑</a> <a ng-click="article_delete(article)" href="javascript:void(0)"  style="color: #f55f77;">删除</a></p>
+      <div class="dateview">2016-04-08</div>
+    </div>
+  </div>
+</article>

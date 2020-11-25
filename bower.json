@@ -1,0 +1,25 @@
+{
+  "name": "myblog",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "jiaozh1 <jiaozh1@lenovo.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "^1.0.8",
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {
+    "angular-ui-router": "^1.0.8"
+  }
+}

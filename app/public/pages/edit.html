@@ -1,0 +1,83 @@
+  <article>
+    <h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">关于我</a></h3>
+    <div class="about">
+      <ul>
+        <p></p>
+        <form class="form-horizontal">
+          <div class="form-group-right clearfix"
+            ng-class="{'has-error':form.title.$invalid && form.title.$dirty}">
+            <label for="title">
+              标题
+            </label>
+            <div class="form-group-right">
+              <input required
+                id="title"
+                title="title"
+                class="form-control verify-input"
+                type="text"
+                ng-model="article.title"
+                ng-maxlength="255"
+                placeholder="请输入文章标题"/>
+              <p class="help-block alert-fixed alert-danger"
+                ng-show="form.title.$error.required && form.title.$dirty">
+                {% trans "An VPN Service title is required." %}
+              </p>
+              <p class="help-block alert-fixed alert-danger"
+                ng-show="form.title.$error.maxlength && form.title.$dirty">
+                {% trans "Name length should be less than 255 chars." %}
+              </p>
+            </div>
+          </div>
+          <div class="form-group-right clearfix"
+            ng-class="{'has-error':form.title.$invalid && form.title.$dirty}">
+            <label for="title">
+              分类
+            </label>
+            <div class="form-group-right">
+              <label class="radio-inline" ng-repeat= "category in categories">
+                <input type="radio", value="{{category._id}}" name="category" ng-model="article.category" />{{category.name}}
+              </label>
+            </div>
+          </div>
+          <div class="form-group-right clearfix">
+            <label for="abstract">
+              摘要
+            </label>
+            <div class="form-group-right"
+                 ng-class="{'has-error':form.abstract.$invalid && form.abstract.$dirty}">
+              <textarea
+                id="abstract"
+                name="abstract"
+                class="form-control"
+                rows="4"
+                ng-maxlength="255"
+                type="abstract"
+                ng-model="article.abstract"
+                placeholder="请输入文章摘要">
+              </textarea>
+              <p class="help-block alert-fixed alert-danger"
+                ng-show="form.abstract.$error.maxlength">
+                {% trans "abstract length should be less than 255 chars." %}
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group-right clearfix">
+            <label for="editor">
+              文章内容
+            </label>
+            <div class="form-group-right">
+              <div class="form-group-right">
+                <div ueditor id="editor" config= "{{config}}" style="width:100%;height:600px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-10">
+              <button class="btn btn-primary" ng-click="addArticle()" type="submit">{{btnTitle}}</button>
+            </div>
+          </div>
+        </form>
+      </ul>
+    </div>
+  </article>
