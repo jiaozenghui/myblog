@@ -4,9 +4,8 @@ var _ = require('underscore');
 
 // 向前台返回JSON方法的简单封装
 var jsonWrite = function (res, ret) {
-	console.log('jiaozhlog')
-	console.log(ret);
-	if(typeof ret === 'undefined' || ret.success == false) {
+	res.json(ret);
+/* 	if(typeof ret === 'undefined' || ret.success == false) {
 		res.json({
 			code:'1',
 			msg: '操作失败',
@@ -14,7 +13,7 @@ var jsonWrite = function (res, ret) {
 		});
 	} else {
 		res.json(ret);
-	}
+	} */
 };
 
 
