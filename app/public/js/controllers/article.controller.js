@@ -114,6 +114,7 @@
             }).then(function (result) {
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
+                
                 $scope.config.content = $scope.article.content;
 
             }).catch(function (result) {
@@ -128,14 +129,17 @@
             var result = result.data;
             if (result.success == true) {
                 $scope.categories = result.result;
-                $scope.article.category = $scope.categories[0]._id;
+                if (!id) {
+                    $scope.article.category = $scope.categories[0]._id;
+                }
             } else {
                 console.log('get categories fail!');
             }
             
         }).catch(function (result) {
             console.log(result)
-        });   
+        });
+
 
 
 
