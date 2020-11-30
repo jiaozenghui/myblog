@@ -128,6 +128,7 @@
             var result = result.data;
             if (result.success == true) {
                 $scope.categories = result.result;
+                $scope.article.category = $scope.categories[0]._id;
             } else {
                 console.log('get categories fail!');
             }

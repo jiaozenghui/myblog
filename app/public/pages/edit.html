@@ -35,7 +35,7 @@
             </label>
             <div class="form-group-right">
               <label class="radio-inline" ng-repeat= "category in categories">
-                <input type="radio", value="{{category._id}}" name="category" ng-model="article.category" />{{category.name}}
+                <input type="radio", ng-value="category._id" ng-checked="article.category == category._id" name="category" ng-model="article.category" />{{category.name}}
               </label>
             </div>
           </div>

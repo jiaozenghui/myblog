@@ -79,21 +79,28 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
-			Category.findById(categoryId, function(err,category) {
-				console.log()
-				category.articles.push(article._id);
-				category.save(function(err, category) {
-					if (err) {
-						return jsonWrite(res, {
-							'success': false,
-							'errMsg': err
-						});
-					}
+			Category.findById(categoryId, function(error,category) {
+				if (error) {
 					return jsonWrite(res, {
-						'success': true,
-						'result': article
+						'success': false,
+						'errMsg': error
 					});
-				});
+				} else {
+					category.articles.push(article._id);
+					category.save(function(err, category) {
+						if (err) {
+							return jsonWrite(res, {
+								'success': false,
+								'errMsg': err
+							});
+						}
+						return jsonWrite(res, {
+							'success': true,
+							'result': article
+						});
+					});
+				}
+
 			});
 		});
 	}
