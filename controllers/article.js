@@ -9,7 +9,8 @@ var jsonWrite = function (res, ret) {
 	if(typeof ret === 'undefined' || ret.success == false) {
 		res.json({
 			code:'1',
-			msg: '操作失败'
+			msg: '操作失败',
+			ret: ret
 		});
 	} else {
 		res.json(ret);
@@ -80,6 +81,8 @@ exports.save = function (req, res) {
 		      });
 		    }
 			Category.findById(categoryId, function(error,category) {
+				console.log("jiasoxcffdh")
+				console.log(err)
 				if (error) {
 					return jsonWrite(res, {
 						'success': false,
@@ -88,6 +91,8 @@ exports.save = function (req, res) {
 				} else {
 					category.articles.push(article._id);
 					category.save(function(err, category) {
+						console.log("jiasoxh")
+						console.log(err)
 						if (err) {
 							return jsonWrite(res, {
 								'success': false,
