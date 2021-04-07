@@ -79,18 +79,13 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
-			console.log("jzhhhhhhh" + categoryId)
 			Category.findById(categoryId, function(error,category) {
-				console.log("jiasoxcffdh")
-				console.log(err)
 				if (error) {
 					return jsonWrite(res, {
 						'success': false,
 						'errMsg': error
 					});
 				} else {
-					console.log("category_articles")
-					console.log(category.articles)
 					category.articles.push(article._id);
 					category.save(function(err, category) {
 						console.log("jiasoxh")
