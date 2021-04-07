@@ -79,6 +79,7 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
+			console.log("jzhhhhhhh" + categoryId)
 			Category.findById(categoryId, function(error,category) {
 				console.log("jiasoxcffdh")
 				console.log(err)
@@ -88,6 +89,8 @@ exports.save = function (req, res) {
 						'errMsg': error
 					});
 				} else {
+					console.log("category_articles")
+					console.log(category.articles)
 					category.articles.push(article._id);
 					category.save(function(err, category) {
 						console.log("jiasoxh")
