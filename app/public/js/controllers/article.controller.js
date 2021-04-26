@@ -115,7 +115,7 @@
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
                 ue.addListener("ready", function () {  
-                    ue.setContent($scope.article.content);
+                    UE.getEditor('editor').setContent($scope.article.content);
                 }); 
                 $scope.config.content = $scope.article.content;
 
