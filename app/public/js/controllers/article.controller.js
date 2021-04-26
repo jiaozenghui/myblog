@@ -1,7 +1,7 @@
 (function (app) {
     'use strict';
     app.controller('articleController', function ($scope, $http) {
-        //var ue = UE.getEditor('editor');
+        var ue = UE.getEditor('editor');
         var promise = $http({
             method:"get",
             url:"/articles",

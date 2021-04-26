@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node --max-http-header-size=81920 ./bin/www"
-    
   },
   "dependencies": {
     "bcryptjs": "~2.4.3",
