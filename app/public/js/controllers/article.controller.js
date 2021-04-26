@@ -1,7 +1,6 @@
 (function (app) {
     'use strict';
     app.controller('articleController', function ($scope, $http) {
-        var ue = UE.getEditor('editor');
         var promise = $http({
             method:"get",
             url:"/articles",
@@ -77,7 +76,8 @@
         }
 
     }).controller('editController', function ($scope, $http, $stateParams) {
-        //var ue = UE.getEditor('editor');
+        var ue = UE.getEditor('editor');
+
         $scope.article = {
         };
         $scope.categories = [];
@@ -114,7 +114,9 @@
             }).then(function (result) {
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
-                
+                ue.addListener("ready", function () {  
+                    ue.setContent($scope.article.content);
+                }); 
                 $scope.config.content = $scope.article.content;
 
             }).catch(function (result) {
