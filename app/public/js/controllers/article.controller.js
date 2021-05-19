@@ -115,7 +115,7 @@
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
                 ue.ready(function () { 
-                    this.SetContent($scope.article.content);
+                    ue.setContent($scope.article.content);
                 });
 
             }).catch(function (result) {
