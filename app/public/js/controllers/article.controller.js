@@ -83,7 +83,7 @@
         $scope.categories = [];
         $scope.config={
                 //初始化编辑器内容
-                content : '',
+                content : $scope.article.content? $scope.article.content:"",
                 //是否聚焦 focus默认为false
                 focus : true,
                 //首行缩进距离,默认是2em
@@ -114,11 +114,7 @@
             }).then(function (result) {
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
-                ue.addListener("ready", function () {
-                    　　// editor准备好之后才可以使用
-                　　ue.setContent($scope.article.content);
-        
-                });
+                ue&&ue.setContent($scope.article.content);
 
             }).catch(function (result) {
                 console.log(result)
