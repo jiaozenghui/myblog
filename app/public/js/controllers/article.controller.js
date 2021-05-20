@@ -77,9 +77,7 @@
         }
 
     }).controller('editController', function ($scope, $http, $stateParams) {
-        var ue = new UE.ui.Editor(); 
-
-        ue.render("editor"); 
+        var ue = UE.getEditor('container');
         $scope.article = {
         };
         $scope.categories = [];
@@ -116,7 +114,11 @@
             }).then(function (result) {
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
-                ue&&ue.setContent($scope.article.content);
+                ue.ready(function(){
+
+                    ue.setContent($scope.article.content);
+
+                });
 
             }).catch(function (result) {
                 console.log(result)
