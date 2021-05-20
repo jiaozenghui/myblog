@@ -114,8 +114,10 @@
             }).then(function (result) {
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
-                ue.ready(function () { 
-                    ue.setContent($scope.article.content);
+                ue.addListener("ready", function () {
+                    　　// editor准备好之后才可以使用
+                　　ue.setContent($scope.article.content);
+        
                 });
 
             }).catch(function (result) {
