@@ -76,7 +76,7 @@
         }
 
     }).controller('editController', function ($scope, $http, $stateParams) {
-        var ue = UE.getEditor('editor');
+        /* var ue = UE.getEditor('editor'); */
 
         $scope.article = {
         };
@@ -114,9 +114,9 @@
             }).then(function (result) {
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
-                ue.addListener("ready", function () {  
+/*                 ue.addListener("ready", function () {  
                     ue.setContent($scope.article.content);
-                }); 
+                });  */
                 $scope.config.content = $scope.article.content;
 
             }).catch(function (result) {
