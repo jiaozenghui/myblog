@@ -1,7 +1,6 @@
 (function (app) {
     'use strict';
     app.controller('articleController', function ($scope, $http) {
-        var ue = UE.getEditor('editor');
         var promise = $http({
             method:"get",
             url:"/articles",
@@ -77,15 +76,14 @@
         }
 
     }).controller('editController', function ($scope, $http, $stateParams) {
-        var ue = new UE.ui.Editor(); 
+        var ue = UE.getEditor('editor');
 
-        ue.render("editor"); 
         $scope.article = {
         };
         $scope.categories = [];
         $scope.config={
                 //初始化编辑器内容
-                content : $scope.article.content? $scope.article.content:"",
+                content : '',
                 //是否聚焦 focus默认为false
                 focus : true,
                 //首行缩进距离,默认是2em
@@ -116,7 +114,10 @@
             }).then(function (result) {
                 $scope.article = result.data.result;
                 //$scope.ueditorSetContent('editor', $scope.article.content);
-                ue&&ue.setContent($scope.article.content);
+                ue.addListener("ready", function () {  
+                    ue.setContent($scope.article.content);
+                }); 
+                $scope.config.content = $scope.article.content;
 
             }).catch(function (result) {
                 console.log(result)
@@ -149,7 +150,7 @@
             var article = { 
                 'article': {
                    'title': $scope.article.title,
-                    content: ue.getContent(),
+                    content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
                     category: $scope.article.category
                 }
