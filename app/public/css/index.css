@@ -100,7 +100,7 @@ a.readmore { background: #e41635; color: #fff; padding: 5px 10px; float: right; 
 .avatar a:hover span { display: block; margin-top: 0; }
 .topspaceinfo { background: #e41635; padding: 40px 20px; color: #fff; text-shadow: 1px 1px rgba(0,0,0,.3); }
 .topspaceinfo h1 { font-size: 16px; line-height: 40px; font-weight: bold; }
-.about_c { margin: 10px 0; color: #fff; line-height: 26px; }
+.about_c { margin: 10px 0; line-height: 26px;  text-align: center;}
 .about_c p:first-child, .about_c p:nth-child(2), .about_c p:nth-child(3), .about_c p:nth-child(4), .about_c p:last-child { background: url(../images/about_c.png) no-repeat; }
 .about_c p:first-child { background-position: 15px 6px; }
 .about_c p:nth-child(2) { background-position: 15px -20px }
@@ -108,7 +108,7 @@ a.readmore { background: #e41635; color: #fff; padding: 5px 10px; float: right; 
 .about_c p:nth-child(4) { background-position: 15px -70px }
 .about_c p:last-child { background-position: 15px -97px }
 .about_c p { display: block; padding-left: 40px; }
-.about_c p:hover { background: #222 }
+.about_c p:hover { background: #ebf3c7 }
 .bdsharebuttonbox { margin: 20px; clear: both; }/* �ٶȷ��� */
 /* �Ҳ��Ƽ���Ϣ�б� */
 .tj_news h2, .links h2 { font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; }
