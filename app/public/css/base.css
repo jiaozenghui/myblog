@@ -23,9 +23,20 @@ header h2 { margin: 20px 80px; color: #8e8d8d }
 nav { background: #d8b36a; height: 48px; line-height: 48px; padding-left: 80px; filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #3333333, endColorstr = #3333333);
 }/* IE6  */
 nav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding: 0 20px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
-nav a:hover { background: #f7d99e; }
+nav a:hover { 
+    background: #e5d2bf;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px #cdb59e;
+}
 .topnav_div {width: 1000px; margin:0 auto;}
-#topnav_current { background: #f7d99e }/* ѡɫ */
+#topnav_current {
+    background: #e5d2bf;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px #cdb59e; }/* ѡɫ */
 article { width: 73%; float: left;  }/* � */
 aside { width: 27%;  float: right; }/* �Ҳ��� */
 /* ��Ȩ��Ϣ */
