@@ -24,7 +24,7 @@ nav { background: #d8b36a; height: 48px; line-height: 48px; padding-left: 80px; 
 }/* ����IE6 ͸�� */
 nav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding: 0 20px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
 nav a:hover { background: #f7d99e; }
-.topnav_div {width: 100px; margin:0 auto;}
+.topnav_div {width: 1000px; margin:0 auto;}
 #topnav_current { background: #f7d99e }/* ����ѡ����ɫ */
 article { width: 73%; float: left;  }/* ����� */
 aside { width: 27%;  float: right; }/* �Ҳ��� */
