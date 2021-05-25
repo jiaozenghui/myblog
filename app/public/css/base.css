@@ -20,7 +20,7 @@ header h2 { margin: 20px 80px; color: #8e8d8d }
 .logo:hover { background: url(../images/home.png) no-repeat #d8b36a center; }
 .logo a { width: 100%; height: 100%; display: block }
 /*  */
-nav { background: #d8b36a; height: 48px; line-height: 48px; padding-left: 80px; filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #3333333, endColorstr = #3333333);
+nav {  height: 48px; line-height: 48px; padding-left: 80px; filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #3333333, endColorstr = #3333333);
 }/* IE6  */
 nav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding: 0 20px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
 nav a:hover { 
