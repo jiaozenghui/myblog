@@ -96,7 +96,7 @@ a.readmore { background: #e41635; color: #fff; padding: 5px 10px; float: right; 
 /* �Ҳ������˵��� */
 .avatar { margin: 10px auto; width: 160px; height: 160px; border-radius: 100%; overflow: hidden; }
 .avatar a { display: block; padding-top: 100px; width: 160px; background: url(../images/photos.png) no-repeat; background-size: 160px 160px; }
-.avatar a span { display: block; margin-top: 63px; padding-top: 8px; width: 160px; height: 55px; text-align: center; line-height: 20px; color: #170d01; background: rgba(233,223,211,0.6); opacity: 0.6; -webkit-transition: margin-top .2s ease-in-out; -moz-transition: margin-top .2s ease-in-out; -o-transition: margin-top .2s ease-in-out; transition: margin-top .2s ease-in-out; }
+.avatar a span { display: block; margin-top: 63px; padding-top: 8px; width: 160px; height: 55px; text-align: center; line-height: 20px; color: #170d01; background: rgba(233,223,211,0.6);  -webkit-transition: margin-top .2s ease-in-out; -moz-transition: margin-top .2s ease-in-out; -o-transition: margin-top .2s ease-in-out; transition: margin-top .2s ease-in-out; }
 .avatar a:hover span { display: block; margin-top: 0; }
 .topspaceinfo { background: #e41635; padding: 40px 20px; color: #fff; text-shadow: 1px 1px rgba(0,0,0,.3); }
 .topspaceinfo h1 { font-size: 16px; line-height: 40px; font-weight: bold; }
