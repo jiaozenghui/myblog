@@ -119,15 +119,17 @@ exports.signinRequired = function(req, res, next) {
 exports.getUser = function(req, res) {
   var user = req.session.user;
   if (err) {
-    return jsonWrite(res, {
+    jsonWrite(res, {
       'success': false,
       'errMsg': err
     });
+  } else {
+    jsonWrite(res, {
+      'success': true,
+      'result': user
+    });
   }
-  return jsonWrite(res, {
-    'success': true,
-    'result': user
-  });
+
 };
 
 exports.adminRequired = function(req, res, next) {
