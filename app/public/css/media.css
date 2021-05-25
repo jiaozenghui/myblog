@@ -1,7 +1,7 @@
 @charset "gb2312";
 /* media css Document */
 @media screen and (max-width:823px) {
-.ibody { background: rgba(255,255,255,0.5); width: 90%; margin: auto; box-shadow: 0px 2px 5px #666; }
+.ibody { background: rgba(255,255,255,0.5); width: 90%; margin: auto; }
 article { float: none; width: 100% }
 article { background: #fff }
 aside, .dateview { display: none }
@@ -15,7 +15,7 @@ nav a { padding: 0 5px; }
 .blogs ul { width: 62%; }
 }
 @media screen and (max-width:598px) {
-.ibody { background: rgba(255,255,255,0.5); width: 90%; margin: auto; box-shadow: 0px 2px 5px #666; }
+.ibody { background: rgba(255,255,255,0.5); width: 90%; margin: auto; }
 article { float: none; width: 100% }
 article { background: #fff }
 aside, header h1, header h2, .dateview { display: none }
@@ -31,7 +31,7 @@ nav a { display: block;  clear: both; margin-bottom: 2px }
 .topnav_div {width: auto;}
 }
 @media screen and (max-width:480px) {
-.ibody { width: 90%; margin: auto; box-shadow: 0px 2px 5px #666; }
+.ibody { width: 90%; margin: auto; background: rgba(255,255,255,0.5); }
 article { float: none; width: 100% }
 article { background: #fff }
 aside, header h1, header h2, .dateview, .banner, .bloglist h2, .blogs figure img, .newblog figure img, .newblog .autor { display: none }
