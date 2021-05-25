@@ -17,6 +17,7 @@ module.exports= function (app) {
 	app.post('/user/signup', User.signup);
 	app.post('/user/signin', User.signin);
 	app.get('/signout', User.signout);
+	app.get('/user/get',User.signinRequired, User.getUser)
 
 	//catagory
 	app.get('/categories', User.signinRequired, Category.list);

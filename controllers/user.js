@@ -82,7 +82,7 @@ exports.signin = function (req, res) {
         console.log('Password is matched.');
         return res.redirect('/');
       } else {
-        return res.redirect('/login');;
+        return res.redirect('/login');
         console.log('Password is not matched.');
       }
     })
@@ -113,6 +113,21 @@ exports.signinRequired = function(req, res, next) {
     });
   }
   next();
+};
+
+//get user
+exports.getUser = function(req, res) {
+  var user = req.session.user;
+  if (err) {
+    return jsonWrite(res, {
+      'success': false,
+      'errMsg': err
+    });
+  }
+  return jsonWrite(res, {
+    'success': true,
+    'result': user
+  });
 };
 
 exports.adminRequired = function(req, res, next) {
