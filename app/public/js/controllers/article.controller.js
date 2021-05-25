@@ -73,7 +73,7 @@
 
     }).controller('editController', function ($scope, $http, $stateParams) {
         /* var ue = UE.getEditor('editor'); */
-
+        
         $scope.article = {
         };
         $scope.categories = [];
