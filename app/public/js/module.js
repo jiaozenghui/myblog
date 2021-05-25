@@ -2,7 +2,7 @@
 var app = angular.module('app', [
     'ui.router',
     'ueditor.directive'
-]).run(['$rootScope',function($rootScope, $http){
+]).run(['$rootScope','$http',function($rootScope, $http){
     $http({
         method:"get",
         url:"/user/get",
