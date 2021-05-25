@@ -118,20 +118,10 @@ exports.signinRequired = function(req, res, next) {
 //get user
 exports.getUser = function(req, res) {
   var user = req.session.user;
-  console.log("jiafscf")
-  console.log(user)
-  if (err) {
-    jsonWrite(res, {
-      'success': false,
-      'errMsg': err
-    });
-  } else {
-    jsonWrite(res, {
-      'success': true,
-      'result': user
-    });
-  }
-
+  jsonWrite(res, {
+    'success': true,
+    'result': user
+  });
 };
 
 exports.adminRequired = function(req, res, next) {
