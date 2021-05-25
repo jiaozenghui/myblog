@@ -7,7 +7,7 @@ module.exports= function (app) {
 
 	//Article
 	app.post('/admin/artice/new', Article.save);
-	app.get('/articles', User.signinRequired, Article.list);
+	app.get('/articles', Article.list);
 	app.get('/article/:id', Article.detail);
 	app.delete('/article/delete/:id', Article.delete);
 
