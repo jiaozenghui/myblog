@@ -40,6 +40,6 @@ nav a:hover {
 article { width: 73%; float: left;  }/* � */
 aside { width: 27%;  float: right; }/* �Ҳ��� */
 /* ��Ȩ��Ϣ */
-.copyright { background: #d8b36a; border-radius: 50%; text-align: center; color: #d8d8d8; padding: 20px; margin: 60px 20px 0 20px; border: #1b1a1a 1px solid; }
-.copyright p { line-height: 26px; text-shadow: #d8b36a 1px 1px 1px }
-.copyright p a { color: #d8d8d8; }
+.copyright { background: #fcf8f4; border-radius: 50%; text-align: center; color: #d7bdb1; padding: 20px; margin: 60px 20px 0 20px;  }
+.copyright p { line-height: 26px; text-shadow: #fcf8f4 1px 1px 1px }
+.copyright p a { color: #d7bdb1; }
