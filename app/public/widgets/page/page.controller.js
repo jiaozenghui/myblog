@@ -62,4 +62,4 @@
             }
         };
     }
-    })();
+    })(angular.module('app'));
