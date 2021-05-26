@@ -6,10 +6,12 @@
             templateUrl: 'widgets/page/page_template.html',
             scope: {
                 pageCount:'=',//对应totalPage
+                total:"=",
+                pageIndex: "=",
                 onClickPage:'&' //对应reloadData()
             },
     
-            link: function( scope, elem, attrs, c){
+            link: function( scope ){
                 var context = scope;
                 context.onClickPrev = onClickPrev;
                 context.onClickNext = onClickNext;
