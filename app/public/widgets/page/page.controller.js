@@ -3,7 +3,7 @@
     function pageController() {
         return {
             restrict: 'AE',
-            templateUrl: './page_template.html',
+            templateUrl: 'page_template.html',
             scope: {
                 pageCount:'=',//对应totalPage
                 onClickPage:'&' //对应reloadData()
