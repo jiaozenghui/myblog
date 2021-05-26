@@ -1,18 +1,23 @@
 (function (app) {
     'use strict';
     app.controller('articleController', function ($scope, $http) {
-        var promise = $http({
-            method:"get",
-            url:"/articles",
-        }).then(function (result) {
-            if (result.data.success == true) {
-                $scope.articles = result.data.result;
-            }
-
-
-        }).catch(function (result) {
-            console.log(result)
-        });
+        $scope.page = 1;
+        $scope.getList = function(page){
+            $scope.page = page;
+            $scope.totalPage = 20;
+            $http({
+                method:"get",
+                url:"/articles",
+            }).then(function (result) {
+                if (result.data.success == true) {
+                    $scope.articles = result.data.result;
+                }
+            
+    
+            }).catch(function (result) {
+                console.log(result)
+            });
+        }
         $scope.article_delete = function (article) {
             var promise = $http({
                 method:"delete",
@@ -25,7 +30,7 @@
             });
 
         }
-
+        $scope.getList(1);
     }).controller('detailController', function ($scope, $http, $stateParams) {
         var id = $stateParams.id;
         $scope.article = {};

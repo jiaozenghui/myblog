@@ -1,0 +1,31 @@
+<div class="page-holder" ng-show="pageCount.length>1">
+    <span class="prev m-link" ng-if="pageNumber != 1" ng-click="onClickPrev()">&lt;</span>
+    <div style="display: inline" class="m-default" 
+　　　　ng-repeat="page in pageCount track by $index" ng-show="($index+1>pageCount.length-5&&pageNumber>pageCount.length-3)||($index<5&&pageNumber<4)||($index+1>pageNumber-3 && $index+1<pageNumber+3)">
+                <span class="page m-link" ng-class="{'green':page == pageNumber}"
+                      ng-click="onClickPageNumber(page)">{{page}}</span>
+    </div>
+    <span class="next m-link" ng-if="pageNumber != pageCount.length" ng-click="onClickNext()">&gt;</span>
+    <span class="total-page m-default">共 {{pageCount.length}} 页</span>
+    </span>
+</div>
+
+<style>
+    .page-holder {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        margin-right: 20px;
+        float: right;
+    }
+
+    .page, .prev, .next, .total-page {
+        color: #616161;
+        padding: 0px 6px;
+        border:1px solid #f2f2f2;
+    }
+
+    .green{
+        color:#0A9908;
+    }
+</style>
