@@ -47,6 +47,8 @@
                    for(let i=1; i<=context.maxPageIndex; i++) {
                        context.pageList.push(i);
                    }
+                   context.maxPageIndex = Math.max(...context.pageList);
+                   context.minPageIndex = Math.min(...context.pageList);
     　　　　　　　}
     　
                 function onClickPageNumber(pageNumber) {
