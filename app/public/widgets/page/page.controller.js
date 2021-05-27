@@ -95,7 +95,7 @@
                                 context.pageList.push(i);
                             }
                         } else {
-                            for(let i=(context.total-context.showPage); i<=context.total; i++) {
+                            for(let i=(context.total-context.showPage+1); i<=context.total; i++) {
                                 context.pageList.push(i);
                             }
                         }
