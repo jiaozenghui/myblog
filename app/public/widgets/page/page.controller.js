@@ -51,15 +51,15 @@
 
     　　　　　　　//分页逻辑相同，可直接将init写为这样(不用兼容以前)
     　　　　　　　init();
-/*     　　　　　　　function init(){
+    　　　　　　　function init(){
     　　　　　　　　context.pageNumber = 1;
                    context.showPage= 5;
                    context.pageList=[];
-                   context.maxPageIndex = total< context.showPage? total: context.showPage;
+                   context.maxPageIndex = context.total< context.showPage? context.total: context.showPage;
                    for(let i=1; i<=context.maxPageIndex; i++) {
                        context.pageList.push(i);
                    }
-    　　　　　　　} */
+    　　　　　　　}
     　
                 function onClickPageNumber(pageNumber) {
                     context.onClickPage({page:pageNumber});//这里必须按着这种格式写，他是根据数组中的参数名对应来找
