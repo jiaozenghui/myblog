@@ -91,7 +91,7 @@
                     if (currentMaxPage < context.total && page == currentMaxPage) {
                         context.pageList=[];
                         if ((page+ context.showPage) <= context.total) {
-                            for(let i=page; i<=(page+context.showPage); i++) {
+                            for(let i=page; i<=(page+context.showPage-1); i++) {
                                 context.pageList.push(i);
                             }
                         } else {
