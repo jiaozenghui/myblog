@@ -1,12 +1,24 @@
+<div class="page-holder" ng-show="pageCount.length>1">
+    <span class="prev m-link" ng-if="pageNumber != 1" ng-click="onClickPrev()">&lt;</span>
+    <div style="display: inline" class="m-default" 
+　　　　ng-repeat="page in pageCount track by $index" ng-show="($index+1>pageCount.length-5&&pageNumber>pageCount.length-3)||($index<5&&pageNumber<4)||($index+1>pageNumber-3 && $index+1<pageNumber+3)">
+                <span class="page m-link" ng-class="{'green':page == pageNumber}"
+                      ng-click="onClickPageNumber(page)">{{page}}</span>
+    </div>
+    <span class="next m-link" ng-if="pageNumber != pageCount.length" ng-click="onClickNext()">&gt;</span>
+    <span class="total-page m-default">共 {{pageCount.length}} 页</span>
+    </span>
+</div>
+
 <div class="page">
     <a title="Total record"><b>{{ total }}</b></a>
-    <a href="/"><<</a>
-    <a href="/"><</a>
-    <b>1</b>
-    <a href="/">2</a>
-    <a href="/">3</a>
-    <a href="/">4</a>
-    <a href="/">5</a>
-    <a href="/">></a>
-    <a href="/">>></a>
+    <a href="javascript:void(0);"><<</a>
+    <a href="javascript:void(0);"><</a>
+    <span ng-repeat="page in pageList track by $index">
+        <b ng-if="page == pageIndex">{{page}}</b>
+        <a href="javascript:void(0);" ng-click="goTo(page)" ng-if="page != pageIndex">{{page}}</a>
+    </span>
+    <a href="javascript:void(0);"  ng-click="goToNext(page)">></a>
+    <a href="javascript:void(0);">>></a>
 </div>
+

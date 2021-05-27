@@ -16,6 +16,8 @@
                 context.onClickPrev = onClickPrev;
                 context.onClickNext = onClickNext;
                 context.onClickPageNumber = onClickPageNumber;
+                context.goTo = goTo;
+                context.goToNext = goToNext;
     　　　　　　　
     　　　　　　　//$scope.watch为了兼容以前版本写法(如一开始就用这个分页组件,分页逻辑相同，可修改为下面一种写法)
                 !function init() { //！function init()效果和下面一样(这里做了老版本兼容)
@@ -36,6 +38,12 @@
     　　　　　　　init();
     　　　　　　　function init(){
     　　　　　　　　context.pageNumber = 1;
+                   context.showPage= 5;
+                   context.pageList=[];
+                   context.maxPageIndex = total< context.showPage? total: context.showPage;
+                   for(let i=1; i<=context.maxPageIndex; i++) {
+                       context.pageList.push(i);
+                   }
     　　　　　　　}
     　
                 function onClickPageNumber(pageNumber) {
@@ -60,6 +68,30 @@
                         context.pageNumber += 1;
                     }
                     context.onClickPage({message:context.pageNumber});
+                }
+
+                function goTo(page) {
+                    context.pageIndex = page;
+                    let currentMaxPage = Math.max(pageList);
+                    if (currentMaxPage < context.total && page == currentMaxPage) {
+                        context.pageList=[];
+                        if ((page+ context.showPage) <= context.total) {
+                            for(let i=page; i<=(page+context.showPage); i++) {
+                                context.pageList.push(i);
+                            }
+                        } else {
+                            for(let i=(context.total-context.showPage); i<=context.total; i++) {
+                                context.pageList.push(i);
+                            }
+                        }
+                    }
+                    context.maxPageIndex = Math.max(context.pageList);
+                }
+                function goToNext(page) {
+                    if (page < context.total) {
+                        context.pageIndex++;
+                        goTo(context.pageIndex);
+                    }
                 }
             }
         };
