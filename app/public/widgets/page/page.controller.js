@@ -20,7 +20,7 @@
                 context.goToNext = goToNext;
     　　　　　　　
     　　　　　　　//$scope.watch为了兼容以前版本写法(如一开始就用这个分页组件,分页逻辑相同，可修改为下面一种写法)
-                !function init() { //！function init()效果和下面一样(这里做了老版本兼容)
+/*                 !function init() { //！function init()效果和下面一样(这里做了老版本兼容)
                     context.pageNumber = 1;
                     scope.$watch(function () {
                         return context.pageCount//监听发现分页总数变了，执行后面函数
@@ -33,10 +33,25 @@
                             context.pageCount = temp;
                         }
                     });
+                }(); */
+                !function init() { //！function init()效果和下面一样(这里做了老版本兼容)
+                    context.pageIndex = 1;
+                    scope.$watch(function () {
+                        return context.total//监听发现分页总数变了，执行后面函数
+                    }, function () {
+                        context.pageIndex = 1;
+                        context.showPage= 5;
+                        context.pageList=[];
+                        context.maxPageIndex = total< context.showPage? total: context.showPage;
+                        for(let i=1; i<=context.maxPageIndex; i++) {
+                            context.pageList.push(i);
+                        }
+                    });
                 }();
+
     　　　　　　　//分页逻辑相同，可直接将init写为这样(不用兼容以前)
     　　　　　　　init();
-    　　　　　　　function init(){
+/*     　　　　　　　function init(){
     　　　　　　　　context.pageNumber = 1;
                    context.showPage= 5;
                    context.pageList=[];
@@ -44,7 +59,7 @@
                    for(let i=1; i<=context.maxPageIndex; i++) {
                        context.pageList.push(i);
                    }
-    　　　　　　　}
+    　　　　　　　} */
     　
                 function onClickPageNumber(pageNumber) {
                     context.onClickPage({page:pageNumber});//这里必须按着这种格式写，他是根据数组中的参数名对应来找
