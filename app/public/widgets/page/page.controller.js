@@ -34,22 +34,7 @@
                         }
                     });
                 }(); */
-                !function init() { //！function init()效果和下面一样(这里做了老版本兼容)
-                    context.pageIndex = 1;
-                    scope.$watch(function () {
-                        return context.total//监听发现分页总数变了，执行后面函数
-                    }, function () {
-                        context.pageIndex = 1;
-                        context.showPage= 5;
-                        context.pageList=[];
-                        context.maxPageIndex = context.total< context.showPage? context.total: context.showPage;
-                        for(let i=1; i<=context.maxPageIndex; i++) {
-                            context.pageList.push(i);
-                        }
-                    });
-                }();
 
-    　　　　　　　//分页逻辑相同，可直接将init写为这样(不用兼容以前)
     　　　　　　　init();
     　　　　　　　function init(){
     　　　　　　　　context.pageNumber = 1;
