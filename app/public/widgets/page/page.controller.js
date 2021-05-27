@@ -18,6 +18,9 @@
                 context.onClickPageNumber = onClickPageNumber;
                 context.goTo = goTo;
                 context.goToNext = goToNext;
+                context.goToPre = goToPre;
+                context.goToBegin = goToBegin;
+                context.goToEnd = goToEnd;
     　　　　　　　
     　　　　　　　//$scope.watch为了兼容以前版本写法(如一开始就用这个分页组件,分页逻辑相同，可修改为下面一种写法)
 /*                 !function init() { //！function init()效果和下面一样(这里做了老版本兼容)
@@ -73,6 +76,7 @@
                 function goTo(page) {
                     context.pageIndex = page;
                     let currentMaxPage = Math.max(...context.pageList);
+                    let currentMinPage = Math.min(...context.pageList);
                     if (currentMaxPage < context.total && page == currentMaxPage) {
                         context.pageList=[];
                         if ((page+ context.showPage) <= context.total) {
@@ -84,14 +88,50 @@
                                 context.pageList.push(i);
                             }
                         }
+                    } if (currentMinPage>1 &&  page == currentMinPage) {
+                        context.pageList=[];
+                        if (page > context.showPage) {
+                            for(let i=(page-context.showPage+1); i<=page; i++) {
+                                context.pageList.push(i);
+                            }
+                        } else {
+                            for(let i=1; i<=context.showPage; i++) {
+                                context.pageList.push(i);
+                            }
+                        }
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
+                    context.minPageIndex = Math.min(...context.pageList);
                 }
                 function goToNext(page) {
                     if (page < context.total) {
                         context.pageIndex++;
                         goTo(context.pageIndex);
                     }
+                }
+                function goToPre(page) {
+                    if (page > 1) {
+                        context.pageIndex--
+                        goTo(context.pageIndex);
+                    }
+                }
+                function goToBegin() {
+                    context.pageIndex =1;
+                    context.pageList =[];
+                    for(let i=1; i<=context.showPage; i++) {
+                        context.pageList.push(i);
+                    }
+                    context.maxPageIndex = Math.max(...context.pageList);
+                    context.minPageIndex = Math.min(...context.pageList);
+                }
+                function goToEnd() {
+                    context.pageIndex =context.total;
+                    context.pageList =[];
+                    for(let i=(context.total-context.showPage+1); i<=context.total; i++) {
+                        context.pageList.push(i);
+                    }
+                    context.maxPageIndex = Math.max(...context.pageList);
+                    context.minPageIndex = Math.min(...context.pageList);
                 }
             }
         };
