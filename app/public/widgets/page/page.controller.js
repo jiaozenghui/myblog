@@ -87,7 +87,7 @@
 
                 function goTo(page) {
                     context.pageIndex = page;
-                    let currentMaxPage = Math.max(context.pageList);
+                    let currentMaxPage = Math.max(...context.pageList);
                     if (currentMaxPage < context.total && page == currentMaxPage) {
                         context.pageList=[];
                         if ((page+ context.showPage) <= context.total) {
@@ -100,7 +100,7 @@
                             }
                         }
                     }
-                    context.maxPageIndex = Math.max(context.pageList);
+                    context.maxPageIndex = Math.max(...context.pageList);
                 }
                 function goToNext(page) {
                     if (page < context.total) {
