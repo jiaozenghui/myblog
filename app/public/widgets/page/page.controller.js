@@ -42,7 +42,7 @@
                         context.pageIndex = 1;
                         context.showPage= 5;
                         context.pageList=[];
-                        context.maxPageIndex = total< context.showPage? total: context.showPage;
+                        context.maxPageIndex = context.total< context.showPage? context.total: context.showPage;
                         for(let i=1; i<=context.maxPageIndex; i++) {
                             context.pageList.push(i);
                         }
