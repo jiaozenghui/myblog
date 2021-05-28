@@ -58,8 +58,8 @@ ArticleSchema.statics={
         return this
             .find({}).populate('category', 'name')
             .sort({'meta.updateAt': 'desc'})  //排序
-            .skip(pageSize*(pageIndex-1))
-            .limit(pageSize)
+            .skip(0)
+            .limit(10)
             .exec(cb)
     },
     getTotalCount: function(cb) {
