@@ -51,7 +51,10 @@ ArticleSchema.statics={
             .findOne({_id:id})
             .exec(cb)
     },
-    findList: function(pageIndex, pageSize, cb) { //去除所有要查询的数据    
+    findList: function(pageIndex, pageSize, cb) { //去除所有要查询的数据
+        console.log("jiaozh page")   
+        console.log(pageIndex) 
+        console.log(pageSize) 
         return this
             .find({}).populate('category', 'name')
             .sort({'meta.updateAt': 'desc'})  //排序
