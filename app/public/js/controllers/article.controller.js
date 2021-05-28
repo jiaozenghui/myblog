@@ -30,7 +30,7 @@
             });
 
         }
-        $scope.getList(1);
+        $scope.getList();
     }).controller('detailController', function ($scope, $http, $stateParams) {
         var id = $stateParams.id;
         $scope.article = {};
