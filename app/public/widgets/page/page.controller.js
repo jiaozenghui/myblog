@@ -88,7 +88,7 @@
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
-                    context.onClickPage();
+                    context.onClickPage(page);
                 }
                 function goToEnd() {
                     context.pageIndex =context.total;
@@ -98,7 +98,7 @@
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
-                    context.onClickPage();
+                    context.onClickPage(page);
                 }
             }
         };

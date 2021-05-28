@@ -2,8 +2,7 @@
     'use strict';
     app.controller('articleController', function ($scope, $http) {
         $scope.page = 1;
-        $scope.getList = function(page){
-            $scope.page = page;
+        $scope.getList = function(){
             $http({
                 method:"get",
                 url:"/articles",
