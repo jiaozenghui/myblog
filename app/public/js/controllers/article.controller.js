@@ -7,6 +7,7 @@
             $http({
                 method:"get",
                 url:"/articles",
+                params: {pageIndex: $scope.page, pageSize: 10}
             }).then(function (result) {
                 if (result.data.success == true) {
                     $scope.articles = result.data.result;
