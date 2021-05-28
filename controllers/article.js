@@ -120,10 +120,6 @@ exports.list = function(req, res) {
 	      	'errMsg': err
 	      });
 	    }
-		return jsonWrite(res, {
-			'success': true,
-			'result': articles
-		});
 	});
 	Article.getTotalCount(function(err, count) {
 	    if (err) {
