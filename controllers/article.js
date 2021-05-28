@@ -119,9 +119,11 @@ exports.list = function(req, res) {
 	      	'success': false,
 	      	'errMsg': err
 	      });
-	    }
+	    } else {
+			articles = articles;
+		}
 	});
-	Article.getTotalCount(function(err, count) {
+	Article.getTotalCount(function(err, list) {
 	    if (err) {
 	      return jsonWrite(res, {
 	      	'success': false,
@@ -131,7 +133,7 @@ exports.list = function(req, res) {
 		return jsonWrite(res, {
 			'success': true,
 			'result': articles,
-			'total': count
+			'total': list.length
 		});
 	});
 
