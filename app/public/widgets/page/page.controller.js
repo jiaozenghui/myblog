@@ -23,7 +23,7 @@
     　　　　　　　function init(){
     　　　　　　　　context.pageNumber = 1;
                    context.showPage= 5;
-                   context.maxPageIndex = Math.ceil(context.total%context.pageCount)< context.showPage? Math.ceil(context.total%context.pageCount): context.showPage;
+                   context.maxPageIndex = Math.ceil(context.total/context.pageCount)< context.showPage? Math.ceil(context.total/context.pageCount): context.showPage;
                    initialPageList(1, context.maxPageIndex); 
     　　　　　　　}
 
