@@ -1,90 +1,52 @@
-(function (app) {//自定义指令
+(function (app) {
     app.directive('page', pageController);
     function pageController() {
         return {
             restrict: 'AE',
             templateUrl: 'widgets/page/page_template.html',
             scope: {
-                pageCount:'=',//对应totalPage
+                pageCount:'=',
                 total:"=",
                 pageIndex: "=",
-                onClickPage:'&' //对应reloadData()
+                onClickPage:'&'
             },
     
             link: function( scope ){
                 var context = scope;
-                context.onClickPrev = onClickPrev;
-                context.onClickNext = onClickNext;
-                context.onClickPageNumber = onClickPageNumber;
                 context.goTo = goTo;
                 context.goToNext = goToNext;
                 context.goToPre = goToPre;
                 context.goToBegin = goToBegin;
                 context.goToEnd = goToEnd;
-    　　　　　　　
-    　　　　　　　//$scope.watch为了兼容以前版本写法(如一开始就用这个分页组件,分页逻辑相同，可修改为下面一种写法)
-/*                 !function init() { //！function init()效果和下面一样(这里做了老版本兼容)
-                    context.pageNumber = 1;
-                    scope.$watch(function () {
-                        return context.pageCount//监听发现分页总数变了，执行后面函数
-                    }, function () {
-                        if (typeof context.pageCount != 'object' && typeof parseInt(context.pageCount) == 'number') {
-                            var temp = [];
-                            for (var i = 1; i <= context.pageCount; i++) {
-                                temp.push(i);
-                            }
-                            context.pageCount = temp;
-                        }
-                    });
-                }(); */
 
     　　　　　　　init();
     　　　　　　　function init(){
     　　　　　　　　context.pageNumber = 1;
                    context.showPage= 5;
-                   context.pageList=[];
                    context.maxPageIndex = context.total< context.showPage? context.total: context.showPage;
-                   for(let i=1; i<=context.maxPageIndex; i++) {
-                       context.pageList.push(i);
-                   }
-                   context.maxPageIndex = Math.max(...context.pageList);
-                   context.minPageIndex = Math.min(...context.pageList);
+                   initialPageList(1, context.maxPageIndex); 
     　　　　　　　}
-    　
-                function onClickPageNumber(pageNumber) {
-                    context.onClickPage({page:pageNumber});//这里必须按着这种格式写，他是根据数组中的参数名对应来找
-    　　　　　　　　　　//如果直接这样传参context.onClickPage(pageNumber),会报Cannot use 'in' operator to search for 'reloadData' in 2（寻找不到参数错误）
-                    context.pageNumber = pageNumber;
-                    context.showPrev = pageNumber > 1;
-                }
-    
-                function onClickPrev() {
-                    context.pageNumber -= 1;
-                    context.onClickPage({message:context.pageNumber});
-                    if (context.pageNumber == 1) {
-                        context.showPrev = false;
+
+                function initialPageList(beginIndex, endIndex) {
+                    context.pageList=[];
+                    for(let i = beginIndex; i <= endIndex; i++) {
+                        context.pageList.push(i);
                     }
-                    context.showNext = true;
-                }
-    
-                function onClickNext() {
-    
-                    if (context.pageNumber < context.pageCount.length) {
-                        context.pageNumber += 1;
-                    }
-                    context.onClickPage({message:context.pageNumber});
+                    context.maxPageIndex = Math.max(...context.pageList);
+                    context.minPageIndex = Math.min(...context.pageList);
                 }
 
                 function goTo(page) {
                     context.pageIndex = page;
+                    context.onClickPage();
                     let currentMaxPage = Math.max(...context.pageList, page);
                     let currentMinPage = Math.min(...context.pageList, page);
                     if (currentMaxPage < context.total && page == currentMaxPage) {
-                        context.pageList=[];
                         if ((page+ context.showPage) <= context.total) {
                             for(let i=page; i<=(page+context.showPage-1); i++) {
                                 context.pageList.push(i);
                             }
+                            initialPageList(page, page+context.showPage-1);
                         } else {
                             for(let i=(context.total-context.showPage+1); i<=context.total; i++) {
                                 context.pageList.push(i);
@@ -104,6 +66,7 @@
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
+                    
                 }
                 function goToNext(page) {
                     if (page < context.total) {
@@ -125,6 +88,7 @@
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
+                    context.onClickPage();
                 }
                 function goToEnd() {
                     context.pageIndex =context.total;
@@ -134,6 +98,7 @@
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
+                    context.onClickPage();
                 }
             }
         };

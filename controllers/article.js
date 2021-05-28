@@ -110,19 +110,10 @@ exports.save = function (req, res) {
 
 //list
 exports.list = function(req, res) {
-/*  Article.fetch(function(err, articles) {
-    if (err) {
-      return jsonWrite(res, {
-      	'success': false,
-      	'errMsg': err
-      });
-    }
-	return jsonWrite(res, {
-		'success': true,
-		'result': articles
-	});
-  });*/
-	Article.findList(function(err, articles) {
+	var pageIndex = req.params.pageIndex;
+	var pageSize = req.params.pageSize;
+	let articles =[];
+	Article.findList(pageIndex, pageSize, function(err, articles) {
 	    if (err) {
 	      return jsonWrite(res, {
 	      	'success': false,
@@ -134,6 +125,20 @@ exports.list = function(req, res) {
 			'result': articles
 		});
 	});
+	Article.getTotalCount(function(err, count) {
+	    if (err) {
+	      return jsonWrite(res, {
+	      	'success': false,
+	      	'errMsg': err
+	      });
+	    }
+		return jsonWrite(res, {
+			'success': true,
+			'result': articles,
+			'total': count
+		});
+	});
+
 };
 
 //detail page

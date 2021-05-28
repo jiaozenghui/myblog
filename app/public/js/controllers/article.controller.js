@@ -4,13 +4,13 @@
         $scope.page = 1;
         $scope.getList = function(page){
             $scope.page = page;
-            $scope.totalPage = 20;
             $http({
                 method:"get",
                 url:"/articles",
             }).then(function (result) {
                 if (result.data.success == true) {
                     $scope.articles = result.data.result;
+                    $scope.total = result.data.total;
                 }
             
     

@@ -51,11 +51,18 @@ ArticleSchema.statics={
             .findOne({_id:id})
             .exec(cb)
     },
-    findList: function(cb) { //去除所有要查询的数据
+    findList: function(pageIndex, pageSize, cb) { //去除所有要查询的数据    
         return this
             .find({}).populate('category', 'name')
             .sort({'meta.updateAt': 'desc'})  //排序
+            .skip(pageSize*(pageIndex-1))
+            .limit(pageSize)
             .exec(cb)
+    },
+    getTotalCount: function(cb) {
+        this
+        .find({})
+        .exec(cb)
     }
 }
 
