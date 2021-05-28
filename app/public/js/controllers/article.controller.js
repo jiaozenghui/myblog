@@ -2,11 +2,11 @@
     'use strict';
     app.controller('articleController', function ($scope, $http) {
         $scope.page = 1;
-        $scope.getList = function(obj){
+        $scope.getList = function(page){
             $http({
                 method:"get",
                 url:"/articles",
-                params: {pageIndex: obj.page, pageSize: 10}
+                params: {pageIndex: page, pageSize: 10}
             }).then(function (result) {
                 if (result.data.success == true) {
                     $scope.articles = result.data.result;
@@ -30,7 +30,7 @@
             });
 
         }
-        $scope.getList({page:1});
+        $scope.getList(1);
     }).controller('detailController', function ($scope, $http, $stateParams) {
         var id = $stateParams.id;
         $scope.article = {};

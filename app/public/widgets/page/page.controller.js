@@ -23,7 +23,7 @@
     　　　　　　　function init(){
     　　　　　　　　context.pageNumber = 1;
                    context.showPage= 5;
-                   context.maxPageIndex = context.total< context.showPage? context.total: context.showPage;
+                   context.maxPageIndex = Math.ceil(context.total%context.showPage)< context.showPage? Math.ceil(context.total%context.showPage): context.showPage;
                    initialPageList(1, context.maxPageIndex); 
     　　　　　　　}
 
@@ -38,7 +38,7 @@
 
                 function goTo(page) {
                     context.pageIndex = page;
-                    context.onClickPage()({page:context.pageIndex});
+                    context.onClickPage()(page);
                     let currentMaxPage = Math.max(...context.pageList, page);
                     let currentMinPage = Math.min(...context.pageList, page);
                     if (currentMaxPage < context.total && page == currentMaxPage) {
@@ -88,7 +88,7 @@
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
-                    context.onClickPage(context.pageIndex);
+                    context.onClickPage()(context.pageIndex);
                 }
                 function goToEnd() {
                     context.pageIndex =context.total;
@@ -98,7 +98,7 @@
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
-                    context.onClickPage({page:context.pageIndex});
+                    context.onClickPage()(page);
                 }
             }
         };
