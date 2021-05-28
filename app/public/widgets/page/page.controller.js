@@ -11,7 +11,7 @@
                 onClickPage:'&'
             },
     
-            link: function( scope ){
+            link: function( scope, element ){
                 var context = scope;
                 context.goTo = goTo;
                 context.goToNext = goToNext;
