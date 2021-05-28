@@ -60,7 +60,7 @@ ArticleSchema.statics={
             .exec(cb)
     },
     getTotalCount: function(cb) {
-        this
+        return this
         .find({}).exec(cb)
     }
 }

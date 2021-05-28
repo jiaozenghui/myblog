@@ -112,7 +112,6 @@ exports.save = function (req, res) {
 exports.list = function(req, res) {
 	var pageIndex = req.params.pageIndex;
 	var pageSize = req.params.pageSize;
-	let articles =[];
 	Article.findList(pageIndex, pageSize, function(err, articles) {
 	    if (err) {
 	      return jsonWrite(res, {
@@ -120,23 +119,21 @@ exports.list = function(req, res) {
 	      	'errMsg': err
 	      });
 	    } else {
-			articles = articles;
+			Article.getTotalCount(function(err, list) {
+				if (err) {
+				  return jsonWrite(res, {
+					  'success': false,
+					  'errMsg': err
+				  });
+				}
+				return jsonWrite(res, {
+					'success': true,
+					'result': articles,
+					'total': list.length
+				});
+			});
 		}
 	});
-	Article.getTotalCount(function(err, list) {
-	    if (err) {
-	      return jsonWrite(res, {
-	      	'success': false,
-	      	'errMsg': err
-	      });
-	    }
-		return jsonWrite(res, {
-			'success': true,
-			'result': articles,
-			'total': list.length
-		});
-	});
-
 };
 
 //detail page
