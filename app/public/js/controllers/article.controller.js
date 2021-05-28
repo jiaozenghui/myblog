@@ -30,6 +30,9 @@
             });
 
         }
+        $scope.onClick = function(page) {
+            $scope.getList(page)
+        }
         $scope.getList(1);
     }).controller('detailController', function ($scope, $http, $stateParams) {
         var id = $stateParams.id;
