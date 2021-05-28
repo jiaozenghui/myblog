@@ -110,8 +110,8 @@ exports.save = function (req, res) {
 
 //list
 exports.list = function(req, res) {
-	var pageIndex = req.params.pageIndex;
-	var pageSize = req.params.pageSize;
+	var pageIndex = req.query.pageIndex;
+	var pageSize = req.query.pageSize;
 	Article.findList(pageIndex, pageSize, function(err, articles) {
 	    if (err) {
 	      return jsonWrite(res, {
