@@ -52,14 +52,11 @@ ArticleSchema.statics={
             .exec(cb)
     },
     findList: function(pageIndex, pageSize, cb) { //去除所有要查询的数据
-        console.log("jiaozh page")   
-        console.log(pageIndex) 
-        console.log(pageSize) 
         return this
             .find({}).populate('category', 'name')
             .sort({'meta.updateAt': 'desc'})  //排序
-            .skip(0)
-            .limit(10)
+            .skip(parseInt(pageSize)*(parseInt(pageIndex)-1))
+            .limit(parseInt(pageSize))
             .exec(cb)
     },
     getTotalCount: function(cb) {
