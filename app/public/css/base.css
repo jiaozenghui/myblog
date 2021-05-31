@@ -70,3 +70,6 @@ aside { width: 27%;  float: right; }/* �Ҳ��� */
     background-color: #878987;
     -webkit-border-radius: 6px
 }
+.pannel {
+    background: rgba(255, 255, 255, 0.5);
+}
