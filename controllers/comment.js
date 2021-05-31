@@ -6,7 +6,7 @@ var jsonWrite = function (res, ret) {
   if(typeof ret === 'undefined' || ret.success == false) {
     res.json({
       code:'1',
-      msg: ret.errMsg
+      msg: '操作失败'
     });
   } else {
     res.json(ret);
@@ -37,8 +37,8 @@ exports.list = function(req, res) {
 //admin post article
 exports.save = function (req, res) {
   var _comment = JSON.parse(req.query.comment);
-  _comment.from = '匿名';
-  _comment.to = '匿名';
+  _comment.from = req.session.user? req.session.user._id: '60b485807f05bd645799d17d';
+  _comment.to = req.session.user? req.session.user._id: '60b485807f05bd645799d17d';
   var articleId = _comment.article;
   if (_comment.cid) {
     Comment.findById(_comment.cid, function (err, comment) {
