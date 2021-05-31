@@ -16,7 +16,7 @@
                 <div class="media-body">
                   <h4 class="media-heading" ng-mouseenter="comment.is_replay_show= true"
                   ng-mouseleave="comment.is_replay_show= false"
-                  style="margin-bottom:0;margin-top: 12px;">{{comment.from.name}}：<span>{{comment.content}}</span> <a style="margin-left: 30px;" href="javascript:void(0)">回复</a></h4>
+                  style="margin-bottom:0;margin-top: 12px;">{{comment.from.name}}：<span>{{comment.content}}</span> <a style="margin-left: 30px;" ng-if="comment.is_replay_show" href="javascript:void(0)">回复</a></h4>
                   <div class="form-group">
                     <textarea name="content" ng-model="newcomment.content"  row="3" class="form-control"></textarea>
                     <button ng-click="addComment(comment._id)" type='submit' class="btn btn-primary" >提交</button> <a href="#" data-toggle="modal" data-target="#signinModal" class="navbar-link">登录后评论</a>
