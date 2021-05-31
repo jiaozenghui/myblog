@@ -9,7 +9,6 @@ var ArticleSchema= new mongoose.Schema({
     title:String,
     content: String,
     abstract: String,
-    user: {type: ObjectId, ref: 'User'},
     pv: {
         type: Number,
         default: 0

@@ -38,13 +38,12 @@ exports.list = function(req, res) {
 exports.save = function (req, res) {
   var _comment = JSON.parse(req.query.comment);
   _comment.from = req.session.user? req.session.user._id: '60b485807f05bd645799d17d';
-  _comment.to = req.session.user? req.session.user._id: '60b485807f05bd645799d17d';
   var articleId = _comment.article;
   if (_comment.cid) {
     Comment.findById(_comment.cid, function (err, comment) {
       var reply = {
         from: _comment.from,
-        to: _comment.to,
+        to: comment.from,
         content: _comment.content
       }
       comment.reply.push(reply);

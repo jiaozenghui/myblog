@@ -72,7 +72,6 @@ exports.save = function (req, res) {
 	} else {
 		_article = new Article(articleObj);
 		var categoryId = articleObj.category;
-		_article.user = req.session.user._id;
 		_article.save(function (err, article) {
 		    if (err) {
 		      return jsonWrite(res, {
