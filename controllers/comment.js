@@ -37,8 +37,8 @@ exports.list = function(req, res) {
 //admin post article
 exports.save = function (req, res) {
   var _comment = JSON.parse(req.query.comment);
-  _comment.from = req.session.user._id;
-  _comment.to = req.session.user._id;
+  _comment.from = '匿名';
+  _comment.to = '匿名';
   var articleId = _comment.article;
   if (_comment.cid) {
     Comment.findById(_comment.cid, function (err, comment) {
