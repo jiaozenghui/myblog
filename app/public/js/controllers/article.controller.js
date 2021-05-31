@@ -34,6 +34,7 @@
     }).controller('detailController', function ($scope, $http, $stateParams) {
         var id = $stateParams.id;
         $scope.article = {};
+        $scope.newcomment = {};
         var promise = $http({
             method:"get",
             url:"/article/" + id,
