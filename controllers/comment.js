@@ -6,7 +6,7 @@ var jsonWrite = function (res, ret) {
   if(typeof ret === 'undefined' || ret.success == false) {
     res.json({
       code:'1',
-      msg: '操作失败'
+      msg: ret.errMsg
     });
   } else {
     res.json(ret);
