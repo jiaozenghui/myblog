@@ -41,7 +41,7 @@
                     context.onClickPage()(page);
                     let currentMaxPage = Math.max(...context.pageList, page);
                     let currentMinPage = Math.min(...context.pageList, page);
-                    if (currentMaxPage < context.total && page == currentMaxPage) {
+                    if (currentMaxPage < Math.ceil(context.total/context.pageCount) && page == currentMaxPage) {
                         if ((page+ context.showPage) <= context.total) {
                             for(let i=page; i<=(page+context.showPage-1); i++) {
                                 context.pageList.push(i);
