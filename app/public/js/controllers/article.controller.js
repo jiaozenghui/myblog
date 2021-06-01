@@ -48,16 +48,19 @@
             console.log(result)
         });
 
-        var promise = $http({
-            method:"get",
-            url:"/comment/list",
-            params: {article: id}
-        }).then(function (result) {
-            $scope.comments = result.data.result;
-        }).catch(function (result) {
-            console.log(result)
-        });
 
+        $scope.getComments = function () {
+            $http({
+                method:"get",
+                url:"/comment/list",
+                params: {article: id}
+            }).then(function (result) {
+                $scope.comments = result.data.result;
+            }).catch(function (result) {
+                console.log(result)
+            });
+        }
+        $scope.getComments();
         $scope.addComment = function (commentId, content) {
             var params = { 
                 'comment': {
@@ -76,7 +79,7 @@
                 url:"/user/comment",
                 params: params
             }).then(function (result) {
-                console.log(result); 
+                $scope.getComments();
             }).catch(function (result) {
                 console.log(result)
             });
