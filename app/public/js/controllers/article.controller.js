@@ -90,6 +90,9 @@
                 content:""
             };
         }
+        $scope.cancelReply = function(commentId) {
+            this.mapCommentReply[commentId]= {};
+        }
 
 
     }).controller('editController', function ($scope, $http, $stateParams, $rootScope) {
