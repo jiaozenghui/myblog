@@ -58,19 +58,23 @@
             console.log(result)
         });
 
-        $scope.addComment = function (commentId) {
-            var comment = { 
+        $scope.addComment = function (commentId, content) {
+            var params = { 
                 'comment': {
-                    content: $scope.newcomment.content,
+                    content: content,
                     article : id,
                     cid: commentId
                 }
             }
 
+            if (commentId) {
+                params['replyTo'] = $scope.mapCommentReply[commentId].to;
+            }
+
             var promise = $http({
                 method:"post",
                 url:"/user/comment",
-                params: comment
+                params: params
             }).then(function (result) {
                 console.log(result); 
             }).catch(function (result) {
@@ -79,10 +83,11 @@
 
         }
 
-        $scope.reply = function(comment, to) {
-            $scope.mapCommentReply[comment._id] = {
+        $scope.reply = function(params, to) {
+            $scope.mapCommentReply[params._id] = {
                 showReplyContainer:true,
-                to: to
+                to: to,
+                content:""
             };
         }
 
