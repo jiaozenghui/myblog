@@ -16,7 +16,7 @@
         <p>{{article.abstract}}</p>
         <a  href="/detail" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
       </ul>
-      <p class="autor"><span>作者：{{article.author}}</span><span>分类：【<a href="/">{{article.category.name}}</a>】</span><span>浏览（<a href="/">{{article.pv}}</a>）</span><!-- <span>评论（<a href="/">30</a>）</span> -->
+      <p class="autor"><span>作者：{{article.author}}</span><span>分类：【<a href="/">{{article.category.name}}</a>】</span><span>浏览（<a href="/">{{article.pv}}</a>）</span><span>评论（<a href="/">30</a>）</span>
         <a ui-sref="edit({id: article._id})" class="ng-cloak" ng-if="user">编辑</a> <a ng-if="user" ng-click="article_delete(article)" href="javascript:void(0)" class="ng-cloak"  style="color: #f55f77;">删除</a></p>
       <div class="dateview" ng-if="article.meta">{{article.meta.createAt}}</div>
     </div>
