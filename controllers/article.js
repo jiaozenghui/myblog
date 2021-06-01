@@ -113,14 +113,14 @@ exports.save = function (req, res) {
 exports.list = function(req, res) {
 	var pageIndex = req.query.pageIndex;
 	var pageSize = req.query.pageSize;
-	Article.findList(pageIndex, pageSize, function(err, articles) {
+	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 	    if (err) {
 	      return jsonWrite(res, {
 	      	'success': false,
 	      	'errMsg': err
 	      });
 	    } else {
-			Article.getTotalCount(function(err, list) {
+			Article.getTotal(function(err, list) {
 				if (err) {
 				  return jsonWrite(res, {
 					  'success': false,
@@ -136,6 +136,41 @@ exports.list = function(req, res) {
 		}
 	});
 };
+
+exports.statistics = function(req, res) {
+	var pageIndex = req.query.pageIndex;
+	var pageSize = req.query.pageSize;
+	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
+	    if (err) {
+	      return jsonWrite(res, {
+	      	'success': false,
+	      	'errMsg': err
+	      });
+	    } else {
+			Article.getTotal(function(err, list) {
+				if (err) {
+				  return jsonWrite(res, {
+					  'success': false,
+					  'errMsg': err
+				  });
+				}
+				let pv_total=0;
+				let pc_total=0
+				list.forEach(function(v,n) {
+					pv_total += v.pv;
+					pc_total += v.pc;
+				});
+				return jsonWrite(res, {
+					'success': true,
+					'result': articles,
+					'total': list.length,
+					'pv_total': pv_total,
+					'pc_total': pc_total
+				});
+			});
+		}
+	});
+}
 
 //detail page
 exports.detail = function(req, res) {

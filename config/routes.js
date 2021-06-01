@@ -11,6 +11,7 @@ module.exports= function (app) {
 	app.get('/article/:id', Article.detail);
 	app.delete('/article/delete/:id', Article.delete);
 
+	app.get('/statistics', Article.statistics);
 	//Login
 	app.get('/login', User.showSignin);
 	app.get('/signup', User.showSignup);

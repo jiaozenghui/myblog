@@ -5,5 +5,6 @@
         $('#topnav a').click(function() {
             $(this).attr('id', 'topnav_current').siblings().removeAttr('id')
         });
+        
     });
 })(angular.module('app'));
