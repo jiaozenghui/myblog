@@ -35,7 +35,8 @@
         var id = $stateParams.id;
         $scope.article = {};
         $scope.newcomment = {};
-        $scope.mapreply
+        $scope.mapShowReply={};
+        $scope.mapCommentReply={};
         var promise = $http({
             method:"get",
             url:"/article/" + id,
@@ -77,6 +78,14 @@
             });
 
         }
+
+        $scope.reply = function(comment, to) {
+            $scope.mapCommentReply[comment._id] = {
+                showReplyContainer:true,
+                to: to
+            };
+        }
+
 
     }).controller('editController', function ($scope, $http, $stateParams, $rootScope) {
         /* var ue = UE.getEditor('editor'); */
