@@ -80,7 +80,7 @@
                 params: params
             }).then(function (result) {
                 $scope.getComments();
-                $scope.cancelReply();
+                commentId&&$scope.cancelReply(commentId);
             }).catch(function (result) {
                 console.log(result)
             });
