@@ -68,7 +68,7 @@
             }
 
             if (commentId) {
-                params['replyTo'] = $scope.mapCommentReply[commentId].to;
+                params['comment']['replyTo'] = $scope.mapCommentReply[commentId].to;
             }
 
             var promise = $http({
