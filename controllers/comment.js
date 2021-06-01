@@ -1,4 +1,5 @@
 var Comment = require('../models/comment');
+var Article = require('../models/article');
 var _ = require('underscore');
 
 // 向前台返回JSON方法的简单封装
@@ -69,6 +70,14 @@ exports.save = function (req, res) {
           'errMsg': err
          });
       }
+      Article.update({_id: _comment.article}, {$inc: {pc:1}}, function (err) {
+        if (err) {
+          return jsonWrite(res, {
+            'success': false,
+            'errMsg': err
+          });
+        }
+      });
       return jsonWrite(res, {
           'success': true,
           'result': comment

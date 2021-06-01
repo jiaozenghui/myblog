@@ -22,6 +22,7 @@ exports.save = function (req, res) {
 	var articleObj = JSON.parse(req.query.article);
 	var _article;
 	var id = articleObj.id;
+	articleObj.author = req.session.user._id;
 	if (id) {
 		Article.findById(id, function (err, article) {
 		  if (err) {

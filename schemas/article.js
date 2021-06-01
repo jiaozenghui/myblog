@@ -13,6 +13,11 @@ var ArticleSchema= new mongoose.Schema({
         type: Number,
         default: 0
     },
+    pc: {
+        type: Number,
+        default: 0
+    },
+    author: {type: ObjectId, ref: 'User'},
     category: {
         type: ObjectId,
         ref: 'Category'
