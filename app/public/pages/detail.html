@@ -16,18 +16,18 @@
                 <div class="media-body">
                   <h4 class="media-heading" ng-mouseenter="comment.is_replay_show= true"
                   ng-mouseleave="comment.is_replay_show= false"
-                  style="margin-bottom:0;margin-top: 12px;">{{comment.from.name}}：<span>{{comment.content}}</span> <a style="margin-left: 30px;" ng-if="comment.is_replay_show" href="javascript:void(0)">回复</a></h4>
+                  style="margin-bottom:0;margin-top: 12px;">{{comment.from.name}}：<span>{{comment.content}}</span> <a style="margin-left: 30px;" ng-if="comment.is_replay_show" ng-click="" href="javascript:void(0)">回复</a></h4>
+                  <div class="media" ng-repeat ="reply in comment.reply">
+                    <div class="pull-left"><a href="#comments" data-cid="59fc0280b224c71aa0f78e35" data-tid="59fc0250b224c71aa0f78e33" class="comment"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px;  border-radius:50%;" class="media-object"></a></div>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{reply.from.name}}<span class="text-info">&nbsp;回复&nbsp;</span>{{reply.to.name}}:<a style="margin-left: 30px;" ng-if="comment.is_replay_show" ng-click="" href="javascript:void(0)">回复</a></h4>
+                      <p>{{reply.content}}</p>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <textarea name="content" ng-model="newcomment.content"  row="3" class="form-control"></textarea>
                     <button ng-click="addComment(comment._id)" type='submit' class="btn btn-primary" >提交</button> <a href="#" data-toggle="modal" data-target="#signinModal" class="navbar-link">登录后评论</a>
                   </div> 
-                  <div class="media" ng-repeat ="reply in comment.reply">
-                    <div class="pull-left"><a href="#comments" data-cid="59fc0280b224c71aa0f78e35" data-tid="59fc0250b224c71aa0f78e33" class="comment"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px;  border-radius:50%;" class="media-object"></a></div>
-                    <div class="media-body">
-                      <h4 class="media-heading">{{reply.from.name}}<span class="text-info">&nbsp;回复&nbsp;</span>{{reply.to.name}}:</h4>
-                      <p>{{reply.content}}</p>
-                    </div>
-                  </div>
                 </div>
                 <hr>
               </li>

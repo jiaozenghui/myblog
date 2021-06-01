@@ -35,6 +35,7 @@
         var id = $stateParams.id;
         $scope.article = {};
         $scope.newcomment = {};
+        $scope.mapreply
         var promise = $http({
             method:"get",
             url:"/article/" + id,
