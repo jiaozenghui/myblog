@@ -83,7 +83,7 @@
 
         }
 
-        $scope.reply = function(params, to) {
+        $scope.replyComent = function(params, to) {
             $scope.mapCommentReply[params._id] = {
                 showReplyContainer:true,
                 to: to,
