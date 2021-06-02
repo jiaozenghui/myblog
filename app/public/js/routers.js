@@ -15,7 +15,7 @@
                 templateUrl: '/pages/articles.html'
             })
             .state('aboutme', {
-                url: '/aboutme',
+                url: '/aboutme.html',
                 controller: 'aboutmeController',
                 templateUrl: '/pages/about.html'
             })
