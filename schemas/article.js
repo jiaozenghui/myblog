@@ -59,7 +59,9 @@ ArticleSchema.statics={
     findList: function(pageIndex, pageSize, sort, cb) { //去除所有要查询的数据
         sort = sort? sort: {'meta.updateAt': 'desc'};
         return this
-            .find({}).populate('category', 'name')
+            .find({})
+            .populate('author', 'name')
+            .populate('category', 'name')
             .sort(sort)  //排序
             .skip(parseInt(pageSize)*(parseInt(pageIndex)-1))
             .limit(parseInt(pageSize))
