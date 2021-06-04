@@ -81,6 +81,14 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
+			fs.appendFile('app/public/pages/' + article._id+ ".html",article.content,function (err) {
+				if (err) {
+					return jsonWrite(res, {
+						'success': false,
+						'errMsg': err
+					});
+				};
+			});
 			Category.findById(categoryId, function(error,category) {
 				if (error) {
 					return jsonWrite(res, {
