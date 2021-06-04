@@ -81,7 +81,7 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
-			fs.appendFile('app/public/pages/' + article._id+ ".html",article.content,function (err) {
+			fs.appendFile('app/public/pages/articles/' + article._id+ ".html",article.content,function (err) {
 				if (err) {
 					return jsonWrite(res, {
 						'success': false,
