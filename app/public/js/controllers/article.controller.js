@@ -101,9 +101,6 @@
 
     }).controller('editController', function ($scope, $http, $stateParams, $rootScope) {
         /* var ue = UE.getEditor('editor'); */
-        if (!$rootScope.user) {
-            window.location = '/login';
-        }
         $scope.article = {
         };
         $scope.categories = [];
