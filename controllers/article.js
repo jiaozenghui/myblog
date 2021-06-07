@@ -182,6 +182,41 @@ exports.statistics = function(req, res) {
 	});
 }
 
+exports.statistics = function(req, res) {
+	var pageIndex = req.query.pageIndex;
+	var pageSize = req.query.pageSize;
+	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
+	    if (err) {
+	      return {
+				'success': false,
+				'errMsg': err
+			};
+	    } else {
+			Article.getTotal(function(err, list) {
+				if (err) {
+				  return {
+						'success': false,
+						'errMsg': err
+					};
+				}
+				let pv_total=0;
+				let pc_total=0
+				list.forEach(function(v,n) {
+					pv_total += v.pv;
+					pc_total += v.pc;
+				});
+				return {
+					'success': true,
+					'result': articles,
+					'total': list.length,
+					'pv_total': pv_total,
+					'pc_total': pc_total
+				};
+			});
+		}
+	});
+}
+
 //detail page
 exports.detail = function(req, res) {
   var id = req.params.id;
