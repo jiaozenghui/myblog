@@ -98,21 +98,5 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
         res.redirect('/libs/ueditor/jsp/config.json');  
     }  
 })); 
-// static views
-app.all('/*', function (req, res) {
-    if (req.url.indexOf('detail')>-1) {
-        res.sendfile('60b99c600a5bd7042d27cabe.html', {root: path.join(__dirname, 'app/public/pages/articles')});
-    } else {
-        res.sendfile('index.html', {root: path.join(__dirname, 'app/views')});
-    }
-    
-});
-
-
-
-
-
-
-
 
 module.exports = app;

@@ -26,4 +26,16 @@ module.exports= function (app) {
 	//comment
 	app.post('/user/comment', Comment.save);
 	app.get('/comment/list', Comment.list);
+
+	// static views
+	app.all('/*', function (req, res) {
+		let statics = Article.statistics;
+		if (req.url.indexOf('detail')>-1) {
+			res.sendfile('60b99c600a5bd7042d27cabe.html', {root: path.join(__dirname, 'app/public/pages/articles')});
+		} else {
+			res.render('index',{statics:statics});
+			/* res.sendfile('index.html', {root: path.join(__dirname, 'app/views')}); */
+		}
+		
+	});
 }
