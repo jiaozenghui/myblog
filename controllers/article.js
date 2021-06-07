@@ -183,8 +183,8 @@ exports.statistics = function(req, res) {
 }
 
 exports.statistics1 = function(req, res) {
-	var pageIndex = req.query.pageIndex;
-	var pageSize = req.query.pageSize;
+	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
+	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
 	    if (err) {
 	      return {
