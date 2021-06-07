@@ -35,7 +35,7 @@ module.exports= function (app) {
 		} else {
 			console.log("testadsafdw")
 			console.log(statics)
-			res.render('index',{statics:{result:[]}});
+			res.render('index',{statics:statics});
 			/* res.sendfile('index.html', {root: path.join(__dirname, 'app/views')}); */
 		}
 		
