@@ -33,6 +33,8 @@ module.exports= function (app) {
 		if (req.url.indexOf('detail')>-1) {
 			res.sendfile('60b99c600a5bd7042d27cabe.html', {root: path.join(__dirname, 'app/public/pages/articles')});
 		} else {
+			console.log("testadsafdw")
+			console.log(statics)
 			res.render('index',{statics:statics});
 			/* res.sendfile('index.html', {root: path.join(__dirname, 'app/views')}); */
 		}
