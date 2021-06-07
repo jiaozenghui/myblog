@@ -100,6 +100,8 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
 })); 
 // static views
 app.all('/*', function (req, res) {
+    console.log("jiaozenghuisfsferf")
+    console.log(res)
     res.sendfile('index.html', {root: path.join(__dirname, 'app/views')});
 });
 
