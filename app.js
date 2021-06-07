@@ -67,7 +67,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });*/
 
-app.set('views', path.join(__dirname, 'app/views/pages'));//视图目录
+app.set('views', path.join(__dirname, 'app/views'));//视图目录
 app.engine('html', require('ejs').__express);
 app.set('view engine', 'html');
 // rewrite to load static resources
