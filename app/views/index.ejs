@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <base href='/'/>
+        <title>Summer</title>
+        <meta name="keywords" content="个人博客模板,博客模板,响应式" />
+        <meta name="description" content="如影随形主题的个人博客模板，神秘、俏皮。" />
+        <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/media.css" rel="stylesheet">
+        <link href="css/about.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+        <!--[if lt IE 9]>
+        <script src="js/modernizr.js"></script>
+        <![endif]-->
+    </head>
+    <body  >
+      <header>
+        <nav id="topnav">
+          <div class="topnav_div">
+            <a href="/main">首页</a><a href="/aboutme.html">关于我</a><a href="life">慢生活</a><a href="share">模板分享</a><a href="new">兴趣爱好</a>
+            <a target="_self" ng-if="user" class="ng-cloak" href="/edit">添加文章</a><a target="_self" ng-if="user" class="ng-cloak" href="/signout">退出</a>
+          </div>
+
+        </nav>
+        
+      </header>
+        <div class="ibody" ng-controller ="mainController">
+
+          <div ui-view></div>
+          <aside>
+            <div class="avatar"><a href="about.html"><span>关于Summer</span></a></div>
+            <div class="about_c">
+              <p>职业：Web前端工程师 </p>
+            </div>
+            <div style="padding: 0 30px;">
+              <p style="    height: 20px;
+              line-height: 20px;
+              display: inline-block;
+              width: 32%;
+              text-align: center;">
+                <span style="display: block;" >文章</span>
+                <span class="ng-cloak"><%= statics.total %></span>
+              </p>
+              <p style="    height: 20px;
+              line-height: 20px;
+              display: inline-block;
+              width: 32%;
+              text-align: center;"><span style="display: block;">评论</span><span class="ng-cloak"><%= statics.pc_total %></span></p>
+              <p style="    height: 20px;
+              line-height: 20px;
+              display: inline-block;
+              width: 32%;
+              text-align: center;"><span style="display: block;">浏览</span><span class="ng-cloak"><%= statics.pv_total %></span></p>
+            </div>
+            <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
+            <div class="tj_news">
+              <h2>
+                <p class="tj_t1">标签</p>
+              </h2>
+              <ul>
+                <li><a href="/">前端技术</a></li>
+                <li><a href="/">彩铅学习</a></li>
+                <li><a href="/">英语角</a></li>
+                <li><a href="/">Html</a></li>
+                <li><a href="/">Css</a></li>
+                <li><a href="/">javascript</a></li>
+                <li><a href="/">vue</a></li>
+                <li><a href="/">angular</a></li>
+              </ul>
+              <h2>
+                <p class="tj_t2">推荐文章</p>
+              </h2>
+              <ul>
+                <%
+                for(var i = 0; i < statics.result.length; i++){
+                %>
+                  <li class="ng-cloak" ><a ui-sref="detail(id: <%= article[i]._id %>)"><%= article[i].title %></a></li>
+                <%
+                    }
+                %>
+                
+              </ul>
+            </div>
+            <div class="links">
+              <h2>
+                <p>友情链接</p>
+              </h2>
+              <ul>
+                <li><a href="http://mood.qingqingblog.com/">杨青青个人博客</a></li>
+                <li><a href="http://frontendlife.cn/">Summer个人博客</a></li>
+              </ul>
+            </div>
+            <div class="copyright">
+              <ul>
+                <p> Design by <a href="/">DanceSmile</a></p>
+                <p>蜀ICP备11002373号-1</p>
+                </p>
+              </ul>
+            </div>
+          </aside>
+          <div class="clear"></div>
+          <!-- 清除浮动 --> 
+        </div>
+      <script src="js/silder.js"></script>
+      <script src="libs/jquery/dist/jquery.min.js"></script>
+      <script src="libs/angular/angular.js"></script>
+      <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="js/module.js"></script>
+      <script src="js/routers.js"></script>
+      <script src="js/controllers/aboutme.controller.js"></script>
+      <script src="js/controllers/main.controller.js"></script>
+      <script src="js/controllers/article.controller.js"></script>
+      <script src="widgets/page/page.controller.js"></script>
+      <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditor.config.js"></script>  
+      <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditor.all.js"> </script>
+      <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditorDirective.js"> </script>  
+      <script type="text/javascript" charset="utf-8" src="libs/ueditor/lang/zh-cn/zh-cn.js"></script> 
+    </body>
+</html>
+
+
