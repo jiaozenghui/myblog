@@ -42,7 +42,7 @@
             url:"/article/" + id,
         }).then(function (result) {
             $scope.article = result.data.result;
-            $("#article_detail").html($scope.article.content);               
+/*             $("#article_detail").html($scope.article.content);  */              
 
         }).catch(function (result) {
             console.log(result)
