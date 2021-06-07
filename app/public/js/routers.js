@@ -49,5 +49,10 @@
                 controller: 'detailController',
                 templateUrl: '/pages/detail.html'
             })
+            .state('pages', {
+                url: '/pages/articles/:id',
+                controller: 'detailController',
+                templateUrl: '/pages/detail.html'
+            })
     });
 })(angular.module('app'));
