@@ -34,15 +34,20 @@
                 controller: 'articleController',
                 templateUrl: '/pages/new.html'
             })
-            .state('detail', {
+/*             .state('detail', {
                 url: '/detail?id',
                 controller: 'detailController',
                 templateUrl: '/pages/detail.html'
-            })
+            }) */
             .state('edit', {
                 url: '/edit?id',
                 controller: 'editController',
                 templateUrl: '/pages/edit.html'
+            })
+            .state('detail', {
+                url: '/detail/:id',
+                controller: 'detailController',
+                templateUrl: '/pages/detail.html'
             })
     });
 })(angular.module('app'));

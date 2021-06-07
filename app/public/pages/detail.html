@@ -1,4 +1,4 @@
-<article>
+<!-- <article>
   <h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">关于我</a></h3>
   <div class="about">
     <h2>{{article.title}}</h2>
@@ -48,5 +48,42 @@
         </div>
     </div>
   </div>
-</article>
+</article> -->
+
+<div class="panel-body">
+  <ul class="media-list">
+    <li class="media" ng-repeat="comment in comments">
+      <div class="pull-left"><a href="#comments" data-cid="59fc0280b224c71aa0f78e35" data-tid="59fc0250b224c71aa0f78e33" class="comment"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px; border-radius:50%;" class="media-object"></a></div>
+      <div class="media-body">
+        <h4 class="media-heading" ng-mouseenter="mapShowReply['comment' + comment._id] =true"
+        ng-mouseleave="mapShowReply['comment' + comment._id]= false"
+        style="margin-bottom:0;margin-top: 12px;">{{comment.from.name}}：<span>{{comment.content}}</span> <a style="margin-left: 30px;" ng-if="mapShowReply['comment' + comment._id]" ng-click="replyComent(comment, comment.from._id)" href="javascript:void(0)">回复</a></h4>
+        <div class="media" ng-repeat ="reply in comment.reply">
+          <div class="pull-left"><a href="#comments" data-cid="59fc0280b224c71aa0f78e35" data-tid="59fc0250b224c71aa0f78e33" class="comment"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px;  border-radius:50%;" class="media-object"></a></div>
+          <div class="media-body">
+            <h4 class="media-heading" ng-mouseenter="mapShowReply['reply' + reply._id]= true"
+            ng-mouseleave="mapShowReply['reply' + reply._id]= false">{{reply.from.name}}<span class="text-info">&nbsp;回复&nbsp;</span>{{reply.to.name}}:<a style="margin-left: 30px;" ng-if="mapShowReply['reply' + reply._id]" ng-click="replyComent(comment, reply.from._id)"  href="javascript:void(0)">回复</a></h4>
+            <p>{{reply.content}}</p>
+          </div>
+        </div>
+        <div class="form-group" ng-if="mapCommentReply[comment._id]&&mapCommentReply[comment._id].showReplyContainer">
+          <textarea name="content" ng-model="mapCommentReply[comment._id].content"  row="3" class="form-control"></textarea>
+          <a style="    float: right;
+          margin-top: 5px;" ng-click="addComment(comment._id, mapCommentReply[comment._id].content)" href="javascript:void(0)">提交</a> <a href="javascript:void(0)" data-toggle="modal" ng-click="cancelReply(comment._id)" data-target="#signinModal" style=" float: right;margin-top: 5px; margin-right: 15px;"    class="navbar-link">取消</a>
+        </div> 
+      </div>
+      <hr>
+    </li>
+  </ul>
+  <div id="comments">
+    <form id="commentForm">
+      <input type="hidden" ng-model="comment.article"  value="article._id">
+      <div class="form-group">
+        <textarea name="content" row="3" ng-model="newcomment.content" class="form-control"></textarea>
+        <a style="    float: right;
+        margin-top: 5px;" ng-click="addComment(null, newcomment.content)" href="javascript:void(0)" >提交</a>
+      </div> 
+    </form>
+  </div>
+</div>
 <script src="js/silder.js"></script>

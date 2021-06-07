@@ -100,9 +100,12 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
 })); 
 // static views
 app.all('/*', function (req, res) {
-    console.log("jiaozenghuisfsferf")
-    console.log(req.url)
-    res.sendfile('index.html', {root: path.join(__dirname, 'app/views')});
+    if (req.url.indexOf('detail')>-1) {
+        res.sendfile('60b99c600a5bd7042d27cabe.html', {root: path.join(__dirname, 'app/public/pages/articles')});
+    } else {
+        res.sendfile('index.html', {root: path.join(__dirname, 'app/views')});
+    }
+    
 });
 
 
