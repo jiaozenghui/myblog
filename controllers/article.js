@@ -182,7 +182,7 @@ exports.statistics = function(req, res) {
 	});
 }
 
-exports.statistics = function(req, res) {
+exports.statistics1 = function(req, res) {
 	var pageIndex = req.query.pageIndex;
 	var pageSize = req.query.pageSize;
 	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
