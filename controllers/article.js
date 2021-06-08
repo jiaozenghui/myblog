@@ -182,22 +182,24 @@ exports.statistics = function(req, res) {
 	});
 }
 
-exports.statistics1 = function(req, res) {
+exports.statistics1 = function(req, cb) {
 	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
 	    if (err) {
-	      return {
+	      cb({
 				'success': false,
 				'errMsg': err
-			};
+			});
+			return;
 	    } else {
 			Article.getTotal(function(err, list) {
 				if (err) {
-				  return {
+				  cb({
 						'success': false,
 						'errMsg': err
-					};
+					});
+					return;
 				}
 				let pv_total=0;
 				let pc_total=0
@@ -205,13 +207,14 @@ exports.statistics1 = function(req, res) {
 					pv_total += v.pv;
 					pc_total += v.pc;
 				});
-				return {
+				cb({
 					'success': true,
 					'result': articles,
 					'total': list.length,
 					'pv_total': pv_total,
 					'pc_total': pc_total
-				};
+				});
+				return;
 			});
 		}
 	});
