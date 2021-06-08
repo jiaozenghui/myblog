@@ -1,4 +1,4 @@
-<article>
+<article ng-controller ="articleController">
     <div class="banner">
       <ul class="texts">
         <p>The best life is use of willing attitude, a happy-go-lucky life. </p>
@@ -42,15 +42,10 @@
       %>
 
     </div>
-    <page ng-if="total" total="total" page-count="10" page-index="page" on-click-page="getList"></page>
+
+    <% if (statics.result[i].total > 0) { %>
+      <page  total="<%=statics.result[i].total %>" page-count="10" page-index="page" on-click-page="getList"></page>
+    <%} %>
+
+    
   </article>
-  <script src="js/silder.js"></script>
-  <script src="libs/jquery/dist/jquery.min.js"></script>
-  <script src="libs/angular/angular.js"></script>
-  <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="js/module.js"></script>
-  <script src="js/routers.js"></script>
-  <script src="js/controllers/aboutme.controller.js"></script>
-  <script src="js/controllers/main.controller.js"></script>
-  <script src="js/controllers/article.controller.js"></script>
-  <script src="widgets/page/page.controller.js"></script>
