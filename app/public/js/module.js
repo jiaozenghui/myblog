@@ -14,7 +14,7 @@ var app = angular.module('app', [
         console.log(result)
     });
     $rootScope.page = 1;
-    $rootScope.getList = function(page){
+/*     $rootScope.getList = function(page){
         $http({
             method:"get",
             url:"/statistics",
@@ -32,5 +32,5 @@ var app = angular.module('app', [
             console.log(result)
         });
     }
-    $rootScope.getList();
+    $rootScope.getList(); */
 }])
