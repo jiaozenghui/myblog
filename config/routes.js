@@ -31,7 +31,7 @@ module.exports= function (app) {
 	app.all('/*', function (req, res) {
 		Article.statistics1(req, function(statics) {
 			if (req.url.indexOf('detail')>-1) {
-				res.sendfile('60b99c600a5bd7042d27cabe.html', {root: path.join(__dirname, 'app/public/pages/articles')});
+				res.render('index',{statics:statics});
 			} else {
 				console.log("testadsafdw")
 				console.log(statics)
