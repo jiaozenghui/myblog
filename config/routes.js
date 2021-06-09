@@ -33,7 +33,7 @@ module.exports= function (app) {
 		Article.statistics1(req, function(statics) {
 			var template ="";
 			if (req.url.indexOf('articles/edit')>-1) {
-				res.render('app/views/edit.html', {statics:statics});
+				res.sendfile('edit.html', {root: path.join(__dirname, 'app/views'),statics:statics});
 			} else if (req.url.indexOf('article/detail')>-1) {
 				template = req.url.substring(req.url.lastIndexOf("/")+1).substring(0, req.url.lastIndexOf("/")+1);
 			} else {

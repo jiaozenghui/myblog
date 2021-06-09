@@ -69,7 +69,7 @@ app.use(function(err, req, res, next) {
 
 app.set('views', path.join(__dirname, 'app/views'));//视图目录
 app.engine('html', require('ejs').__express);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 // rewrite to load static resources
 app.use(express.static(path.join(__dirname, 'app/public')));
 require('./config/routes')(app)
