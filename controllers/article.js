@@ -162,10 +162,13 @@ exports.getList = function(req, cb) {
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		console.log('find begin')
 		articles.forEach(function(item) {
+			console.log(item.meta.createAt);
 			item.meta.createAt = dateFormatter(item.meta.createAt);
 			console.log(item.meta.createAt);
 		});
-		console.log('find end')
+		for(var i=0; i < articles.length; i++) {
+			item.meta.createAt = dateFormatter(item.meta.createAt);
+		}
 
 	    if (err) {
 	      cb({
