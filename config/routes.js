@@ -33,6 +33,7 @@ module.exports= function (app) {
 			var template ="";
 			if (req.url.indexOf('articles/edit')>-1) {
 				res.sendFile('edit.html', {root: path.join(__dirname, '../app/views'),statics:statics});
+				return;
 			} else if (req.url.indexOf('article/detail')>-1) {
 				template = req.url.substring(req.url.lastIndexOf("/")+1).substring(0, req.url.lastIndexOf("/")+1);
 			} else {
