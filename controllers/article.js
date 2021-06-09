@@ -156,8 +156,8 @@ exports.list = function(req, res) {
 };
 
 exports.getList = function(req, cb) {
-	var pageIndex = req.query.pageIndex;
-	var pageSize = req.query.pageSize;
+	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
+	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		articles.forEach(function(item) {
 			item.meta.createAt = dateFormatter(item.meta.createAt);
