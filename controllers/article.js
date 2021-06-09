@@ -17,10 +17,11 @@ var jsonWrite = function (res, ret) {
 	} */
 };
 
-exports.dateFormatter= function(value) { 
+var dateFormatter= function(value) { 
 	var date = moment.parseZone(value).local().format('YYYY-MM-DD HH:mm:ss');
 	return date;
 }
+
 
 //admin post article
 exports.save = function (req, res) {
@@ -159,7 +160,7 @@ exports.getList = function(req, cb) {
 	var pageSize = req.query.pageSize;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		articles.forEach(function(item) {
-			item.meta.createAt = this.dateFormatter(item.meta.createAt);
+			item.meta.createAt = dateFormatter(item.meta.createAt);
 		});
 	    if (err) {
 	      cb({
