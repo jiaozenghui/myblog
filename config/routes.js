@@ -31,6 +31,7 @@ module.exports= function (app) {
 	// static views
 	app.all('/*', function (req, res) {
 		Article.statistics1(req, function(statics) {
+			var template ="";
 			switch(req.url) {
 				case req.url.indexOf('article/edit')>-1:
 					template ="edit";
@@ -40,7 +41,6 @@ module.exports= function (app) {
 					break;
 				default:
 					template = "articles";
-					break;
 			}
 
 			if (req.url.indexOf('detail')>-1) {
