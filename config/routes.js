@@ -42,7 +42,7 @@ module.exports= function (app) {
 				default:
 					template = "articles";
 			}
-
+			console.log(template)
 			if (req.url.indexOf('detail')>-1) {
 				res.render('index',{statics:statics});
 			} else {
