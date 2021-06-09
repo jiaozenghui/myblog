@@ -2,7 +2,7 @@ var Article = require('../models/article');
 var Category = require('../models/category');
 var _ = require('underscore');
 var fs = require('fs');
-
+var moment = require('moment')
 // 向前台返回JSON方法的简单封装
 var jsonWrite = function (res, ret) {
 	res.json(ret);
@@ -17,6 +17,10 @@ var jsonWrite = function (res, ret) {
 	} */
 };
 
+exports.dateFormatter= function(value) { 
+	var date = moment.parseZone(value).local().format('YYYY-MM-DD HH:mm:ss');
+	return date;
+}
 
 //admin post article
 exports.save = function (req, res) {
@@ -124,6 +128,9 @@ exports.list = function(req, res) {
 	var pageIndex = req.query.pageIndex;
 	var pageSize = req.query.pageSize;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
+		articles.forEach(function(item) {
+			item.meta.createAt = dateFormatter(item.meta.createAt);
+		});
 	    if (err) {
 	      return jsonWrite(res, {
 	      	'success': false,
