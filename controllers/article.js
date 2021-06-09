@@ -154,6 +154,40 @@ exports.list = function(req, res) {
 	});
 };
 
+exports.getList = function(req, cb) {
+	var pageIndex = req.query.pageIndex;
+	var pageSize = req.query.pageSize;
+	Article.findList(pageIndex, pageSize,null, function(err, articles) {
+		articles.forEach(function(item) {
+			item.meta.createAt = dateFormatter(item.meta.createAt);
+		});
+	    if (err) {
+	      cb({
+	      	'success': false,
+	      	'errMsg': err
+	      });
+		  return;
+	    } else {
+			Article.getTotal(function(err, list) {
+				if (err) {
+				  cb({
+					  'success': false,
+					  'errMsg': err
+				  });
+				  return;
+				}
+				cb({
+					'success': true,
+					'result': articles,
+					'total': list.length
+				});
+				return;
+			});
+		}
+	});
+};
+
+
 exports.statistics = function(req, res) {
 	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
@@ -189,7 +223,7 @@ exports.statistics = function(req, res) {
 	});
 }
 
-exports.statistics1 = function(req, cb) {
+exports.getStatistics = function(req, cb) {
 	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {

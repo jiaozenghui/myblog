@@ -10,30 +10,30 @@
         <p><span>推荐</span>文章</p>
       </h2>
       <%
-      for(var i = 0; i < statics.result.length; i++){
+      for(var i = 0; i < articles.length; i++){
       %>
         <div class="blogs" >
-            <h3><a ui-sref="detail({id: statics.result[i]._id})"><%=statics.result[i].title %></a></h3>
+            <h3><a ui-sref="detail({id: articles[i]._id})"><%=articles[i].title %></a></h3>
             <figure><img src="images/01.jpg" ></figure>
             <ul>
-              <p><%=statics.result[i].abstract %></p>
+              <p><%=articles[i].abstract %></p>
               <a  href="/detail" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
             </ul>
             <p class="autor"><span>作者：
                 
-            <% if (statics.result[i].author) { %>
-                <%=statics.result[i].author.name %>
+            <% if (articles[i].author) { %>
+                <%=articles[i].author.name %>
             <%} %>
                 
             
             </span><span>分类：【<a href="/">
-                <% if (statics.result[i].category) { %>
-                    <%=statics.result[i].category.name %>
+                <% if (articles[i].category) { %>
+                    <%=articles[i].category.name %>
                 <%} %>
             
-            </a>】</span><span>浏览（<a href="/"><%=statics.result[i].pv %></a>）</span><span>评论（<a href="/"><%=statics.result[i].pc %></a>）</span>
-              <a href="articles/edit?id=<%=statics.result[i]._id %>" class="ng-cloak" ng-if="user">编辑</a> <a ng-if="user" ng-click="article_delete(article)" href="javascript:void(0)" class="ng-cloak"  style="color: #f55f77;">删除</a></p>
-            <div class="dateview" ><%=statics.result[i].meta.createAt %></div>
+            </a>】</span><span>浏览（<a href="/"><%=articles[i].pv %></a>）</span><span>评论（<a href="/"><%=articles[i].pc %></a>）</span>
+              <a href="articles/edit?id=<%=articles[i]._id %>" class="ng-cloak" ng-if="user">编辑</a> <a ng-if="user" ng-click="article_delete(article)" href="javascript:void(0)" class="ng-cloak"  style="color: #f55f77;">删除</a></p>
+            <div class="dateview" ><%=articles[i].meta.createAt %></div>
           </div>
 
 

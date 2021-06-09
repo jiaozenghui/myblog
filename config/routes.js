@@ -30,7 +30,7 @@ module.exports= function (app) {
 
 	// static views
 	app.all('/*', function (req, res) {
-		Article.statistics1(req, function(statics) {
+		Article.getStatistics(req, function(statics) {
 			var template ="";
 			if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
@@ -40,9 +40,12 @@ module.exports= function (app) {
 				template = "articles";
 			}
 
-			console.log(template)
-			if (req.url.indexOf('detail')>-1) {
-				res.render('index',{statics:statics});
+			if (template == "articles") {
+				Article.getList(req, function(response) {
+					if (response.success == true) {
+						res.render('index',{statics:statics, template:template, articles: response.result });
+					}
+				});
 			} else {
 				res.render('index',{
 					statics:statics,
