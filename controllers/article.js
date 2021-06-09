@@ -159,7 +159,7 @@ exports.getList = function(req, cb) {
 	var pageSize = req.query.pageSize;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		articles.forEach(function(item) {
-			item.meta.createAt = dateFormatter(item.meta.createAt);
+			item.meta.createAt = this.dateFormatter(item.meta.createAt);
 		});
 	    if (err) {
 	      cb({
