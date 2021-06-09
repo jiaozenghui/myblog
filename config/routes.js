@@ -2,8 +2,7 @@ var Article = require('../controllers/article');
 var User = require('../controllers/user');
 var Category = require('../controllers/category');
 var Comment = require('../controllers/comment');
-const { template } = require('underscore');
-
+var path = require('path');
 module.exports= function (app) {
 
 	//Article
