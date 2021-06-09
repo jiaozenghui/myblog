@@ -161,6 +161,7 @@ exports.getList = function(req, cb) {
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		articles.forEach(function(item) {
 			item.meta.createAt = dateFormatter(item.meta.createAt);
+			console.log(item.meta.createAt);
 		});
 	    if (err) {
 	      cb({
