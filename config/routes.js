@@ -33,7 +33,7 @@ module.exports= function (app) {
 		Article.statistics1(req, function(statics) {
 			var template ="";
 			switch(req.url) {
-				case req.url.indexOf('article/edit')>-1:
+				case req.url.indexOf('articles/edit')>-1:
 					template ="edit";
 					break;
 				case req.url.indexOf('article/detail')>-1:
