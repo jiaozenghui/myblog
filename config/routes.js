@@ -40,6 +40,7 @@ module.exports= function (app) {
 					break;
 				default:
 					template = "articles";
+					break;
 			}
 
 			if (req.url.indexOf('detail')>-1) {
