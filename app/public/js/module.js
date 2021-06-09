@@ -1,6 +1,5 @@
 'use strict';
 var app = angular.module('app', [
-    'ui.router',
     'ueditor.directive'
 ]).run(['$rootScope','$http',function($rootScope, $http){
     $http({
