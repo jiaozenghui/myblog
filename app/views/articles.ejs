@@ -33,7 +33,7 @@
             
             </a>】</span><span>浏览（<a href="/"><%=statics.result[i].pv %></a>）</span><span>评论（<a href="/"><%=statics.result[i].pc %></a>）</span>
               <a ui-sref="edit({id: statics.result[i]._id})" class="ng-cloak" ng-if="user">编辑</a> <a ng-if="user" ng-click="article_delete(article)" href="javascript:void(0)" class="ng-cloak"  style="color: #f55f77;">删除</a></p>
-            <div class="dateview" ng-if="statics.result[i].meta"><%=statics.result[i].meta.createAt %></div>
+            <div class="dateview" ><%=statics.result[i].meta.createAt %></div>
           </div>
 
 
