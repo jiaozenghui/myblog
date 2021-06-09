@@ -2,7 +2,8 @@ var Article = require('../controllers/article');
 var User = require('../controllers/user');
 var Category = require('../controllers/category');
 var Comment = require('../controllers/comment');
-var path = require('path');
+const { template } = require('underscore');
+
 module.exports= function (app) {
 
 	//Article
@@ -32,8 +33,7 @@ module.exports= function (app) {
 		Article.statistics1(req, function(statics) {
 			var template ="";
 			if (req.url.indexOf('articles/edit')>-1) {
-				res.sendFile('edit.html', {root: path.join(__dirname, '../app/views'),statics:statics});
-				return;
+				template ="edit";
 			} else if (req.url.indexOf('article/detail')>-1) {
 				template = req.url.substring(req.url.lastIndexOf("/")+1).substring(0, req.url.lastIndexOf("/")+1);
 			} else {
