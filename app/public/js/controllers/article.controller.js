@@ -98,7 +98,7 @@
         }
 
 
-    }).controller('editController', function ($scope, $http, $stateParams, $rootScope) {
+    }).controller('editController', function ($scope, $http) {
         /* var ue = UE.getEditor('editor'); */
         $scope.article = {
         };
@@ -128,7 +128,16 @@
                 allHtmlEnabled:false,
                 functions :['map','insertimage','insertvideo','attachment','insertcode','template', 'background', 'wordimage']     
         };
-        var id = $stateParams.id;
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = decodeURI(window.location.search.substr(1)).match(reg);
+            if (r != null)return unescape(r[2]);
+            return null;
+        }
+        
+        var id = GetQueryString("id");
+
         if (id) {
             var promise = $http({
                 method:"get",
