@@ -32,22 +32,18 @@ module.exports= function (app) {
 	app.all('/*', function (req, res) {
 		Article.statistics1(req, function(statics) {
 			var template ="";
-			switch(req.url) {
-				case req.url.indexOf('articles/edit')>-1:
-					template ="edit";
-					break;
-				case req.url.indexOf('article/detail')>-1:
-					template = req.url.substring(req.url.lastIndexOf("/")+1).substring(0, req.url.lastIndexOf("/")+1);
-					break;
-				default:
-					template = "articles";
+			if (req.url.indexOf('articles/edit')>-1) {
+				template ="edit";
+			} else if (req.url.indexOf('article/detail')>-1) {
+				template = req.url.substring(req.url.lastIndexOf("/")+1).substring(0, req.url.lastIndexOf("/")+1);
+			} else {
+				template = "articles";
 			}
+
 			console.log(template)
 			if (req.url.indexOf('detail')>-1) {
 				res.render('index',{statics:statics});
 			} else {
-				console.log("testadsafdw")
-				console.log(statics)
 				res.render('index',{
 					statics:statics,
 					template:template
