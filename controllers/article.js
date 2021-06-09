@@ -156,13 +156,17 @@ exports.list = function(req, res) {
 };
 
 exports.getList = function(req, cb) {
+	console.log('begin')
 	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
+		console.log('find begin')
 		articles.forEach(function(item) {
 			item.meta.createAt = dateFormatter(item.meta.createAt);
 			console.log(item.meta.createAt);
 		});
+		console.log('find end')
+
 	    if (err) {
 	      cb({
 	      	'success': false,
