@@ -188,7 +188,6 @@ exports.getList = function(req, cb) {
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		console.log('find begin')
-		console.log(articles)
 /* 		articles.forEach(function(item) {
 			console.log(item.meta.createAt);
 			item.meta.createAt = dateFormatter(item.meta.createAt);
@@ -198,7 +197,6 @@ exports.getList = function(req, cb) {
 			articles[i].meta.createAt = dateFormatter(articles[i].meta.createAt);
 			console.log(articles[i].meta.createAt);
 		}
-		console.log(articles)
 	    if (err) {
 	      cb({
 	      	'success': false,

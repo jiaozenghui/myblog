@@ -43,6 +43,8 @@ module.exports= function (app) {
 			if (template == "articles") {
 				Article.getList(req, function(response) {
 					if (response.success == true) {
+						console.log("result")
+						console.log(response.result[0].meta.createAt)
 						res.render('index',{statics:statics, template:template, articles: response.result });
 					}
 				});
