@@ -17,11 +17,14 @@ var jsonWrite = function (res, ret) {
 	} */
 };
 
-var dateFormatter= function(value) { 
+/* var dateFormatter= function(value) { 
 	var date = moment.parseZone(value).local().format('YYYY-MM-DD HH:mm:ss');
 	return date;
-}
-
+} */
+var dateFormatter= function(time){
+    const localTime = (new Date(time)) - (new Date().getTimezoneOffset())*60*1000;
+    return moment(localTime).format('YYYY-MM-DD HH:mm:ss');
+  }
 
 //admin post article
 exports.save = function (req, res) {
@@ -162,11 +165,11 @@ exports.getList = function(req, cb) {
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		console.log('find begin')
 		console.log(articles)
-		articles.forEach(function(item) {
+/* 		articles.forEach(function(item) {
 			console.log(item.meta.createAt);
 			item.meta.createAt = dateFormatter(item.meta.createAt);
 			console.log(item.meta.createAt);
-		});
+		}); */
 		for(var i=0; i < articles.length; i++) {
 			articles[i].meta.createAt = dateFormatter(articles[i].meta.createAt);
 			console.log(articles[i].meta.createAt);
