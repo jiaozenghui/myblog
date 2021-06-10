@@ -44,7 +44,7 @@ Date.prototype.Format = function (fmt) {
 } */
 var dateFormatter= function(time){
     const localTime = (new Date(time)) - (new Date().getTimezoneOffset())*60*1000;
-    let time1 = localTime.Format('yyyy-MM-dd HH:mm:ss');
+    let time1 = new Date(localTime).Format('yyyy-MM-dd HH:mm:ss');
 	return time1;
   }
 
