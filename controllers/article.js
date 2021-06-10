@@ -23,7 +23,8 @@ var jsonWrite = function (res, ret) {
 } */
 var dateFormatter= function(time){
     const localTime = (new Date(time)) - (new Date().getTimezoneOffset())*60*1000;
-    return moment(localTime).format('YYYY-MM-DD HH:mm:ss');
+    let time1 = moment(localTime).format('YYYY-MM-DD HH:mm:ss')
+	return time1;
   }
 
 //admin post article
@@ -171,7 +172,7 @@ exports.getList = function(req, cb) {
 			console.log(item.meta.createAt);
 		}); */
 		for(var i=0; i < articles.length; i++) {
-			articles[i].meta.createAt = '';
+			articles[i].meta.createAt = dateFormatter(articles[i].meta.createAt);
 			console.log(articles[i].meta.createAt);
 		}
 		console.log(articles)
