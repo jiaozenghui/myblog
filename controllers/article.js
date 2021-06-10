@@ -174,7 +174,7 @@ exports.getList = function(req, cb) {
 			articles[i].meta.createAt = dateFormatter(articles[i].meta.createAt);
 			console.log(articles[i].meta.createAt);
 		}
-
+		console.log(articles)
 	    if (err) {
 	      cb({
 	      	'success': false,
