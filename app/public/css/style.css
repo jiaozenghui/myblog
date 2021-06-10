@@ -10,10 +10,9 @@
 .newblog ul { float: left; line-height: 20px; width: 72%; color: #474645; }
 .newblog::before { content: ""; width: 10px; height: 10px; border-radius: 50%; position: absolute; background: #cac1c1; border: 2px solid #fff; left: -27px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
 .newblog:hover::before { background: #474645 }
-.dateview { position: absolute; left: -125px; top: 0px; z-index: 1; color: #F5F5F5; }
 .newblog::after { content: ""; width: 121px; height: 29px; position: absolute; left: -148px; top: -9px; z-index: 0; background: #474645 url(../images/ti.png) no-repeat; opacity: 0; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
 .newblog:hover::after { opacity: 1 }
-.dateview { position: absolute; left: -125px; top: 0px; z-index: 1; color: #F5F5F5; }
+.dateview { position: absolute; left: -140px; top: 0px; z-index: 1; color: #F5F5F5; }
 .newblog figure { float: right; width: 25%; overflow: hidden; }
 .newblog figure img { width: 100%; margin: auto; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .newblog figure:hover img { -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
