@@ -44,7 +44,7 @@ module.exports= function (app) {
 				Article.getList(req, function(response) {
 					if (response.success == true) {
 						console.log("result")
-						console.log(response.result[0].meta.createAt)
+						console.log(response.result)
 						res.render('index',{statics:statics, template:template, articles: response.result });
 					}
 				});
