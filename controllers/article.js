@@ -171,7 +171,7 @@ exports.getList = function(req, cb) {
 			console.log(item.meta.createAt);
 		}); */
 		for(var i=0; i < articles.length; i++) {
-			articles[i].meta.createAt = dateFormatter(articles[i].meta.createAt);
+			articles[i].meta.createAt = '';
 			console.log(articles[i].meta.createAt);
 		}
 		console.log(articles)
