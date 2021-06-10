@@ -23,7 +23,7 @@ var jsonWrite = function (res, ret) {
 } */
 var dateFormatter= function(time){
     const localTime = (new Date(time)) - (new Date().getTimezoneOffset())*60*1000;
-    let time1 = moment(localTime).format('YYYY-MM-DD HH:mm:ss')
+    let time1 = moment(localTime, 'YYYY-MM-DD HH:mm:ss');
 	return time1;
   }
 
