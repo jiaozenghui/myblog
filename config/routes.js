@@ -32,7 +32,7 @@ module.exports= function (app) {
 	app.all('/*', function (req, res) {
 		Article.getStatistics(req, function(statics) {
 			var template ="articles";
-			var renderData={statics: statics};
+			var renderData={statics: statics, type: ''};
 			if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
 			} else if (req.url.indexOf('articles/detail')>-1) {
