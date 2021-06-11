@@ -37,7 +37,7 @@ module.exports= function (app) {
 				template ="edit";
 			} else if (req.url.indexOf('articles/detail')>-1) {
 				var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
-				template = './articles/'+ id_url.substring(0, id_url.lastIndexOf(".")+1);
+				template = './articles/'+ id_url.substring(0, id_url.lastIndexOf("."));
 				renderData['type'] = 'detail';
 			}
 			renderData['template'] = template;
