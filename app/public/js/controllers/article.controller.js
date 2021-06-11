@@ -29,10 +29,9 @@
         $scope.article_delete = function (article) {
             var promise = $http({
                 method:"delete",
-                url:"/article/delete/" + article._id
+                url:"/article/delete/" + article
             }).then(function (result) {
-                var index= $scope.articles.indexOf(article);
-                $scope.articles.splice(index, 1);
+                window.location = location.href;
             }).catch(function (result) {
                 console.log(result)
             });
