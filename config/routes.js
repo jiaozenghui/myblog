@@ -31,8 +31,8 @@ module.exports= function (app) {
 	// static views
 	app.all('/*', function (req, res) {
 		Article.getStatistics(req, function(statics) {
-			var template ="";
-			var renderData={statics: statics, template: "articles"};
+			var template ="articles";
+			var renderData={statics: statics};
 			if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
 			} else if (req.url.indexOf('articles/detail')>-1) {
