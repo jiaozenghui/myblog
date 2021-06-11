@@ -112,7 +112,7 @@ exports.save = function (req, res) {
 		      });
 		    }
 			let artile_content = 
-			fs.appendFile('app/public/pages/articles/' + article._id+ ".html",article.content,function (err) {
+			fs.appendFile('app/views/articles/' + article._id+ ".ejs",article.content,function (err) {
 				if (err) {
 					return jsonWrite(res, {
 						'success': false,

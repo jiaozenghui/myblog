@@ -1,5 +1,13 @@
 (function (app) {
     'use strict';
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = decodeURI(window.location.search.substr(1)).match(reg);
+        if (r != null)return unescape(r[2]);
+        return null;
+    }
+
     app.controller('articleController', function ($scope, $http) {
         $scope.page = 1;
 /*         $scope.getList = function(page){
@@ -130,6 +138,61 @@
         }
 
 
+    }).controller('commentController', function ($scope, $http) {
+        var locationUrl = window.location.pathname;
+        var id = locationUrl.substring(16, locationUrl.indexOf('.html'));
+        $scope.newcomment = {};
+        $scope.mapShowReply={};
+        $scope.mapCommentReply={};
+
+        $scope.getComments = function () {
+            $http({
+                method:"get",
+                url:"/comment/list",
+                params: {article: id}
+            }).then(function (result) {
+                $scope.comments = result.data.result;
+            }).catch(function (result) {
+                console.log(result)
+            });
+        }
+        $scope.getComments();
+        $scope.addComment = function (commentId, content) {
+            var params = { 
+                'comment': {
+                    content: content,
+                    article : id,
+                    cid: commentId
+                }
+            }
+
+            if (commentId) {
+                params['comment']['replyTo'] = $scope.mapCommentReply[commentId].to;
+            }
+            
+            var promise = $http({
+                method:"post",
+                url:"/user/comment",
+                params: params
+            }).then(function (result) {
+                $scope.getComments();
+                commentId&&$scope.cancelReply(commentId);
+            }).catch(function (result) {
+                console.log(result)
+            });
+
+        }
+
+        $scope.replyComent = function(params, to) {
+            $scope.mapCommentReply[params._id] = {
+                showReplyContainer:true,
+                to: to,
+                content:""
+            };
+        }
+        $scope.cancelReply = function(commentId) {
+            this.mapCommentReply[commentId]= {};
+        }
     }).controller('editController', function ($scope, $http) {
         /* var ue = UE.getEditor('editor'); */
         $scope.article = {
@@ -161,12 +224,7 @@
                 functions :['map','insertimage','insertvideo','attachment','insertcode','template', 'background', 'wordimage']     
         };
 
-        function GetQueryString(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-            var r = decodeURI(window.location.search.substr(1)).match(reg);
-            if (r != null)return unescape(r[2]);
-            return null;
-        }
+
         
         var id = GetQueryString("id");
 

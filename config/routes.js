@@ -32,27 +32,24 @@ module.exports= function (app) {
 	app.all('/*', function (req, res) {
 		Article.getStatistics(req, function(statics) {
 			var template ="";
+			var renderData={statics: statics, template: "articles"};
 			if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
-			} else if (req.url.indexOf('article/detail')>-1) {
-				template = req.url.substring(req.url.lastIndexOf("/")+1).substring(0, req.url.lastIndexOf("/")+1);
-			} else {
-				template = "articles";
+			} else if (req.url.indexOf('articles/detail')>-1) {
+				var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
+				template = id_url.substring(0, id_url.lastIndexOf(".")+1);
+				renderData['type'] = 'detail';
 			}
-
+			renderData['template'] = template;
 			if (template == "articles") {
 				Article.getList(req, function(response) {
 					if (response.success == true) {
-						console.log("result")
-						console.log(response.result)
-						res.render('index',{statics:statics, template:template, articles: response.result });
+						renderData["articles"] =  response.result;
+						res.render('index',renderData);
 					}
 				});
 			} else {
-				res.render('index',{
-					statics:statics,
-					template:template
-				});
+				res.render('index',renderData);
 				/* res.sendfile('index.html', {root: path.join(__dirname, 'app/views')}); */
 			}
 		});
