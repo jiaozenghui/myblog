@@ -111,7 +111,6 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
-			let artile_content = 
 			fs.appendFile('app/views/articles/' + article._id+ ".ejs",article.content,function (err) {
 				if (err) {
 					return jsonWrite(res, {
