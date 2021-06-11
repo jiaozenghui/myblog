@@ -69,7 +69,7 @@ ArticleSchema.statics={
     },
     getTotal: function(cb) {
         return this
-        .find({}).exec(cb)
+        .find({}, {content:0}).exec(cb)
     }
 }
 
