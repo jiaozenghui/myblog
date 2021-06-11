@@ -139,7 +139,7 @@
 
 
     }).controller('commentController', function ($scope, $http) {
-        var locationUrl = window.location.pathname.substring(req.url.lastIndexOf("/")+1);
+        var locationUrl = window.location.pathname.substring(window.location.pathname.lastIndexOf("/")+1);
         var id = locationUrl.substring(0, locationUrl.lastIndexOf("."));
         $scope.newcomment = {};
         $scope.mapShowReply={};
