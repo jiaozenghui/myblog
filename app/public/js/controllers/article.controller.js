@@ -253,6 +253,11 @@
                 $scope.categories = result.result;
                 if (!id) {
                     $scope.article.category = $scope.categories[0];
+                } else {
+                    var category = $scope.categories.filter(function(item) {
+                        return item._id == $scope.article.category;
+                    });
+                    $scope.article.category = category;
                 }
             } else {
                 console.log('get categories fail!');
