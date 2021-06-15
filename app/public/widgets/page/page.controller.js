@@ -31,7 +31,7 @@
                    context.maxPageIndex = Math.ceil(context.total/context.pageCount)< context.showPage? Math.ceil(context.total/context.pageCount): context.showPage;
                    var page = GetQueryString("page");
                    page = page? parseInt(page):1;
-                   this.goTo(page); 
+                   goTo(page); 
     　　　　　　　}
 
                 function initialPageList(beginIndex, endIndex) {
