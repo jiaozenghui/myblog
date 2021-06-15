@@ -30,7 +30,7 @@
                     var floorIndex = Math.floor(page/context.pageCount);
                     var ceilIndex = ceillevel*context.pageCount> context.total? context.total:ceillevel*context.pageCount;
                     var floorIndex = floorIndex*context.pageCount;
-                   initialPageList(ceilIndex, context.maxPageIndex);
+                   initialPageList(floorIndex, ceilIndex);
                     
     　　　　　　　}
 
