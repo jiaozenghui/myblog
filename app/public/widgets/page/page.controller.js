@@ -34,7 +34,7 @@
                     context.maxPageIndex = Math.ceil(context.total/context.pageCount)< context.showPage? Math.ceil(context.total/context.pageCount): context.showPage;
                    
                     var ceillevel = Math.ceil(context.pageIndex/context.showPage);
-                    var floorIndex = Math.floor(context.pageIndex/context.showPage);
+                    var floorIndex = Math.ceil(context.pageIndex/context.showPage)-1;
                     var ceilIndex = ceillevel*context.showPage> Math.ceil(context.total/context.pageCount)? Math.ceil(context.total/context.pageCount):ceillevel*context.showPage;
                     var floorIndex = floorIndex*context.showPage+1;
                    initialPageList(floorIndex, ceilIndex);
