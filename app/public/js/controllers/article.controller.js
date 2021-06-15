@@ -272,7 +272,8 @@
                    'title': $scope.article.title,
                     content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
-                    category: $scope.article.category._id
+                    category: $scope.article.category._id,
+                    parent: $scope.article.category.type
                 }
             }
             if (id) {

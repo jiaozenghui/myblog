@@ -75,7 +75,22 @@ exports.save = function (req, res) {
 		      });
 		    }
 
+			let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/`+article.parent+`">`+article.parent+`</a></h3>
+			<div class="about">
+			  <h2>`+article.title+`</h2>
+			  <div class="form-group-right" id="article_detail">
+				  `+article.content+`
+			  </div>
+			</div>`
 
+			fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
+				if (err) {
+					return jsonWrite(res, {
+						'success': false,
+						'errMsg': err
+					});
+				};
+			});
 			  if (article.category != oldCategoryId) {
 			  	if (oldCategoryId) {
 		            Category.findById(oldCategoryId, function(err,category) {
@@ -89,24 +104,8 @@ exports.save = function (req, res) {
 	              	    }
 		              });
 		            });
-		            Category.findById(article.category, function(err,category) {
-						let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="`+category.type+`">`+category.name+`</a></h3>
-						<div class="about">
-						  <h2>`+article.title+`</h2>
-						  <div class="form-group-right" id="article_detail">
-							  `+article.content+`
-						  </div>
-						</div>`
-			
-						fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
-							if (err) {
-								return jsonWrite(res, {
-									'success': false,
-									'errMsg': err
-								});
-							};
-						});
-					category.articles.push(_article._id);
+		            Category.findById(_article.category, function(err,category) {
+		              category.articles.push(_article._id);
 		              category.save(function(err, category) {
 						return jsonWrite(res, {
 							'success': true,
@@ -128,6 +127,22 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
+			let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/`+article.parent+`">`+article.parent+`</a></h3>
+			<div class="about">
+			  <h2>`+article.title+`</h2>
+			  <div class="form-group-right" id="article_detail">
+				  `+article.content+`
+			  </div>
+			</div>`
+
+			fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
+				if (err) {
+					return jsonWrite(res, {
+						'success': false,
+						'errMsg': err
+					});
+				};
+			});
 			Category.findById(categoryId, function(error,category) {
 				if (error) {
 					return jsonWrite(res, {
@@ -135,22 +150,6 @@ exports.save = function (req, res) {
 						'errMsg': error
 					});
 				} else {
-					let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="`+category.type+`">`+category.name+`</a></h3>
-					<div class="about">
-					  <h2>`+article.title+`</h2>
-					  <div class="form-group-right" id="article_detail">
-						  `+article.content+`
-					  </div>
-					</div>`
-		
-					fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
-						if (err) {
-							return jsonWrite(res, {
-								'success': false,
-								'errMsg': err
-							});
-						};
-					});
 					category.articles.push(article._id);
 					category.save(function(err, category) {
 						console.log("jiasoxh")
@@ -206,7 +205,7 @@ exports.list = function(req, res) {
 
 exports.getList = function(req, cb) {
 	console.log('begin')
-	var pageIndex = req.query.page? req.query.page: 1;
+	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		for(var i=0; i < articles.length; i++) {
@@ -275,8 +274,8 @@ exports.statistics = function(req, res) {
 }
 
 exports.getStatistics = function(req, cb) {
-	var pageIndex = 1;
-	var pageSize = 10;
+	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
+	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
 	    if (err) {
 	      cb({
