@@ -252,7 +252,7 @@
             if (result.success == true) {
                 $scope.categories = result.result;
                 if (!id) {
-                    $scope.article.category = $scope.categories[0]._id;
+                    $scope.article.category = $scope.categories[0];
                 }
             } else {
                 console.log('get categories fail!');
@@ -272,7 +272,7 @@
                    'title': $scope.article.title,
                     content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
-                    category: $scope.article.category
+                    category: $scope.article.category._id
                 }
             }
             if (id) {
