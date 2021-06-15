@@ -75,22 +75,34 @@ exports.save = function (req, res) {
 		      });
 		    }
 
+			
 			let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/`+article.parent+`">`+article.parent+`</a></h3>
 			<div class="about">
 			  <h2>`+article.title+`</h2>
 			  <div class="form-group-right" id="article_detail">
 				  `+article.content+`
 			  </div>
-			</div>`
+			</div>`;
+			fs.unlink('app/views/articles/' + article._id+ ".ejs",function(err){
 
-			fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
-				if (err) {
+				if(err){
 					return jsonWrite(res, {
 						'success': false,
 						'errMsg': err
 					});
-				};
-			});
+				}
+	
+				fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
+					if (err) {
+						return jsonWrite(res, {
+							'success': false,
+							'errMsg': err
+						});
+					};
+				});
+			
+			})
+
 			  if (article.category != oldCategoryId) {
 			  	if (oldCategoryId) {
 		            Category.findById(oldCategoryId, function(err,category) {
@@ -134,6 +146,7 @@ exports.save = function (req, res) {
 				  `+article.content+`
 			  </div>
 			</div>`
+
 
 			fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
 				if (err) {
