@@ -288,29 +288,56 @@ exports.getStatistics = function(req, cb) {
 }
 
 //detail page
-exports.detail = function(req, res) {
-  var id = req.params.id;
+exports.getDetail = function(id, cb) {
   Article.findById(id, function (err, article) {
   	if (err) {
-      return jsonWrite(res, {
+      cb({
       	'success': false,
       	'errMsg': err
       });
+	  return;
 	}
     Article.update({_id: id}, {$inc: {pv:1}}, function (err) {
       if (err) {
-	      return jsonWrite(res, {
+	      cb({
 	      	'success': false,
 	      	'errMsg': err
 	      });
+		  return;
       }
     });
-	return jsonWrite(res, {
+	cb({
 		'success': true,
 		'result': article
 	});
+	return;
   });
 }
+
+exports.detail = function(req, res) {
+	var id = req.params.id;
+	Article.findById(id, function (err, article) {
+		if (err) {
+		return jsonWrite(res, {
+			'success': false,
+			'errMsg': err
+		});
+	  }
+	  Article.update({_id: id}, {$inc: {pv:1}}, function (err) {
+		if (err) {
+			return jsonWrite(res, {
+				'success': false,
+				'errMsg': err
+			});
+		}
+	  });
+	  return jsonWrite(res, {
+		  'success': true,
+		  'result': article
+	  });
+	});
+  }
+
 
 //list delete article
 exports.delete = function(req, res) {
