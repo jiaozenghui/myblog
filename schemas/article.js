@@ -9,6 +9,7 @@ var ArticleSchema= new mongoose.Schema({
     title:String,
     content: String,
     abstract: String,
+    p_level: String,
     pv: {
         type: Number,
         default: 0
