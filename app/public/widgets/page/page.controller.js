@@ -1,4 +1,10 @@
 (function (app) {
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = decodeURI(window.location.search.substr(1)).match(reg);
+        if (r != null)return unescape(r[2]);
+        return null;
+    }
     app.directive('page', pageController);
     function pageController() {
         return {
@@ -23,7 +29,8 @@
     　　　　　　　function init(){
     　　　　　　　　 context.pageNumber = Math.ceil(context.total/context.pageCount);
                     context.showPage= 5;
-                    var page =8;
+                    var page = GetQueryString("page");
+                    context.pageIndex =  page? parseInt(page): 1;
                     context.maxPageIndex = Math.ceil(context.total/context.pageCount)< context.showPage? Math.ceil(context.total/context.pageCount): context.showPage;
                    
                     var ceillevel = Math.ceil(page/context.showPage);
