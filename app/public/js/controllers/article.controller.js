@@ -238,64 +238,45 @@
                     ue.setContent($scope.article.content);
                 });  */
                 $scope.config.content = $scope.article.content;
-                var promise = $http({
-                    method:"get",
-                    url:"/categories"
-                }).then(function (result) {
-                    var result = result.data;
-                    if (result.success == true) {
-                        $scope.categories = result.result;
 
-                        var category = $scope.categories.filter(function(item) {
-                            return item._id == $scope.article.category;
-                        });
-                        $scope.article.category = category;
-
-                    } else {
-                        console.log('get categories fail!');
-                    }
-                    
-                }).catch(function (result) {
-                    console.log(result)
-                });
-
-            }).catch(function (result) {
-                console.log(result)
-            });
-        } else {
-            var promise = $http({
-                method:"get",
-                url:"/categories"
-            }).then(function (result) {
-                var result = result.data;
-                if (result.success == true) {
-                    $scope.categories = result.result;
-                    if (!id) {
-                        $scope.article.category = $scope.categories[0];
-                    }
-                } else {
-                    console.log('get categories fail!');
-                }
-                
             }).catch(function (result) {
                 console.log(result)
             });
         }
 
-
+        var promise = $http({
+            method:"get",
+            url:"/categories"
+        }).then(function (result) {
+            var result = result.data;
+            if (result.success == true) {
+                $scope.categories = result.result;
+                if (!id) {
+                    $scope.article.category = $scope.categories[0];
+                }
+            } else {
+                console.log('get categories fail!');
+            }
+            
+        }).catch(function (result) {
+            console.log(result)
+        });
 
 
 
 
         $scope.btnTitle = "提交";
         $scope.addArticle = function () {
+            let category = $scope.categories.filter(function(item){
+                return item._id == $scope.article.category;
+            })[0];
             var article = { 
                 'article': {
                    'title': $scope.article.title,
                     content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
-                    category: $scope.article.category._id,
-                    p_level: $scope.article.category.type
+                    category: $scope.article.category,
+                    parent: category.type
                 }
             }
             if (id) {
