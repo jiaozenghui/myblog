@@ -206,7 +206,7 @@ exports.list = function(req, res) {
 
 exports.getList = function(req, cb) {
 	console.log('begin')
-	var pageIndex = req.query.page? req.query.pageIndex: 1;
+	var pageIndex = req.query.page? req.query.page: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		for(var i=0; i < articles.length; i++) {
