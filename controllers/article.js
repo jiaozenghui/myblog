@@ -83,6 +83,14 @@ exports.save = function (req, res) {
 				  `+article.content+`
 			  </div>
 			</div>`;
+			fs.appendFile('app/views/articles/' + article._id+ ".ejs",content,function (err) {
+				if (err) {
+					return jsonWrite(res, {
+						'success': false,
+						'errMsg': err
+					});
+				};
+			});
 			fs.unlink('app/views/articles/' + article._id+ ".ejs",function(err){
 
 				if(err){
