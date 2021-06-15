@@ -18,20 +18,20 @@
                 context.goToPre = goToPre;
                 context.goToBegin = goToBegin;
                 context.goToEnd = goToEnd;
-                function GetQueryString(name) {
-                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                    var r = decodeURI(window.location.search.substr(1)).match(reg);
-                    if (r != null)return unescape(r[2]);
-                    return null;
-                }
+
     　　　　　　　init();
     　　　　　　　function init(){
-    　　　　　　　　context.pageNumber = Math.ceil(context.total/context.pageCount);
-                   context.showPage= 5;
-                   context.maxPageIndex = Math.ceil(context.total/context.pageCount)< context.showPage? Math.ceil(context.total/context.pageCount): context.showPage;
-                   var page = GetQueryString("page");
-                   page = page? parseInt(page):1;
-                   goTo(page); 
+    　　　　　　　　 context.pageNumber = Math.ceil(context.total/context.pageCount);
+                    context.showPage= 5;
+                    var page =8;
+                    context.maxPageIndex = Math.ceil(context.total/context.pageCount)< context.showPage? Math.ceil(context.total/context.pageCount): context.showPage;
+                   
+                    var ceillevel = Math.ceil(page/context.pageCount);
+                    var floorIndex = Math.floor(page/context.pageCount);
+                    var ceilIndex = ceillevel*context.pageCount> context.total? context.total:ceillevel*context.pageCount;
+                    var floorIndex = floorIndex*context.pageCount;
+                   initialPageList(ceilIndex, context.maxPageIndex);
+                    
     　　　　　　　}
 
                 function initialPageList(beginIndex, endIndex) {
@@ -45,6 +45,7 @@
 
                 function goTo(page) {
                     context.pageIndex = page;
+                    context.onClickPage()(page);
                     let currentMaxPage = Math.max(...context.pageList, page);
                     let currentMinPage = Math.min(...context.pageList, page);
                     if (currentMaxPage < Math.ceil(context.total/context.pageCount) && page == currentMaxPage) {
@@ -74,28 +75,37 @@
                     context.minPageIndex = Math.min(...context.pageList);
                     
                 }
-                function jump(page) {
-                    window.location = 'mian?page=' +page;
-                }
                 function goToNext(page) {
                     if (page < context.total) {
                         context.pageIndex++;
-                        jump(context.pageIndex);
+                        goTo(context.pageIndex);
                     }
                 }
                 function goToPre(page) {
                     if (page > 1) {
                         context.pageIndex--
-                        jump(context.pageIndex);
+                        goTo(context.pageIndex);
                     }
                 }
                 function goToBegin() {
                     context.pageIndex =1;
-                    jump(context.pageIndex);
+                    context.pageList =[];
+                    for(let i=1; i<=context.showPage; i++) {
+                        context.pageList.push(i);
+                    }
+                    context.maxPageIndex = Math.max(...context.pageList);
+                    context.minPageIndex = Math.min(...context.pageList);
+                    context.onClickPage()(context.pageIndex);
                 }
                 function goToEnd() {
                     context.pageIndex =context.total;
-                    jump(context.pageIndex);
+                    context.pageList =[];
+                    for(let i=(context.total-context.showPage+1); i<=context.total; i++) {
+                        context.pageList.push(i);
+                    }
+                    context.maxPageIndex = Math.max(...context.pageList);
+                    context.minPageIndex = Math.min(...context.pageList);
+                    context.onClickPage()(page);
                 }
             }
         };
