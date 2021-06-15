@@ -26,10 +26,10 @@
                     var page =8;
                     context.maxPageIndex = Math.ceil(context.total/context.pageCount)< context.showPage? Math.ceil(context.total/context.pageCount): context.showPage;
                    
-                    var ceillevel = Math.ceil(page/context.pageCount);
-                    var floorIndex = Math.floor(page/context.pageCount);
-                    var ceilIndex = ceillevel*context.pageCount> context.total? context.total:ceillevel*context.pageCount;
-                    var floorIndex = floorIndex*context.pageCount;
+                    var ceillevel = Math.ceil(page/context.showPage);
+                    var floorIndex = Math.floor(page/context.showPage);
+                    var ceilIndex = ceillevel*context.showPage> context.total? context.total:ceillevel*context.showPage;
+                    var floorIndex = floorIndex*context.showPage;
                    initialPageList(floorIndex, ceilIndex);
                     
     　　　　　　　}
