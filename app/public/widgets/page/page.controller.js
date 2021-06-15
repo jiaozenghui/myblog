@@ -82,37 +82,28 @@
                     context.minPageIndex = Math.min(...context.pageList);
                     
                 }
+                function jump(page) {
+                    window.location = '/main?page='+ page;
+                }
                 function goToNext(page) {
                     if (page < context.total) {
                         context.pageIndex++;
-                        goTo(context.pageIndex);
+                        jump(context.pageIndex);
                     }
                 }
                 function goToPre(page) {
                     if (page > 1) {
                         context.pageIndex--
-                        goTo(context.pageIndex);
+                        jump(context.pageIndex);
                     }
                 }
                 function goToBegin() {
                     context.pageIndex =1;
-                    context.pageList =[];
-                    for(let i=1; i<=context.showPage; i++) {
-                        context.pageList.push(i);
-                    }
-                    context.maxPageIndex = Math.max(...context.pageList);
-                    context.minPageIndex = Math.min(...context.pageList);
-                    context.onClickPage()(context.pageIndex);
+                    jump(context.pageIndex);
                 }
                 function goToEnd() {
                     context.pageIndex =context.total;
-                    context.pageList =[];
-                    for(let i=(context.total-context.showPage+1); i<=context.total; i++) {
-                        context.pageList.push(i);
-                    }
-                    context.maxPageIndex = Math.max(...context.pageList);
-                    context.minPageIndex = Math.min(...context.pageList);
-                    context.onClickPage()(page);
+                    jump(context.pageIndex);
                 }
             }
         };
