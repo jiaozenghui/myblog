@@ -74,7 +74,14 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
-
+			fs.appendFile('app/views/articles/' + article._id+ ".ejs",article.content,function (err) {
+				if (err) {
+					return jsonWrite(res, {
+						'success': false,
+						'errMsg': err
+					});
+				};
+			});
 			  if (article.category != oldCategoryId) {
 			  	if (oldCategoryId) {
 		            Category.findById(oldCategoryId, function(err,category) {
