@@ -102,7 +102,7 @@
                     jump(context.pageIndex);
                 }
                 function goToEnd() {
-                    context.pageIndex =context.total;
+                    context.pageIndex =Math.ceil(context.total/context.pageCount);
                     jump(context.pageIndex);
                 }
             }
