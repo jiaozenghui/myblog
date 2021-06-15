@@ -6,7 +6,7 @@
         <b ng-if="page == pageIndex">{{page}}</b>
         <a href="javascript:void(0);" ng-click="jump(page)" ng-if="page != pageIndex">{{page}}</a>
     </span>
-    <a href="javascript:void(0);" ng-if="pageNumber > showPage && maxPageIndex != total"  ng-click="goToNext(pageIndex)">></a>
-    <a href="javascript:void(0);" ng-if="pageNumber > showPage && maxPageIndex != total" ng-click="goToEnd()">>></a>
+    <a href="javascript:void(0);" ng-if="pageNumber > showPage && maxPageIndex != pageNumber"  ng-click="goToNext(pageIndex)">></a>
+    <a href="javascript:void(0);" ng-if="pageNumber > showPage && maxPageIndex != pageNumber" ng-click="goToEnd()">>></a>
 </div>
 
