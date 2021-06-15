@@ -35,8 +35,8 @@
                    
                     var ceillevel = Math.ceil(context.pageIndex/context.showPage);
                     var floorIndex = Math.floor(context.pageIndex/context.showPage);
-                    var ceilIndex = ceillevel*context.showPage> context.total? context.total:ceillevel*context.showPage;
-                    var floorIndex = floorIndex*context.showPage;
+                    var ceilIndex = ceillevel*context.showPage*context.pageCount> context.total? Math.ceil(context.total/context.pageCount):ceillevel*context.showPage;
+                    var floorIndex = floorIndex*context.showPage+1;
                    initialPageList(floorIndex, ceilIndex);
                     
     　　　　　　　}
