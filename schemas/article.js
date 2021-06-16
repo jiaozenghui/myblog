@@ -10,6 +10,7 @@ var ArticleSchema= new mongoose.Schema({
     content: String,
     abstract: String,
     p_level: String,
+    p_level_name:String,
     pv: {
         type: Number,
         default: 0
