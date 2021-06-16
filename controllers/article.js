@@ -50,7 +50,7 @@ var dateFormatter= function(time){
 
 //admin post article
 exports.save = function (req, res) {
-	var articleObj = JSON.parse(req.body.article);
+	var articleObj = req.body.article;
 	var article_image = req.body.article_image;
 	var _article;
 	var id = articleObj.id;
@@ -74,6 +74,7 @@ exports.save = function (req, res) {
 		// 设置文件存储路径，以当前编辑的文件为相对路径
 		form.uploadDir = 'app/public/images/articles';
 		form.parse(req, function (err, fields, files) {
+			console.log(fields)
 			try {
 			  let inputFile = files.file[0];
 			  let newPath = form.uploadDir + "/" + inputFile.originalFilename;
