@@ -226,7 +226,7 @@ exports.list = function(req, res) {
 
 exports.getList = function(req, cb) {
 	console.log('begin')
-	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
+	var pageIndex = req.query.page? req.query.page: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	Article.findList(pageIndex, pageSize,null, function(err, articles) {
 		for(var i=0; i < articles.length; i++) {
@@ -295,8 +295,8 @@ exports.statistics = function(req, res) {
 }
 
 exports.getStatistics = function(req, cb) {
-	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
-	var pageSize = req.query.pageSize? req.query.pageSize:10;
+	var pageIndex = 1;
+	var pageSize = 10;
 	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
 	    if (err) {
 	      cb({
