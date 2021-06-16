@@ -108,13 +108,21 @@
       <script src="libs/jquery/dist/jquery.min.js"></script>
       <script src="libs/angular/angular.js"></script>
       <script src="js/module.js"></script>
-      <script src="js/controllers/main.controller.js"></script>
-      <script src="js/controllers/article.controller.js"></script>
-      <script src="widgets/page/page.controller.js"></script>
-      <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditor.config.js"></script>  
-      <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditor.all.js"> </script>
-      <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditorDirective.js"> </script>  
-      <script type="text/javascript" charset="utf-8" src="libs/ueditor/lang/zh-cn/zh-cn.js"></script> 
+      
+      <% if (template == 'articles') { %>
+        <script src="js/controllers/article.controller.js"></script>
+        <script src="widgets/page/page.controller.js"></script>
+      <%} else if (template == 'edit') { %>
+        <script src="js/controllers/edit.controller.js"></script>
+        <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditor.config.js"></script>  
+        <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditor.all.js"> </script>
+        <script type="text/javascript" charset="utf-8" src="libs/ueditor/ueditorDirective.js"> </script>  
+        <script type="text/javascript" charset="utf-8" src="libs/ueditor/lang/zh-cn/zh-cn.js"></script>
+      <%} %>
+      <% if (template == 'detail') { %>
+        <script src="js/controllers/comment.controller.js"></script>
+      <%} %>
+ 
     </body>
 </html>
 
