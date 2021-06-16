@@ -33,7 +33,9 @@ module.exports= function (app) {
 		Article.getStatistics(req, function(statics) {
 			var template ="articles";
 			var renderData={statics: statics, type: ''};
-			if (req.url.indexOf('articles/edit')>-1) {
+			if (req.url.indexOf('aboutme.html')>-1) {
+				template ="about";
+			} else if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
 			} else if (req.url.indexOf('articles/detail')>-1) {
 				var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
