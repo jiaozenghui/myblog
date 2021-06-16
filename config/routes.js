@@ -43,6 +43,7 @@ module.exports= function (app) {
 				template ="detail";
 				renderData['art_template'] = art_template;
 				renderData['type'] = 'detail';
+
 			}
 			renderData['template'] = template;
 			if (template == "articles") {
@@ -51,6 +52,11 @@ module.exports= function (app) {
 						renderData["articles"] =  response.result;
 						res.render('index',renderData);
 					}
+				});
+			} else if(template == "detail"){
+				Article.getDetail(art_template, function() {
+					renderData.statics.pv_total +=1 ;
+					res.render('index',renderData);
 				});
 			} else {
 				res.render('index',renderData);

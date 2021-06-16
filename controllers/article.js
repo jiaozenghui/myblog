@@ -328,7 +328,7 @@ exports.getStatistics = function(req, cb) {
 exports.getDetail = function(id, cb) {
   Article.findById(id, function (err, article) {
   	if (err) {
-      cb({
+      cb&&cb({
       	'success': false,
       	'errMsg': err
       });
@@ -336,14 +336,14 @@ exports.getDetail = function(id, cb) {
 	}
     Article.update({_id: id}, {$inc: {pv:1}}, function (err) {
       if (err) {
-	      cb({
+	      cb&&cb({
 	      	'success': false,
 	      	'errMsg': err
 	      });
 		  return;
       }
     });
-	cb({
+	cb&&cb({
 		'success': true,
 		'result': article
 	});
