@@ -94,7 +94,8 @@
                     content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
                     category: $scope.article.category,
-                    p_level: category.type
+                    p_level: category.type,
+                    p_level_name: category.name
                 }
             }
             if (id) {
@@ -106,7 +107,7 @@
                 url:"/admin/artice/new",
                 params: article
             }).then(function (result) {
-                console.log(result); 
+                window.location = "/";
             }).catch(function (result) {
                 console.log(result)
             });
