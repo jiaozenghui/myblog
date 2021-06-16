@@ -1,7 +1,5 @@
 'use strict';
-var app = angular.module('app', [
-    'ueditor.directive'
-]).run(['$rootScope','$http',function($rootScope, $http){
+var app = angular.module('app').run(['$rootScope','$http',function($rootScope, $http){
     $http({
         method:"get",
         url:"/user/get",

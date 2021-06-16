@@ -8,7 +8,9 @@
         return null;
     }
 
-    app.controller('editController', function ($scope, $http) {
+    angular.module('app', [
+        'ueditor.directive'
+    ]).controller('editController', function ($scope, $http) {
         /* var ue = UE.getEditor('editor'); */
         $scope.article = {
         };
