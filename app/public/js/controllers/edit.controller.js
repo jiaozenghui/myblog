@@ -88,8 +88,7 @@
             let category = $scope.categories.filter(function(item){
                 return item._id == $scope.article.category;
             })[0];
-            var article = { 
-                'article': {
+            var article ={
                    'title': $scope.article.title,
                     content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
@@ -97,15 +96,18 @@
                     p_level: category.type,
                     p_level_name: category.name
                 }
-            }
             if (id) {
-                article.article.id = id;
+                article.id = id;
             }
-
+            var form = new FormData();
+            form.append('article', article);
+            form.append('article_image', $scope.article_image);
             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
-                params: article
+                processData: false,
+                contentType: false,
+                data: form
             }).then(function (result) {
                 window.location = "/";
             }).catch(function (result) {

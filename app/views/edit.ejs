@@ -39,6 +39,18 @@
             </label>
           </div>
         </div>
+        <div class="form-group-right clearfix"
+          ng-class="{'has-error':form.title.$invalid && form.title.$dirty}">
+          <label for="title">
+            配图
+          </label>
+          <div class="form-group-right">
+            <label class="radio-inline" ng-repeat= "category in categories">
+              <input type="file" ng-model="article_image" name="f" id="f">
+            </label>
+          </div>
+        </div>
+        
         <div class="form-group-right clearfix">
           <label for="abstract">
             摘要

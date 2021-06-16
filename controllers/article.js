@@ -2,7 +2,7 @@ var Article = require('../models/article');
 var Category = require('../models/category');
 var _ = require('underscore');
 var fs = require('fs');
-
+var multiparty = require('multiparty')
 // 向前台返回JSON方法的简单封装
 var jsonWrite = function (res, ret) {
 	res.json(ret);
@@ -50,7 +50,8 @@ var dateFormatter= function(time){
 
 //admin post article
 exports.save = function (req, res) {
-	var articleObj = JSON.parse(req.query.article);
+	var articleObj = JSON.parse(req.body.article);
+	var article_image = req.body.article_image;
 	var _article;
 	var id = articleObj.id;
 	articleObj.author = req.session.user._id;
@@ -66,7 +67,25 @@ exports.save = function (req, res) {
 		  var oldCategoryId = article.category;	
 		  _article = _.extend(article, articleObj);
 
-
+		/* 生成multiparty对象，并配置上传目标路径 */
+		let form = new multiparty.Form();
+		// 设置编码
+		form.encoding = 'utf-8';
+		// 设置文件存储路径，以当前编辑的文件为相对路径
+		form.uploadDir = 'app/public/images/articles';
+		form.parse(req, function (err, fields, files) {
+			try {
+			  let inputFile = files.file[0];
+			  let newPath = form.uploadDir + "/" + inputFile.originalFilename;
+			  // 同步重命名文件名 fs.renameSync(oldPath, newPath)
+		　　　 //oldPath  不得作更改，使用默认上传路径就好
+			  fs.renameSync(inputFile.path, newPath);
+			  res.send({ data: "上传成功！" });
+			} catch (err) {
+			  console.log(err);
+			  res.send({ err: "上传失败！" });
+			};
+		  })
 		  _article.save(function (err, article) {
 		    if (err) {
 		      return jsonWrite(res, {
