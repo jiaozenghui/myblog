@@ -58,7 +58,7 @@ ArticleSchema.statics={
             .exec(cb)
     },
     findList: function(pageIndex, pageSize, sort, cb) { //去除所有要查询的数据
-        sort = sort? sort: {'meta.updateAt': 'desc'};
+        sort = sort? sort: {'meta.createAt': 'desc'};
         return this
             .find({}, {content:0})
             .populate('author', 'name')
