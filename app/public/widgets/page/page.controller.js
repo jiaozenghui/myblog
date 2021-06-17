@@ -99,7 +99,7 @@
                     
                 }
                 function jump(page) {
-                    changeURLArg(window.location.href, 'page', page)
+                    window.location= changeURLArg(window.location.href, 'page', page)
                 }
                 function goToNext(page) {
                     if (page < context.total) {
