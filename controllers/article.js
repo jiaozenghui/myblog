@@ -150,6 +150,7 @@ exports.save = function (req, res) {
 		  });
 		});
 	} else {
+		console.log(articleObj)
 		_article = new Article(articleObj);
 		var categoryId = articleObj.category;
 		_article.save(function (err, article) {
