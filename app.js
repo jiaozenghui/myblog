@@ -45,9 +45,8 @@ app.use(session({
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.raw({ extended: false }));
 app.use(cookieParser());
 
 /*// catch 404 and forward to error handler
