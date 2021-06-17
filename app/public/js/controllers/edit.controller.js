@@ -107,12 +107,9 @@
             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
-/*                 headers: {'Content-Type': undefined},
-                transformRequest: angular.identity, */
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: form
+                headers: {'Content-Type': undefined},
+                transformRequest: angular.identity,
+                data: article
             }).then(function (result) {
                 window.location = "/";
             }).catch(function (result) {
