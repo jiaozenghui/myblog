@@ -106,15 +106,25 @@
             form.append('title', $scope.article.title);
             
             form.append('article_image', file);
-            var promise = $http({
+            $http.post("/admin/artice/new", form,
+                {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined
+                }
+            })
+            .success(function (response) {
+                alert("Mr靖");
+            });
+/*             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
                 data: form,
+                
             }).then(function (result) {
                 window.location = "/";
             }).catch(function (result) {
                 console.log(result)
-            });
+            }); */
         }
     });
 })(angular.module('app'));
