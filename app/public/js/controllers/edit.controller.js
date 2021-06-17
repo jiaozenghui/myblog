@@ -107,7 +107,7 @@
                 method:"post",
                 url:"/admin/artice/new",
                 processData: false,
-                contentType: false,
+                contentType: undefined,
                 data: form
             }).then(function (result) {
                 window.location = "/";
