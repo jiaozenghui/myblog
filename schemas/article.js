@@ -58,10 +58,11 @@ ArticleSchema.statics={
             .findOne({_id:id})
             .exec(cb)
     },
-    findList: function(pageIndex, pageSize, sort, cb) { //去除所有要查询的数据
+    findList: function(pageIndex, pageSize, sort, params, cb) { //去除所有要查询的数据
         sort = sort? sort: {'meta.createAt': 'desc'};
+        params= params? params:{};
         return this
-            .find({}, {content:0})
+            .find(params, {content:0})
             .populate('author', 'name')
             .populate('category', 'name')
             .sort(sort)  //排序

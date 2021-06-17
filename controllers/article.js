@@ -189,7 +189,7 @@ exports.save = function (req, res) {
 exports.list = function(req, res) {
 	var pageIndex = req.query.pageIndex;
 	var pageSize = req.query.pageSize;
-	Article.findList(pageIndex, pageSize,null, function(err, articles) {
+	Article.findList(pageIndex, pageSize,null, {}, function(err, articles) {
 		articles.forEach(function(item) {
 			item.meta.createAt = dateFormatter(item.meta.createAt);
 		});
@@ -220,7 +220,11 @@ exports.getList = function(req, cb) {
 	console.log('begin')
 	var pageIndex = req.query.page? req.query.page: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
-	Article.findList(pageIndex, pageSize,null, function(err, articles) {
+	var params={};
+	if (req.query.type) {
+		params["p_level"] = req.query.type;
+	}
+	Article.findList(pageIndex, pageSize,null, params, function(err, articles) {
 		for(var i=0; i < articles.length; i++) {
 			articles[i]['createAt'] = dateFormatter(articles[i].meta.createAt);
 		}
@@ -254,7 +258,7 @@ exports.getList = function(req, cb) {
 exports.statistics = function(req, res) {
 	var pageIndex = req.query.pageIndex? req.query.pageIndex: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
-	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
+	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, {}, function(err, articles) {
 	    if (err) {
 	      return jsonWrite(res, {
 	      	'success': false,
@@ -289,7 +293,7 @@ exports.statistics = function(req, res) {
 exports.getStatistics = function(req, cb) {
 	var pageIndex = 1;
 	var pageSize = 10;
-	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, function(err, articles) {
+	Article.findList(pageIndex, pageSize,{'pv': 'desc'}, {}, function(err, articles) {
 	    if (err) {
 	      cb({
 				'success': false,

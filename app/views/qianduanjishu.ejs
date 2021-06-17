@@ -1,0 +1,46 @@
+<article ng-controller ="articleController">
+    <h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="qianduanjishu">前端技术</a></h3>
+    <div class="bloglist">
+        <h2>
+        <p><span>技术</span>文章</p>
+        </h2>
+        <%
+        for(var i = 0; i < articles.length; i++){
+        %>
+        <div class="blogs" >
+            <h3><a href="articles/detail/<%=articles[i]._id %>.html"><%=articles[i].title %></a></h3>
+            <figure><img src="images/01.jpg" ></figure>
+            <ul>
+                <p><%=articles[i].abstract %></p>
+                <a  href="/detail" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+            </ul>
+            <p class="autor"><span>作者：
+                
+            <% if (articles[i].author) { %>
+                <%=articles[i].author.name %>
+            <%} %>
+                
+            
+            </span><span>分类：【<a href="/">
+                <% if (articles[i].category) { %>
+                    <%=articles[i].category.name %>
+                <%} %>
+            
+            </a>】</span><span>浏览（<a href="/"><%=articles[i].pv %></a>）</span><span>评论（<a href="/"><%=articles[i].pc %></a>）</span>
+                <a href="articles/edit?id=<%=articles[i]._id %>" class="ng-cloak" ng-if="user">编辑</a> <a ng-if="user" ng-click="article_delete('<%=articles[i]._id %>')" href="javascript:void(0)" class="ng-cloak"  style="color: #f55f77;">删除</a></p>
+            <div class="dateview" ><%=articles[i].createAt %></div>
+            </div>
+
+
+        <%
+            }
+        %>
+
+    </div>
+
+    <% if (statics.total > 0) { %>
+        <page  total="<%=statics.total %>" page-count="10" page-index="page" on-click-page="getList"></page>
+    <%} %>
+
+    
+    </article>
