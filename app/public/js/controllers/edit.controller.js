@@ -102,7 +102,7 @@
             }
             var form = new FormData();
             form.append('article', article);
-            form.append('article_image', $scope.article_image);
+     /*        form.append('article_image', $scope.article_image); */
             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
