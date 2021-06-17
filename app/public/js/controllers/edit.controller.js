@@ -89,20 +89,22 @@
             let category = $scope.categories.filter(function(item){
                 return item._id == $scope.article.category;
             })[0];
+            var file = document.getElementById("fileupload").files[0];
             var article ={
                    'title': $scope.article.title,
                     content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
                     category: $scope.article.category,
                     p_level: category.type,
-                    p_level_name: category.name
+                    p_level_name: category.name,
+                    map_image: file
                 }
             if (id) {
                 article.id = id;
             }
             var form = new FormData();
             form.append('title', $scope.article.title);
-            var file = document.getElementById("fileupload").files[0];
+            
             form.append('article_image', file);
             var promise = $http({
                 method:"post",
