@@ -47,6 +47,7 @@ app.use(session({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.raw({ extended: false }));
 app.use(cookieParser());
 
 /*// catch 404 and forward to error handler
