@@ -106,10 +106,20 @@
             form.append('title', $scope.article.title);
             
             form.append('article_image', file);
-            $http.post("/admin/artice/new", article)
+/*             $http.post("/admin/artice/new", article,
+                {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined
+                }
+            })
             .success(function (response) {
                 alert("Mr靖");
-            });
+            }); */
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("post","/admin/artice/new");
+            xhr.setRequestHeader("Content-Type","multipart/form-data");
+            xhr.send(formData);
 /*             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
