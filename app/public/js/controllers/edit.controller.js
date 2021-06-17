@@ -108,6 +108,7 @@
                 method:"post",
                 url:"/admin/artice/new",
                 headers: {'Content-Type': undefined},
+                transformRequest: angular.identity,
                 data: form
             }).then(function (result) {
                 window.location = "/";
