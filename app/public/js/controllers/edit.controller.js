@@ -119,7 +119,7 @@
             var xhr = new XMLHttpRequest();
             xhr.open("post","/admin/artice/new");
             xhr.setRequestHeader("Content-Type","multipart/form-data");
-            xhr.send(formData);
+            xhr.send(form);
 /*             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
