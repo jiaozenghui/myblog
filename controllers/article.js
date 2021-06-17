@@ -199,7 +199,7 @@ exports.list = function(req, res) {
 	      	'errMsg': err
 	      });
 	    } else {
-			Article.getTotal(function(err, list) {
+			Article.getTotal({},function(err, list) {
 				if (err) {
 				  return jsonWrite(res, {
 					  'success': false,
@@ -235,7 +235,7 @@ exports.getList = function(req, cb) {
 	      });
 		  return;
 	    } else {
-			Article.getTotal(function(err, list) {
+			Article.getTotal(params,function(err, list) {
 				if (err) {
 				  cb({
 					  'success': false,
@@ -265,7 +265,7 @@ exports.statistics = function(req, res) {
 	      	'errMsg': err
 	      });
 	    } else {
-			Article.getTotal(function(err, list) {
+			Article.getTotal({},function(err, list) {
 				if (err) {
 				  return jsonWrite(res, {
 					  'success': false,
@@ -301,7 +301,7 @@ exports.getStatistics = function(req, cb) {
 			});
 			return;
 	    } else {
-			Article.getTotal(function(err, list) {
+			Article.getTotal({},function(err, list) {
 				if (err) {
 				  cb({
 						'success': false,

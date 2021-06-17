@@ -70,9 +70,10 @@ ArticleSchema.statics={
             .limit(parseInt(pageSize))
             .exec(cb)
     },
-    getTotal: function(cb) {
+    getTotal: function(params, cb) {
+        params= params? params:{};
         return this
-        .find({}, {content:0}).exec(cb)
+        .find(params, {content:0}).exec(cb)
     }
 }
 

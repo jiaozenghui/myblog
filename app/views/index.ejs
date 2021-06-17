@@ -109,7 +109,7 @@
       <script src="libs/angular/angular.js"></script>
       <script src="js/module.js"></script>
       
-      <% if (template == 'articles') { %>
+      <% if (template == 'articles' || template == 'query_article') { %>
         <script src="js/controllers/article.controller.js"></script>
         <script src="widgets/page/page.controller.js"></script>
       <%} else if (template == 'edit') { %>
