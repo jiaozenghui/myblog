@@ -106,7 +106,7 @@
             form.append('title', $scope.article.title);
             
             form.append('article_image', file);
-            $http.post("/admin/artice/new", form,
+            $http.post("/admin/artice/new", article,
                 {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined
