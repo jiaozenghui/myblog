@@ -51,7 +51,7 @@ var dateFormatter= function(time){
 //admin post article
 exports.save = function (req, res) {
 	console.log("begin save")
-	console.log(req)
+	/* console.log(req) */
 		/* 生成multiparty对象，并配置上传目标路径 */
 		let form = new multiparty.Form();
 		// 设置编码
