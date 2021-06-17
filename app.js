@@ -45,8 +45,9 @@ app.use(session({
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 /*// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -72,9 +73,6 @@ app.set('view engine', 'ejs');
 // rewrite to load static resources
 app.use(express.static(path.join(__dirname, 'app/public')));
 require('./config/routes')(app)
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 //使用模块  
 app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function (req, res, next) {  
     // ueditor 客户发起上传图片请求  

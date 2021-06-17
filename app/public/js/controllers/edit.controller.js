@@ -14,7 +14,6 @@
         /* var ue = UE.getEditor('editor'); */
         $scope.article = {
         };
-        $scope.article_image =null;
         $scope.categories = [];
         $scope.config={
                 //初始化编辑器内容
@@ -89,47 +88,29 @@
             let category = $scope.categories.filter(function(item){
                 return item._id == $scope.article.category;
             })[0];
-            var file = document.getElementById("fileupload").files[0];
-            var article ={
+            var article = { 
+                'article': {
                    'title': $scope.article.title,
                     content: $scope.ueditorGetContent('editor'),
                     abstract: $scope.article.abstract,
                     category: $scope.article.category,
                     p_level: category.type,
-                    p_level_name: category.name,
-                    map_image: file
+                    p_level_name: category.name
                 }
-            if (id) {
-                article.id = id;
             }
-            var form = new FormData();
-            form.append('title', $scope.article.title);
-            
-            form.append('article_image', file);
-/*             $http.post("/admin/artice/new", article,
-                {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type': undefined
-                }
-            })
-            .success(function (response) {
-                alert("Mr靖");
-            }); */
+            if (id) {
+                article.article.id = id;
+            }
 
-            var xhr = new XMLHttpRequest();
-            xhr.open("post","/admin/artice/new", true);
-
-            xhr.send(form);
-/*             var promise = $http({
+            var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
-                data: form,
-                
+                params: article
             }).then(function (result) {
                 window.location = "/";
             }).catch(function (result) {
                 console.log(result)
-            }); */
+            });
         }
     });
 })(angular.module('app'));

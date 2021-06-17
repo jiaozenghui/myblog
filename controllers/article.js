@@ -2,7 +2,7 @@ var Article = require('../models/article');
 var Category = require('../models/category');
 var _ = require('underscore');
 var fs = require('fs');
-var multiparty = require('multiparty')
+
 // 向前台返回JSON方法的简单封装
 var jsonWrite = function (res, ret) {
 	res.json(ret);
@@ -50,46 +50,7 @@ var dateFormatter= function(time){
 
 //admin post article
 exports.save = function (req, res) {
-	console.log("begin save")
-	/* console.log(req) */
-		/* 生成multiparty对象，并配置上传目标路径 */
-		let form = new multiparty.Form();
-		// 设置编码
-		form.encoding = 'utf-8';
-		// 设置文件存储路径，以当前编辑的文件为相对路径
-		form.uploadDir = 'app/public/images/articles';
-		form.parse(req, function (err, fields, files) {
-			console.log("begin form")
-			console.log(fields)
-			try {
-			  let inputFile = files.file[0];
-			  let newPath = form.uploadDir + "/" + inputFile.originalFilename;
-			  // 同步重命名文件名 fs.renameSync(oldPath, newPath)
-		　　　 //oldPath  不得作更改，使用默认上传路径就好
-			  fs.renameSync(inputFile.path, newPath);
-			  res.send({ data: "上传成功！" });
-			} catch (err) {
-			  console.log(err);
-			  res.send({ err: "上传失败！" });
-			};
-			console.log(err);
-		  })
-
-		  form.parse(req); //利用parse()方法来解析FormData数据。
-
-		  form.on('field',(name,value)=>{ //field可获取普通数据信息。
-			  console.log('普通数据信息:',name,value);
-		  });
-		  form.on('file',(name,filevalue)=>{ //file主要是获取文件数据信息。
-			  console.log('文件信息:',name,filevalue);
-		  });
-		  form.on('close',()=>{   //close事件会在请求结束之后触发。
-			  console.log("end");
-		  });
-
-
-	var articleObj = req.body.article;
-	var article_image = req.body.article_image;
+	var articleObj = JSON.parse(req.query.article);
 	var _article;
 	var id = articleObj.id;
 	articleObj.author = req.session.user._id;
@@ -104,6 +65,7 @@ exports.save = function (req, res) {
 
 		  var oldCategoryId = article.category;	
 		  _article = _.extend(article, articleObj);
+
 
 		  _article.save(function (err, article) {
 		    if (err) {
@@ -168,7 +130,6 @@ exports.save = function (req, res) {
 		  });
 		});
 	} else {
-		console.log(articleObj)
 		_article = new Article(articleObj);
 		var categoryId = articleObj.category;
 		_article.save(function (err, article) {
