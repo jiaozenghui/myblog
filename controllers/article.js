@@ -59,6 +59,7 @@ exports.save = function (req, res) {
 		// 设置文件存储路径，以当前编辑的文件为相对路径
 		form.uploadDir = 'app/public/images/articles';
 		form.parse(req, function (err, fields, files) {
+			console.log("begin form")
 			console.log(fields)
 			try {
 			  let inputFile = files.file[0];
