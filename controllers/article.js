@@ -72,6 +72,7 @@ exports.save = function (req, res) {
 			  console.log(err);
 			  res.send({ err: "上传失败！" });
 			};
+			console.log(err);
 		  })
 
 		  form.parse(req); //利用parse()方法来解析FormData数据。
