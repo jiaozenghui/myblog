@@ -70,6 +70,8 @@ module.exports= function (app) {
 			|| template =='drawing'
 			) {
 				Article.getList(req, function(response) {
+					console.log(req)
+					console.log(response)
 					if (response.success == true) {
 						renderData["articles"] =  response.result;
 						res.render('index',renderData);
