@@ -5,6 +5,22 @@
         if (r != null)return unescape(r[2]);
         return null;
     }
+
+    function changeURLArg(url,arg,arg_val){
+        var pattern=arg+'=([^&]*)';
+        var replaceText=arg+'='+arg_val; 
+        if(url.match(pattern)){
+            var tmp='/('+ arg+'=)([^&]*)/gi';
+            tmp=url.replace(eval(tmp),replaceText);
+            return tmp;
+        }else{ 
+            if(url.match('[\?]')){ 
+                return url+'&'+replaceText; 
+            }else{ 
+                return url+'?'+replaceText; 
+            } 
+        }
+    }
     app.directive('page', pageController);
     function pageController() {
         return {
@@ -83,7 +99,7 @@
                     
                 }
                 function jump(page) {
-                    window.location.search ="?page="+ page;
+                    changeURLArg(window.location.href, 'page', page)
                 }
                 function goToNext(page) {
                     if (page < context.total) {
