@@ -51,23 +51,6 @@ var dateFormatter= function(time){
 //admin post article
 exports.save = function (req, res) {
 	console.log("begin save")
-	console.log(req.body);
-	var articleObj = req.body.article;
-	var article_image = req.body.article_image;
-	var _article;
-	var id = articleObj.id;
-	articleObj.author = req.session.user._id;
-	if (id) {
-		Article.findById(id, function (err, article) {
-		  if (err) {
-		      return jsonWrite(res, {
-		      	'success': false,
-		      	'errMsg': err
-		      });
-		  }
-
-		  var oldCategoryId = article.category;	
-		  _article = _.extend(article, articleObj);
 
 		/* 生成multiparty对象，并配置上传目标路径 */
 		let form = new multiparty.Form();
@@ -89,6 +72,23 @@ exports.save = function (req, res) {
 			  res.send({ err: "上传失败！" });
 			};
 		  })
+	var articleObj = req.body.article;
+	var article_image = req.body.article_image;
+	var _article;
+	var id = articleObj.id;
+	articleObj.author = req.session.user._id;
+	if (id) {
+		Article.findById(id, function (err, article) {
+		  if (err) {
+		      return jsonWrite(res, {
+		      	'success': false,
+		      	'errMsg': err
+		      });
+		  }
+
+		  var oldCategoryId = article.category;	
+		  _article = _.extend(article, articleObj);
+
 		  _article.save(function (err, article) {
 		    if (err) {
 		      return jsonWrite(res, {
