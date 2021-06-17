@@ -65,11 +65,8 @@ module.exports= function (app) {
 			}
 			renderData['template'] = template;
 			if (template == "articles"
-			|| template =='qianduanjishu'
-			|| template =='life_diary'
-			|| template =='drawing'
+			|| template =='query_article'
 			) {
-				console.log(req.query)
 				Article.getList(req, function(response) {
 					if (response.success == true) {
 						renderData["articles"] =  response.result;
