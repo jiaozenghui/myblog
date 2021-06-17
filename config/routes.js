@@ -35,8 +35,21 @@ module.exports= function (app) {
 			var renderData={statics: statics, type: ''};
 			if (req.url.indexOf('aboutme.html')>-1) {
 				template ="about";
-			} else if (req.url.indexOf('qianduanjishu')>-1) {
-				template ="qianduanjishu";
+			} else if (req.url.indexOf('qianduanjishu.html')>-1
+			|| req.url.indexOf('life_diary.html')>-1
+			|| req.url.indexOf('drawing.html')>-1) {
+				var type =req.url.substring(0, req.url.indexOf("."));
+				req.query.type = type;
+				template = 'query_article';
+				renderData['category'] = type;
+				if (type == 'qianduanjishu') {
+					renderData['category_name'] = '前端技术';
+				} else if (type == 'life_diary') {
+					renderData['category_name'] = '慢生活';
+				} else {
+					renderData['drawing'] = '兴趣爱好';
+				}
+
 			} else if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
 			} else if (req.url.indexOf('articles/detail')>-1) {
@@ -50,9 +63,6 @@ module.exports= function (app) {
 			}
 			renderData['template'] = template;
 			if (template == "articles"|| template =='qianduanjishu') {
-				if (template != 'articles') {
-					req.query.type = template;
-				}
 				Article.getList(req, function(response) {
 					if (response.success == true) {
 						renderData["articles"] =  response.result;
