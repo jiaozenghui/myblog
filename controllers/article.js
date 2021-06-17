@@ -52,8 +52,26 @@ var dateFormatter= function(time){
 exports.save = function (req, res) {
 	console.log("begin save")
 	console.log(req)
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+		console.log("formidable")
+		console.log(fields)
+        for(item in files){
+            (function(){
+                var oldname = files[item].path;
+                var newname = files[item].name === 'blob' ? oldname+'.xml' : oldname+"."+files[item].name.split('.')[1];
+                fs.rename(oldname,newname,function(err){
+                    if(err) console.log(err);
+                    console.log('修改成功');
+                })
+            })(item);
+        }
+        console.log(util.inspect({fields: fields, files: files}));
+        res.send('2')
+	}	
+
 		/* 生成multiparty对象，并配置上传目标路径 */
-		let form = new multiparty.Form();
+		/* let form = new multiparty.Form();
 		// 设置编码
 		form.encoding = 'utf-8';
 		// 设置文件存储路径，以当前编辑的文件为相对路径
@@ -85,7 +103,7 @@ exports.save = function (req, res) {
 		  });
 		  form.on('close',()=>{   //close事件会在请求结束之后触发。
 			  console.log("end");
-		  });
+		  }); */
 
 
 	var articleObj = req.body.article;
