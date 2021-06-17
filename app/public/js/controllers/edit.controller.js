@@ -102,12 +102,12 @@
             }
             var form = new FormData();
             form.append('article', article);
-     /*        form.append('article_image', $scope.article_image); */
+            var file = document.getElementById("fileupload").files[0];
+            form.append('article_image', file);
             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
-                processData: false,
-                contentType: undefined,
+                headers: {'Content-Type': undefined},
                 data: form
             }).then(function (result) {
                 window.location = "/";
