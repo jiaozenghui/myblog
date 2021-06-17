@@ -59,7 +59,7 @@ exports.save = function (req, res) {
 		// 设置文件存储路径，以当前编辑的文件为相对路径
 		form.uploadDir = 'app/public/images/articles';
 		console.log(form)
-		form.parse(req.payload, function (err, fields, files) {
+		form.parse(req, function (err, fields, files) {
 			console.log("begin form")
 			console.log(fields)
 			try {
@@ -74,7 +74,7 @@ exports.save = function (req, res) {
 			  res.send({ err: "上传失败！" });
 			};
 		  })
-		  
+
 		  form.parse(req); //利用parse()方法来解析FormData数据。
 
 		  form.on('field',(name,value)=>{ //field可获取普通数据信息。
