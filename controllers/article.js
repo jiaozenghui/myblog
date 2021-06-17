@@ -3,6 +3,7 @@ var Category = require('../models/category');
 var _ = require('underscore');
 var fs = require('fs');
 var multiparty = require('multiparty')
+var formidable = require('formidable')
 // 向前台返回JSON方法的简单封装
 var jsonWrite = function (res, ret) {
 	res.json(ret);
