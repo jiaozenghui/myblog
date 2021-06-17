@@ -50,7 +50,7 @@ var dateFormatter= function(time){
 
 //admin post article
 exports.save = function (req, res) {
-	console.log('save begin')
+	console.log("begin save")
 	var articleObj = req.body.article;
 	var article_image = req.body.article_image;
 	var _article;
