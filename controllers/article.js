@@ -68,7 +68,7 @@ exports.save = function (req, res) {
         }
         console.log(util.inspect({fields: fields, files: files}));
         res.send('2')
-	}	
+	})	
 
 		/* 生成multiparty对象，并配置上传目标路径 */
 		/* let form = new multiparty.Form();
