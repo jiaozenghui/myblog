@@ -58,6 +58,7 @@ exports.save = function (req, res) {
 		form.encoding = 'utf-8';
 		// 设置文件存储路径，以当前编辑的文件为相对路径
 		form.uploadDir = 'app/public/images/articles';
+		console.log("form")
 		form.parse(req, function (err, fields, files) {
 			console.log("begin form")
 			console.log(fields)
