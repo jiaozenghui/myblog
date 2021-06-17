@@ -14,6 +14,7 @@
         /* var ue = UE.getEditor('editor'); */
         $scope.article = {
         };
+        $scope.article_image =null;
         $scope.categories = [];
         $scope.config={
                 //初始化编辑器内容
