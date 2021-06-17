@@ -101,7 +101,7 @@
                 article.id = id;
             }
             var form = new FormData();
-            form.append('article', article);
+            form.append('title', $scope.article.title);
             var file = document.getElementById("fileupload").files[0];
             form.append('article_image', file);
             var promise = $http({
