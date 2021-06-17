@@ -49,7 +49,7 @@ module.exports= function (app) {
 				} else if (type == 'life_diary') {
 					renderData['category_name'] = '慢生活';
 				} else {
-					renderData['drawing'] = '兴趣爱好';
+					renderData['category_name'] = '兴趣爱好';
 				}
 
 			} else if (req.url.indexOf('articles/edit')>-1) {
