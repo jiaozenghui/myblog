@@ -62,7 +62,11 @@ module.exports= function (app) {
 
 			}
 			renderData['template'] = template;
-			if (template == "articles"|| template =='qianduanjishu') {
+			if (template == "articles"
+			|| template =='qianduanjishu'
+			|| template =='life_diary'
+			|| template =='drawing'
+			) {
 				Article.getList(req, function(response) {
 					if (response.success == true) {
 						renderData["articles"] =  response.result;
