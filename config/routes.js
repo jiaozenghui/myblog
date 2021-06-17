@@ -70,6 +70,7 @@ module.exports= function (app) {
 				Article.getList(req, function(response) {
 					if (response.success == true) {
 						renderData["articles"] =  response.result;
+						renderData["total"] =  response.total;
 						res.render('index',renderData);
 					}
 				});
