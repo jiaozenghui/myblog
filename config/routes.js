@@ -38,7 +38,9 @@ module.exports= function (app) {
 			} else if (req.url.indexOf('qianduanjishu.html')>-1
 			|| req.url.indexOf('life_diary.html')>-1
 			|| req.url.indexOf('drawing.html')>-1) {
-				var type =req.url.substring(0, req.url.indexOf("."));
+				var tep_url = req.url.substring(req.url.lastIndexOf("/")+1);
+				var type =tep_url.substring(0, tep_url.indexOf("."));
+				console.log(type)
 				req.query.type = type;
 				template = 'query_article';
 				renderData['category'] = type;
