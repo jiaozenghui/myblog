@@ -109,11 +109,7 @@
             var promise = $http({
                 method:"post",
                 url:"/admin/artice/new",
-                data: article,
-                headers : {
-                    'Content-Type' : undefined  //angularjs设置文件上传的content-type修改方式
-                },
-                transformRequest : angular.identity
+                data: form,
             }).then(function (result) {
                 window.location = "/";
             }).catch(function (result) {
