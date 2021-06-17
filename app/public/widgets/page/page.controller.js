@@ -83,7 +83,7 @@
                     
                 }
                 function jump(page) {
-                    window.location = '/main?page='+ page;
+                    window.location.search ="?page="+ page;
                 }
                 function goToNext(page) {
                     if (page < context.total) {
