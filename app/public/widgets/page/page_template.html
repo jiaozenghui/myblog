@@ -1,12 +1,12 @@
 <div class="page">
     <a title="Total record"><b>{{ total }}</b></a>
-    <a href="javascript:void(0);" ng-if="pageNumber > showPage && minPageIndex != 1" ng-click="goToBegin()"><<</a>
-    <a href="javascript:void(0);" ng-if="pageIndex != 1"  ng-click="goToPre(pageIndex)"><</a>
+    <a href="{{mappage[1]}}" ng-if="pageNumber > showPage && minPageIndex != 1"><<</a>
+    <a href="{{mappage[pageIndex-1]}}" ng-if="pageIndex != 1"  ><</a>
     <span ng-repeat="page in pageList track by $index">
         <b ng-if="page == pageIndex">{{page}}</b>
-        <a href="{{mappage[page]}}" ng-click="jump(page)" ng-if="page != pageIndex">{{page}}</a>
+        <a href="{{mappage[page]}}" ng-if="page != pageIndex">{{page}}</a>
     </span>
-    <a href="javascript:void(0);" ng-if="pageNumber > showPage && maxPageIndex != pageNumber"  ng-click="goToNext(pageIndex)">></a>
-    <a href="javascript:void(0);" ng-if="pageNumber > showPage && maxPageIndex != pageNumber" ng-click="goToEnd()">>></a>
+    <a href="{{mappage[pageIndex+1]}}" ng-if="pageNumber > showPage && maxPageIndex != pageNumber"  >></a>
+    <a href="{{mappage[MathCeil(total/pageCount)]}}" ng-if="pageNumber > showPage && maxPageIndex != pageNumber" >>></a>
 </div>
 
