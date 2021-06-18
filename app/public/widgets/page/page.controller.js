@@ -64,6 +64,7 @@
                         context.pageList.push(i);
                         context.mappage[i.toString()]= changeURLArg(window.location.href, 'page', i);
                     }
+                    context.mappage[context.pageNumber]= changeURLArg(window.location.href, 'page', context.pageNumber);
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
                 }
