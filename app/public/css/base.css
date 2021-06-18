@@ -26,9 +26,15 @@ nav {   height: 48px; line-height: 48px;  filter: progid:DXImageTransform.Micros
 .search_div {
     position: absolute;
     right: 0;
+    top: 0;
 }
 .search_btn {
-    margin-left: -30px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    background: transparent;
+    color: #999;
+    border: none;
 }
 .search_input {
     width: 150px;
