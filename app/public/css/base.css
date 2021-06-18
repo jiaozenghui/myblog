@@ -27,6 +27,16 @@ nav {   height: 48px; line-height: 48px;  filter: progid:DXImageTransform.Micros
     position: absolute;
     right: 0;
 }
+.search_btn {
+    margin-left: -30px;
+}
+.search_input {
+    width: 150px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 20px;
+    padding-right: 50px;
+}
 
 nav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding: 0 20px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; margin: 0 20px;}
 nav a:hover { 
