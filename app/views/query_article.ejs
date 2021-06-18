@@ -1,5 +1,10 @@
 <article ng-controller ="articleController">
-    <h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="<%=category %>.html"><%=category_name %></a></h3>
+    <h3 class="about_h">您现在的位置是：<a href="/">首页</a>
+        ><a href="<%=category %>.html"><%=category_name %></a>
+        <% if (filter) { %>
+            ><a href="<%=category %>.html?filter=<%=filter %>"><%=filter %></a>
+        <%} %>
+    </h3>
     <div class="bloglist">
 
         <%
