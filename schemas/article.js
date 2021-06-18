@@ -2,7 +2,6 @@
  * Created by Administrator on 2017/3/8.
  */
 var mongoose = require('mongoose');
-const { delete } = require('../controllers/article');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
