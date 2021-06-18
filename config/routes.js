@@ -30,9 +30,11 @@ module.exports= function (app) {
 	app.all('/*', function (req, res) {
 		Article.getStatistics(req, function(statics) {
 			var template ="articles";
+			var blog_title ="首页";
 			var renderData={statics: statics, type: ''};
 			if (req.url.indexOf('aboutme.html')>-1) {
 				template ="about";
+				blog_title ="关于我";
 			} else if (req.url.indexOf('qianduanjishu.html')>-1
 			|| req.url.indexOf('life_diary.html')>-1
 			|| req.url.indexOf('drawing.html')>-1) {
@@ -48,12 +50,14 @@ module.exports= function (app) {
 				} else {
 					renderData['category_name'] = '兴趣爱好';
 				}
+				blog_title =renderData['category_name'];
 
 			} else if (req.url.indexOf('search.html')>-1){
 				template = 'query_article';
 				renderData['category'] = 'search';
 				renderData['category_name'] = '搜索';
-				renderData['filter'] = req.query.filter;	
+				renderData['filter'] = req.query.filter;
+				blog_title =renderData['category_name']+ '-' + req.query.filter;
 
 			} else if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
@@ -67,6 +71,7 @@ module.exports= function (app) {
 
 			}
 			renderData['template'] = template;
+			renderData['blog_title'] = blog_title;
 			if (template == "articles"
 			|| template =='query_article'
 			) {
@@ -78,8 +83,9 @@ module.exports= function (app) {
 					}
 				});
 			} else if(template == "detail"){
-				Article.getDetail(renderData['article_id'], function() {
+				Article.getDetail(renderData['article_id'], function(re) {
 					renderData.statics.pv_total +=1 ;
+					renderData['blog_title'] = re.result.title;
 					res.render('index',renderData);
 				});
 			} else {
