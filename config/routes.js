@@ -5,7 +5,12 @@ var Comment = require('../controllers/comment');
 const { template } = require('underscore');
 
 module.exports= function (app) {
-
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = decodeURI(window.location.search.substr(1)).match(reg);
+        if (r != null)return unescape(r[2]);
+        return null;
+    }
 	//Article
 	app.post('/admin/artice/new', Article.save);
 	app.get('/articles', Article.list);
@@ -40,7 +45,6 @@ module.exports= function (app) {
 			|| req.url.indexOf('drawing.html')>-1) {
 				var tep_url = req.url.substring(req.url.lastIndexOf("/")+1);
 				var type =tep_url.substring(0, tep_url.indexOf("."));
-				console.log(type)
 				req.query.type = type;
 				template = 'query_article';
 				renderData['category'] = type;
@@ -51,6 +55,13 @@ module.exports= function (app) {
 				} else {
 					renderData['category_name'] = '兴趣爱好';
 				}
+
+			} else if (req.url.indexOf('search.html')>-1){
+				template = 'query_article';
+				renderData['category'] = 'search';
+				renderData['category_name'] = '搜索';
+				renderData['filter'] = GetQueryString('filter');
+				req.query.filter = 	renderData['filter'];		
 
 			} else if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";

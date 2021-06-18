@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/3/8.
  */
 var mongoose = require('mongoose');
+const { delete } = require('../controllers/article');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
@@ -61,6 +62,15 @@ ArticleSchema.statics={
     findList: function(pageIndex, pageSize, sort, params, cb) { //去除所有要查询的数据
         sort = sort? sort: {'meta.createAt': 'desc'};
         params= params? params:{};
+        if (params['filter']) {
+            var reg = new RegExp(params['filter'], "i");
+            params['$or'] =[
+                {title: {$regex: reg}},
+                {content: {$regex: reg}},
+                {abstract: {$regex: reg}},
+            ]
+            delete params['filter'];
+        }
         return this
             .find(params, {content:0})
             .populate('author', 'name')
@@ -72,6 +82,15 @@ ArticleSchema.statics={
     },
     getTotal: function(params, cb) {
         params= params? params:{};
+        if (params['filter']) {
+            var reg = new RegExp(params['filter'], "i");
+            params['$or'] =[
+                {title: {$regex: reg}},
+                {content: {$regex: reg}},
+                {abstract: {$regex: reg}},
+            ]
+            delete params['filter'];
+        }
         return this
         .find(params, {content:0}).exec(cb)
     }

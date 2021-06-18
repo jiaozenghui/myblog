@@ -224,6 +224,9 @@ exports.getList = function(req, cb) {
 	if (req.query.type) {
 		params["p_level"] = req.query.type;
 	}
+	if (req.query.filter) {
+		params["p_level"] = req.query.type;
+	}
 	Article.findList(pageIndex, pageSize,null, params, function(err, articles) {
 		for(var i=0; i < articles.length; i++) {
 			articles[i]['createAt'] = dateFormatter(articles[i].meta.createAt);
