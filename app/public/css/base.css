@@ -35,6 +35,11 @@ nav {   height: 48px; line-height: 48px;  filter: progid:DXImageTransform.Micros
     background: transparent;
     color: #999;
     border: none;
+    padding: 0;
+}
+.search_btn:focus,.search_btn:active {
+    background: transparent;
+    border: none;
 }
 .search_input {
     width: 150px;
