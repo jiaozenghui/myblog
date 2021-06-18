@@ -4,12 +4,6 @@ var Category = require('../controllers/category');
 var Comment = require('../controllers/comment');
 
 module.exports= function (app) {
-    function GetQueryString(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = decodeURI(window.location.search.substr(1)).match(reg);
-        if (r != null)return unescape(r[2]);
-        return null;
-    }
 	//Article
 	app.post('/admin/artice/new', Article.save);
 	app.get('/articles', Article.list);
@@ -59,8 +53,7 @@ module.exports= function (app) {
 				template = 'query_article';
 				renderData['category'] = 'search';
 				renderData['category_name'] = '搜索';
-				renderData['filter'] = GetQueryString('filter');
-				req.query.filter = 	renderData['filter'];		
+				renderData['filter'] = req.query.filter;	
 
 			} else if (req.url.indexOf('articles/edit')>-1) {
 				template ="edit";
