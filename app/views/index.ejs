@@ -29,10 +29,22 @@
         </nav>
         <div class="menu pull-right">
           <form name="formsearch" action="search.html" method="get">
-          <input class="search-input" name="filter" id="search-keyword" type="text" required="required" placeholder=" 输入你要找的内容">
-          <button type="submit" class="searchbtn" title="搜一下！">
-              <i class="fa"></i>
+          <input required
+          id="filter"
+          title="filter"
+          class="form-control verify-input"
+          type="text"
+          ng-model="filter"
+          ng-maxlength="255"
+          style="width: 150px;
+          display: inline-block;
+          vertical-align: middle;"
+          placeholder="请输入筛选内容"/>
+          <button class="btn btn-primary" ng-click="search()" type="submit">
+            <i class="fa"></i>
           </button>
+
+
           </form>
         </div>
       </header>
