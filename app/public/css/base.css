@@ -38,8 +38,8 @@ nav {   height: 48px; line-height: 48px;  filter: progid:DXImageTransform.Micros
     padding: 0;
 }
 .search_btn:focus,.search_btn:active,.search_btn:hover {
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: none !important;
     color: #999;
 }
 .search_input {
