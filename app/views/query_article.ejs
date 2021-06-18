@@ -6,7 +6,7 @@
         <%} %>
 
         <% if (category == 'search') { %>
-            <div style="float: right;">
+            <div style="float: right; margin-top:-5px;">
                 <input required
                 id="filter"
                 title="filter"
@@ -15,6 +15,7 @@
                 ng-model="filter"
                 ng-maxlength="255"
                 style="width: 150px;
+                display: inline-block;
                 vertical-align: middle;"
                 placeholder="请输入筛选内容"/>
                 <button class="btn btn-primary" ng-click="search()" type="submit">搜索</button>
