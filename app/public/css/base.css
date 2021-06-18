@@ -50,7 +50,7 @@ nav {   height: 48px; line-height: 48px;  filter: progid:DXImageTransform.Micros
     padding-right: 50px;
 }
 .search_input:focus {
-    width: 180px;
+    width: 180px !important;
 }
 .search_input{border-radius: 10em; transition: all 0.5s ease 0s;}
 
