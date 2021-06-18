@@ -59,8 +59,10 @@
 
                 function initialPageList(beginIndex, endIndex) {
                     context.pageList=[];
+                    context.mappage={};
                     for(let i = beginIndex; i <= endIndex; i++) {
                         context.pageList.push(i);
+                        context.mappage[i.toString()]= changeURLArg(window.location.href, 'page', i);
                     }
                     context.maxPageIndex = Math.max(...context.pageList);
                     context.minPageIndex = Math.min(...context.pageList);
