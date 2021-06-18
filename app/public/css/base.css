@@ -42,7 +42,7 @@ nav {   height: 48px; line-height: 48px;  filter: progid:DXImageTransform.Micros
     border: none !important;
     color: #999 !important;
     box-shadow: none !important;
-    outline: none;
+    outline: none !important;
 }
 .search_input {
     width: 150px;
