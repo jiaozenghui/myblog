@@ -40,7 +40,9 @@
       <%
           }
       %>
-
+      <% if (articles.length == 0) { %>
+        <div style="text-align: center;">暂无相关文章</div>
+      <%} %>
     </div>
 
     <% if (statics.total > 0) { %>
