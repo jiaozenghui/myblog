@@ -10,6 +10,7 @@
 
     app.controller('articleController', function ($scope, $http) {
         $scope.page = 1;
+        $scope.filter = "";
 /*         $scope.getList = function(page){
             $http({
                 method:"get",
@@ -68,6 +69,9 @@
             localTime = new Date(localTime).Format('yyyy-MM-dd HH:mm:ss');
             return localTime;
           }
+        $scope.search = function() {
+            window.location = 'search.html?filter='+ $scope.filter;
+        }
 
     });
 })(angular.module('app'));
