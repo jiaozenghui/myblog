@@ -7,6 +7,6 @@
         <a href="{{mappage[page]}}" ng-if="page != pageIndex">{{page}}</a>
     </span>
     <a href="{{mappage[pageIndex+1]}}" ng-if="pageNumber > showPage && maxPageIndex != pageNumber"  >></a>
-    <a href="{{mappage[MathCeil(total/pageCount)]}}" ng-if="pageNumber > showPage && maxPageIndex != pageNumber" >>></a>
+    <a href="{{mappage[pageNumber]}}" ng-if="pageNumber > showPage && maxPageIndex != pageNumber" >>></a>
 </div>
 

@@ -41,7 +41,6 @@
                 context.goToBegin = goToBegin;
                 context.goToEnd = goToEnd;
                 context.jump = jump;
-                context.MathCeil= Math.ceil;
     　　　　　　　init();
     　　　　　　　function init(){
     　　　　　　　　 context.pageNumber = Math.ceil(context.total/context.pageCount);
