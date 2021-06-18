@@ -27,7 +27,14 @@
           </div>
 
         </nav>
-        
+        <div class="menu pull-right">
+          <form name="formsearch" action="search.html" method="get">
+          <input class="search-input" name="filter" id="search-keyword" type="text" required="required" placeholder=" 输入你要找的内容">
+          <button type="submit" class="searchbtn" title="搜一下！">
+              <i class="fa"></i>
+          </button>
+          </form>
+        </div>
       </header>
         <div class="ibody" >
           <%-include( template )%>
