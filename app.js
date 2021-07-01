@@ -112,9 +112,9 @@ console.log = function () {
         if (logFile) {
             logFile.end();
         }
-        // if (!fs.existsSync(fname)) {
-        //     fs.mkdirSync(fname);
-        // }
+        if (!fs.existsSync(fname)) {
+             fs.mkdirSync(fname);
+        }
         logFile = fs.createWriteStream(fname, {
             flags: 'a',
             encoding: 'utf8'
