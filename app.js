@@ -102,6 +102,7 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
 
 var logPath = 'app/plublic/logs'
 var logFile = null;
+var logTime = null;
 console.log = function () {
     var time = date.format(new Date(), 'yyyy-MM-dd_HH:mm:ss');
     var foldName = time.substr(0, 10);
