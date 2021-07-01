@@ -110,13 +110,11 @@ console.log = function () {
     if (logTime != foldName) {
         logTime = foldName;
         var fname = logPath + foldName + '.log';
-        if (logFile) {
-            logFile.end();
-        }
-
+        console.log("jiao begin")
         fs.exists( fname,function(exists){
+            console.log("jiao")
             if(exists){
-                fs.writeFile(fname,fileContent,'utf8',function(error){
+                fs.appendFile(fname,fileContent,'utf8',function(error){
                 })
             }
             else{
