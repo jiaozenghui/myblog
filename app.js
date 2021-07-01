@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoStore = require('connect-mongo')(session);
 var bodyParser = require('body-parser');
-
+var fs = require('fs');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -15,7 +15,7 @@ var app = express();
 //加载ueditor 模块  
 var ueditor = require("ueditor");  
 
-
+var date = require('./utils/date');
 // connect to mongodb
 var dbName = 'blog';
 var dbUrl = 'mongodb://localhost:27017/' + dbName;
@@ -98,5 +98,29 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
         res.redirect('/libs/ueditor/jsp/config.json');  
     }  
 })); 
+
+
+var logPath = 'app/plublic/logs'
+var logFile = null;
+console.log = function () {
+    var time = date.format(new Date(), 'yyyy-MM-dd_HH:mm:ss');
+    var foldName = time.substr(0, 10);
+    if (logTime != foldName) {
+        logTime = foldName;
+        var fname = logPath + foldName + '.log';
+        if (logFile) {
+            logFile.end();
+        }
+        // if (!fs.existsSync(fname)) {
+        //     fs.mkdirSync(fname);
+        // }
+        logFile = fs.createWriteStream(fname, {
+            flags: 'a',
+            encoding: 'utf8'
+        })
+    }
+    logFile.write('【' + time + '】' + arguments[0] + '\r\n')
+}
+
 
 module.exports = app;
