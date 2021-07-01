@@ -76,7 +76,7 @@ exports.save = function (req, res) {
 		    }
 
 			
-			let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/`+article.p_level+`">`+article.p_level_name+`</a></h3>
+			let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/`+article.p_level+`.html">`+article.p_level_name+`</a></h3>
 			<div class="about">
 			  <h2>`+article.title+`</h2>
 			  <div class="form-group-right" id="article_detail">
@@ -139,7 +139,7 @@ exports.save = function (req, res) {
 		      	'errMsg': err
 		      });
 		    }
-			let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/`+article.p_level+`">`+article.p_level_name+`</a></h3>
+			let content = `<h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="/`+article.p_level+`.html">`+article.p_level_name+`</a></h3>
 			<div class="about">
 			  <h2>`+article.title+`</h2>
 			  <div class="form-group-right" id="article_detail">
