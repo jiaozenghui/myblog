@@ -29,7 +29,7 @@ module.exports= function (app) {
 	// static views
 	app.all('/*', function (req, res) {
 		try {
-			var a =1/0;
+			a =1/0;
 			Article.getStatistics(req, function(statics) {
 				var template ="articles";
 				var blog_title ="首页";
