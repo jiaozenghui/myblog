@@ -96,10 +96,6 @@ module.exports= function (app) {
 			});
 		} catch (error) {
 			console.log(error)
-		}
-
-
-
-		
+		}	
 	});
 }
