@@ -106,24 +106,21 @@ var logTime = null;
 console.log = function () {
     var time = date.format(new Date(), 'yyyy-MM-dd_HH:mm:ss');
     var foldName = time.substr(0, 10);
-    var fileContent = '【' + time + '】' + arguments[0] + '\r\n';
     if (logTime != foldName) {
         logTime = foldName;
         var fname = logPath + foldName + '.log';
-        console.log("jiao begin")
-        fs.exists( fname,function(exists){
-            console.log("jiao")
-            if(exists){
-                fs.appendFile(fname,fileContent,'utf8',function(error){
-                })
-            }
-            else{
-                fs.writeFile(fname,fileContent,'utf8',function(error){
-                })
-            }
-        });
-
+        if (logFile) {
+            logFile.end();
+        }
+        if (!fs.existsSync(fname)) {
+            fs.mkdirSync(fname);
+        }
+        logFile = fs.createWriteStream(fname, {
+            flags: 'a',
+            encoding: 'utf8'
+        })
     }
+    logFile.write('【' + time + '】' + arguments[0] + '\r\n')
 }
 
 
