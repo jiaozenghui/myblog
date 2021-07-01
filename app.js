@@ -100,7 +100,7 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
 })); 
 
 
-var logPath = 'app/plublic/logs'
+var logPath = 'app/plublic/logs/'
 var logFile = null;
 var logTime = null;
 console.log = function () {
