@@ -217,7 +217,6 @@ exports.list = function(req, res) {
 };
 
 exports.getList = function(req, cb) {
-	console.log('begin')
 	var pageIndex = req.query.page? req.query.page: 1;
 	var pageSize = req.query.pageSize? req.query.pageSize:10;
 	var params={};
