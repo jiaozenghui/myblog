@@ -29,7 +29,6 @@ module.exports= function (app) {
 	// static views
 	app.all('/*', function (req, res) {
 		try {
-			throw new Error('Bootstrap\'s JavaScript requires jQuery')
 			Article.getStatistics(req, function(statics) {
 				var template ="articles";
 				var blog_title ="首页";
