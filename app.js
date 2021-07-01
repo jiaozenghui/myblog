@@ -113,7 +113,7 @@ console.log = function () {
             logFile.end();
         }
         if (!fs.existsSync(fname)) {
-            fs.mkdirSync(fname);
+            fs.writeFileSync(fname);
         }
         logFile = fs.createWriteStream(fname, {
             flags: 'a',
