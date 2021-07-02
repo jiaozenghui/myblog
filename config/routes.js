@@ -65,10 +65,13 @@ module.exports= function (app) {
 				} else if (req.url.indexOf('articles/detail')>-1) {
 					var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
 					var art_template = './articles/'+ id_url.substring(0, id_url.lastIndexOf("."));
-					template ="detail";
+					
 					renderData['art_template'] = art_template;
 					renderData['type'] = 'detail';
 					renderData['article_id'] = id_url.substring(0, id_url.lastIndexOf("."));
+					if (renderData['article_id']) {
+						template ="detail";
+					}
 	
 				}
 				renderData['template'] = template;
