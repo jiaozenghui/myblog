@@ -89,6 +89,7 @@ module.exports= function (app) {
 							renderData['blog_title'] = re.result.title;
 							res.render('index',renderData);
 						} else {
+							renderData['template'] = "articles";
 							res.render('index',renderData);
 						}
 
