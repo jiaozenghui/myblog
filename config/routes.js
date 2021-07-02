@@ -93,6 +93,7 @@ module.exports= function (app) {
 								if (response.success == true) {
 									renderData["articles"] =  response.result;
 									renderData['blog_title'] = "首页";
+									renderData['template'] = "articles";
 									renderData["total"] =  response.total;
 									res.render('index',renderData);
 								}
