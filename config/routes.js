@@ -94,8 +94,7 @@ module.exports= function (app) {
 						}
 					});
 				} else {
-					res.writeHead(302,{'Location':'/'});
-					res.end();
+					res.render('index',renderData);
 					/* res.sendfile('index.html', {root: path.join(__dirname, 'app/views')}); */
 				}
 			});
