@@ -89,8 +89,14 @@ module.exports= function (app) {
 							renderData['blog_title'] = re.result.title;
 							res.render('index',renderData);
 						} else {
-							renderData['template'] = "articles";
-							res.render('index',renderData);
+							Article.getList(req, function(response) {
+								if (response.success == true) {
+									renderData["articles"] =  response.result;
+									renderData['blog_title'] = "首页";
+									renderData["total"] =  response.total;
+									res.render('index',renderData);
+								}
+							});
 						}
 
 					});
