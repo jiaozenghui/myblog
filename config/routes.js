@@ -65,14 +65,10 @@ module.exports= function (app) {
 				} else if (req.url.indexOf('articles/detail')>-1) {
 					var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
 					var art_template = './articles/'+ id_url.substring(0, id_url.lastIndexOf("."));
-					
+					template ="detail";
 					renderData['art_template'] = art_template;
 					renderData['type'] = 'detail';
 					renderData['article_id'] = id_url.substring(0, id_url.lastIndexOf("."));
-					if (renderData['article_id']) {
-						template ="detail";
-					}
-	
 				}
 				renderData['template'] = template;
 				renderData['blog_title'] = blog_title;
@@ -88,9 +84,14 @@ module.exports= function (app) {
 					});
 				} else if(template == "detail"){
 					Article.getDetail(renderData['article_id'], function(re) {
-						renderData.statics.pv_total +=1 ;
-						renderData['blog_title'] = re.result.title;
-						res.render('index',renderData);
+						if (re.result) {
+							renderData.statics.pv_total +=1 ;
+							renderData['blog_title'] = re.result.title;
+							res.render('index',renderData);
+						} else {
+							res.render('index',renderData);
+						}
+
 					});
 				} else {
 					res.render('index',renderData);
