@@ -84,7 +84,7 @@ module.exports= function (app) {
 					});
 				} else if(template == "detail"){
 					Article.getDetail(renderData['article_id'], function(re) {
-						if (re.success== true && res.result) {
+						if (res.success== true && res.result) {
 							renderData.statics.pv_total +=1 ;
 							renderData['blog_title'] = re.result.title;
 							res.render('index',renderData);
