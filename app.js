@@ -93,9 +93,9 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
     }  
     // 客户端发起其它请求  
     else {  
-        console.log('jiaoconfig.json')  
+        // console.log('config.json')  
         res.setHeader('Content-Type', 'application/json');  
-        return res.json({});  
+        res.redirect('/libs/ueditor/jsp/config.json');  
     }  
 })); 
 
