@@ -95,7 +95,7 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
     else {  
         console.log('jiaoconfig.json')  
         res.setHeader('Content-Type', 'application/json');  
-        return res.json('app/public/libs/ueditor/ueditor.config.js');  
+        return res.json({});  
     }  
 })); 
 
