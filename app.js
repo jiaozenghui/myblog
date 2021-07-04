@@ -95,7 +95,7 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
     else {  
         // console.log('config.json')  
         res.setHeader('Content-Type', 'application/json');  
-        res.redirect('/libs/ueditor/jsp/config.json');  
+        res.redirect('/libs/ueditor/ueditor.config.js');  
     }  
 })); 
 
