@@ -72,7 +72,7 @@ app.engine('html', require('ejs').__express);
 app.set('view engine', 'ejs');
 // rewrite to load static resources
 app.use(express.static(path.join(__dirname, 'app/public')));
-require('./config/routes')(app)
+
 //使用模块  
 app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function (req, res, next) {  
     // ueditor 客户发起上传图片请求  
@@ -99,6 +99,7 @@ app.use("/libs/ueditor/ue", ueditor(path.join(__dirname, 'app/public'), function
     }  
 })); 
 
+require('./config/routes')(app)
 
 var logPath = 'app/public/logs/'
 var logFile = null;
