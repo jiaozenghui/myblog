@@ -2,8 +2,13 @@ var Article = require('../controllers/article');
 var User = require('../controllers/user');
 var Category = require('../controllers/category');
 var Comment = require('../controllers/comment');
+var Travel = require('../controllers/travel');
 
 module.exports= function (app) {
+
+	app.post('/api/data', Travel.list);
+	app.get('/api/cities', Travel.getCities);
+
 	//Article
 	app.post('/admin/artice/new', Article.save);
 	app.get('/articles', Article.list);
