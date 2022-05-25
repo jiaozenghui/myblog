@@ -20,10 +20,8 @@ var date = require('./utils/date');
 var dbName = 'blog';
 var dbUrl = 'mongodb://localhost:27017/' + dbName;
 var mongoOptions = {
-    server: {
-        socketOptions: {
-            keepAlive: 1
-        }
+    socketOptions: {
+        keepAlive: 1
     },
     useNewUrlParser: true,
     useCreateIndex: true,
