@@ -6,7 +6,7 @@ var Travel = require('../controllers/travel');
 
 module.exports= function (app) {
 
-	app.post('/api/data', Travel.list);
+	app.get('/api/data', Travel.list);
 	app.get('/api/cities', Travel.getCities);
 
 	//Article
