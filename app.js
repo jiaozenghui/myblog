@@ -24,7 +24,10 @@ var mongoOptions = {
         socketOptions: {
             keepAlive: 1
         }
-    }
+    },
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
 }
 mongoose.connect(dbUrl, mongoOptions);
 mongoose.connection.on('error', function (err) {
