@@ -37,6 +37,8 @@ mongoose.connection.on('error', function (err) {
 
 app.use(session({
   secret: 'imooc',
+  resave: true,
+  saveUninitialized: true,
   store: new mongoStore({
     url: dbUrl,
     collection: 'sessions'
