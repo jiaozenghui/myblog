@@ -17,8 +17,8 @@ var ueditor = require("ueditor");
 
 var date = require('./utils/date');
 // connect to mongodb
-var dbName = 'blog';
-var dbUrl = 'mongodb://jiaozh1:jzh123password@localhost:27017/' + dbName;
+var dbName = 'admin';
+var dbUrl = 'mongodb://jiaozh11:jzhpassw0rd@localhost:27017/' + dbName;
 var mongoOptions = {
     socketOptions: {
         keepAlive: 1
