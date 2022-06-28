@@ -99,17 +99,19 @@ module.exports= function (app) {
 				} else if(template == "detail"){
 					if (deleteReq) {
 						res.render('index',renderData);
+					} else {
+						Article.getDetail(renderData['article_id'], function(re) {
+							if (re.success== true && re.result) {
+								renderData.statics.pv_total +=1 ;
+								renderData['blog_title'] = re.result.title;
+								res.render('index',renderData);
+							} else {
+								res.writeHead(302,{'Location':'/'});
+								res.end();
+							}
+						});
 					}
-					deleteReq&&Article.getDetail(renderData['article_id'], function(re) {
-						if (re.success== true && re.result) {
-							renderData.statics.pv_total +=1 ;
-							renderData['blog_title'] = re.result.title;
-							res.render('index',renderData);
-						} else {
-							res.writeHead(302,{'Location':'/'});
-							res.end();
-						}
-					});
+
 				} else {
 					res.render('index',renderData);
 					/* res.sendfile('index.html', {root: path.join(__dirname, 'app/views')}); */
