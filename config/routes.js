@@ -34,6 +34,7 @@ module.exports= function (app) {
 	// static views
 	app.all('/*', function (req, res) {
 		try {
+			var deleteReq = false;
 			Article.getStatistics(req, function(statics) {
 				var template ="articles";
 				var blog_title ="首页";
@@ -75,6 +76,7 @@ module.exports= function (app) {
 					renderData['type'] = 'detail';
 					renderData['article_id'] = id_url.substring(0, id_url.lastIndexOf("."));
 				} else if (req.url.indexOf('articles/deleted/detail')>-1) {
+					deleteReq = true;
 					var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
 					var art_template = './articles/'+ id_url;
 					template ="detail";
@@ -95,7 +97,10 @@ module.exports= function (app) {
 						}
 					});
 				} else if(template == "detail"){
-					Article.getDetail(renderData['article_id'], function(re) {
+					if (deleteReq) {
+						res.render('index',renderData);
+					}
+					deleteReq&&Article.getDetail(renderData['article_id'], function(re) {
 						if (re.success== true && re.result) {
 							renderData.statics.pv_total +=1 ;
 							renderData['blog_title'] = re.result.title;
