@@ -34,7 +34,6 @@ module.exports= function (app) {
 	// static views
 	app.all('/*', function (req, res) {
 		try {
-			var deleteReq = false;
 			Article.getStatistics(req, function(statics) {
 				var template ="articles";
 				var blog_title ="首页";
@@ -75,14 +74,12 @@ module.exports= function (app) {
 					renderData['art_template'] = art_template;
 					renderData['type'] = 'detail';
 					renderData['article_id'] = id_url.substring(0, id_url.lastIndexOf("."));
-				} else if (req.url.indexOf('articles/deleted/detail')>-1) {
-					deleteReq = true;
+				} else if (req.url.indexOf('articles/view')>-1) {
+					template ="view";
 					var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
 					var art_template = './articles/'+ id_url;
-					template ="detail";
+					template ="view";
 					renderData['art_template'] = art_template;
-					renderData['type'] = 'detail';
-					renderData['article_id'] = id_url;
 				}
 				renderData['template'] = template;
 				renderData['blog_title'] = blog_title;
@@ -97,22 +94,20 @@ module.exports= function (app) {
 						}
 					});
 				} else if(template == "detail"){
-					if (deleteReq) {
-						res.render('index',renderData);
-					} else {
-						Article.getDetail(renderData['article_id'], function(re) {
-							if (re.success== true && re.result) {
-								renderData.statics.pv_total +=1 ;
-								renderData['blog_title'] = re.result.title;
-								res.render('index',renderData);
-							} else {
-								res.writeHead(302,{'Location':'/'});
-								res.end();
-							}
-						});
-					}
-
-				} else {
+					Article.getDetail(renderData['article_id'], function(re) {
+						if (re.success== true && re.result) {
+							renderData.statics.pv_total +=1 ;
+							renderData['blog_title'] = re.result.title;
+							res.render('index',renderData);
+						} else {
+							res.writeHead(302,{'Location':'/'});
+							res.end();
+						}
+					});
+				} else if ( template == 'view') {
+					res.render('view',renderData);
+				}
+				else {
 					res.render('index',renderData);
 					/* res.sendfile('index.html', {root: path.join(__dirname, 'app/views')}); */
 				}
