@@ -74,6 +74,13 @@ module.exports= function (app) {
 					renderData['art_template'] = art_template;
 					renderData['type'] = 'detail';
 					renderData['article_id'] = id_url.substring(0, id_url.lastIndexOf("."));
+				} else if (req.url.indexOf('articles/deleted/detail')>-1) {
+					var id_url = req.url.substring(req.url.lastIndexOf("/")+1);
+					var art_template = './articles/'+ id_url;
+					template ="detail";
+					renderData['art_template'] = art_template;
+					renderData['type'] = 'detail';
+					renderData['article_id'] = id_url;
 				}
 				renderData['template'] = template;
 				renderData['blog_title'] = blog_title;
